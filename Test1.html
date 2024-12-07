@@ -27,26 +27,26 @@
 
             <!-- Today's Visit -->
             <div class="mb-4">
-                <h2 class="font-bold">Today's Visit</h2>
+                <h2 class="font-bold">Todays Visit</h2>
                 <div class="mt-2">
                     <label>What is the reason for your visit today?</label>
-                    <input class="border p-2 w-full mt-2" id="todayVisit" type="text" />
+                    <input class="border p-2 w-full mt-2" type="text" />
                 </div>
                 <div class="mt-2 flex items-center">
                     <label>Have you been treated at any Doctors Care office location before?</label>
                     <div class="ml-4">
-                        <input class="mr-2" id="treatedYes" type="radio" />
-                        <label for="treatedYes" for="flexRadioDefault1" >Yes</label>
-                        <input class="ml-4 mr-2" id="treatedNo" type="radio" />
-                        <label for="treatedNo" for="flexRadioDefault2" >No</label>
+                        <input class="mr-2" id="treatedYes" type="checkbox" />
+                        <label for="treatedYes">Yes</label>
+                        <input class="ml-4 mr-2" id="treatedNo" type="checkbox" />
+                        <label for="treatedNo">No</label>
                     </div>
                 </div>
                 <div class="mt-2 flex items-center">
                     <label>Have there been any changes to your information in the past 6 months?</label>
                     <div class="ml-4">
-                        <input class="mr-2" id="changesYes" type="radio" />
+                        <input class="mr-2" id="changesYes" type="checkbox" />
                         <label for="changesYes">Yes</label>
-                        <input class="ml-4 mr-2" id="changesNo" type="radio" />
+                        <input class="ml-4 mr-2" id="changesNo" type="checkbox" />
                         <label for="changesNo">No</label>
                         <span>(if no, please skip to the back page)</span>
                     </div>
@@ -57,7 +57,7 @@
             <div class="mb-4">
                 <h2 class="font-bold">Patient Demographics</h2>
                 <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
-                    <input class="border p-2 col-span-3" id="PermanentAddress" placeholder="Permanent Address" type="text" />
+                    <input class="border p-2 col-span-3" placeholder="Permanent Address" type="text" />
                     <input class="border p-2" placeholder="Apt. #" type="text" />
                     <input class="border p-2" placeholder="City" type="text" />
                     <input class="border p-2" placeholder="State" type="text" />
@@ -270,24 +270,6 @@
         </table>
     </div>
 
-    <script>
-
-        var allRadioBtns = document.getElementsByName("Today's Visit");
-        var allCheckBoxes = document.getElementsByName("Patient Demographics");
-
-        function createUser() {
-            var user = {
-                firstName: "",
-                todayVisit: "",
-                PermanentAddress: "",
-                Race: "",
-                Ethnicity: "",
-                Emergency Contact: "",
-                Employment Information: "",
-                Responsible Party: ""
-            }
-        }
-    </script>
 </body>
 
 </html>
