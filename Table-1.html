@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Patient Registration Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-100 p-4">
+    <div class="max-w-4xl mx-auto bg-white p-8 shadow-md">
+        <h1 class="text-2xl font-bold mb-4 text-center">Patient Registration Information</h1>
+        
+        <!-- Patient Name Section -->
+        <h2 class="font-bold text-lg mb-2">Patient Name</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Legal First Name</th>
+                    <th class="border px-4 py-2">Legal Last Name</th>
+                    <th class="border px-4 py-2">Suffix</th>
+                    <th class="border px-4 py-2">Preferred First Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Legal First Name"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Legal Last Name"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Suffix"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Preferred First Name"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Today's Visit Section -->
+        <h2 class="font-bold text-lg mb-2">Today's Visit</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Reason for Visit</th>
+                    <th class="border px-4 py-2">Treated Before?</th>
+                    <th class="border px-4 py-2">Changes in Info?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Reason for Visit"></td>
+                    <td class="border px-4 py-2"><input type="checkbox" class="mr-2" /> Yes <input type="checkbox" class="ml-4 mr-2" /> No</td>
+                    <td class="border px-4 py-2"><input type="checkbox" class="mr-2" /> Yes <input type="checkbox" class="ml-4 mr-2" /> No</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Patient Demographics Section -->
+        <h2 class="font-bold text-lg mb-2">Patient Demographics</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Permanent Address</th>
+                    <th class="border px-4 py-2">Apt. #</th>
+                    <th class="border px-4 py-2">City</th>
+                    <th class="border px-4 py-2">State</th>
+                    <th class="border px-4 py-2">Zip</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Permanent Address"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Apt. #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="City"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="State"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Zip"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Phone #</th>
+                    <th class="border px-4 py-2">Social Security #</th>
+                    <th class="border px-4 py-2">Gender</th>
+                    <th class="border px-4 py-2">Birth Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Phone #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Social Security #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Gender"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Birth Date"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Language</th>
+                    <th class="border px-4 py-2">Marital Status</th>
+                    <th class="border px-4 py-2">Email Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Language"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Marital Status"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Email Address"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Local or Alternate Address</th>
+                    <th class="border px-4 py-2">Alternate Phone #</th>
+                    <th class="border px-4 py-2">Today's Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Local or Alternate Address"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Alternate Phone #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Today's Date"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="font-bold text-lg mb-2">Race</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Race Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">
+                        <label><input type="checkbox" class="mr-2"> African American</label>
+                        <label><input type="checkbox" class="mr-2"> American Indian/Alaska Native</label>
+                        <label><input type="checkbox" class="mr-2"> Asian</label>
+                        <label><input type="checkbox" class="mr-2"> Hispanic</label>
+                        <label><input type="checkbox" class="mr-2"> Mixed Race</label>
+                        <label><input type="checkbox" class="mr-2"> White</label>
+                        <label><input type="checkbox" class="mr-2"> Other</label>
+                        <label><input type="checkbox" class="mr-2"> Refuse to Report</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="font-bold text-lg mb-2">Ethnicity</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Ethnicity Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">
+                        <label><input type="checkbox" class="mr-2"> Hispanic</label>
+                        <label><input type="checkbox" class="mr-2"> Not Hispanic</label>
+                        <label><input type="checkbox" class="mr-2"> Refuse to Report</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="font-bold text-lg mb-2">Emergency Contact Information</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Contact Name</th>
+                    <th class="border px-4 py-2">Phone #</th>
+                    <th class="border px-4 py-2">Relationship to Patient</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Contact Name"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Phone #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Relationship to Patient"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="font-bold text-lg mb-2">Patient Employment Information</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Employer Name</th>
+                    <th class="border px-4 py-2">Employer Phone #</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Employer Name"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Employer Phone #"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="font-bold text-lg mb-2">Responsible Party's Information</h2>
+        <table class="min-w-full table-auto border-collapse mb-4">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Name of Responsible Party</th>
+                    <th class="border px-4 py-2">Phone #</th>
+                    <th class="border px-4 py-2">Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Name of Responsible Party"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Phone #"></td>
+                    <td class="border px-4 py-2"><input type="text" class="w-full border p-2" placeholder="Address"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
