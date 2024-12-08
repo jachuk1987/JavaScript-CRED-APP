@@ -36,9 +36,9 @@
                     <label>Have you been treated at any Doctors Care office location before?</label>
                     <div class="ml-4">
                         <input class="mr-2" id="treatedYes" type="radio" />
-                        <label for="treatedYes" for="flexRadioDefault1" >Yes</label>
+                        <label for="treatedYes" for="flexRadioDefault1">Yes</label>
                         <input class="ml-4 mr-2" id="treatedNo" type="radio" />
-                        <label for="treatedNo" for="flexRadioDefault2" >No</label>
+                        <label for="treatedNo" for="flexRadioDefault2">No</label>
                     </div>
                 </div>
                 <div class="mt-2 flex items-center">
@@ -57,7 +57,8 @@
             <div class="mb-4">
                 <h2 class="font-bold">Patient Demographics</h2>
                 <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
-                    <input class="border p-2 col-span-3" id="PermanentAddress" placeholder="Permanent Address" type="text" />
+                    <input class="border p-2 col-span-3" id="PermanentAddress" placeholder="Permanent Address"
+                        type="text" />
                     <input class="border p-2" placeholder="Apt. #" type="text" />
                     <input class="border p-2" placeholder="City" type="text" />
                     <input class="border p-2" placeholder="State" type="text" />
@@ -122,15 +123,15 @@
                     <label>Ethnicity:</label>
                     <div class="flex flex-wrap mt-2">
                         <div class="mr-4">
-                            <input class="mr-2" id="ethnicityHispanic" type="checkbox" />
+                            <input class="mr-3" id="ethnicityHispanic" type="radio" />
                             <label for="ethnicityHispanic">Hispanic</label>
                         </div>
                         <div class="mr-4">
-                            <input class="mr-2" id="ethnicityNotHispanic" type="checkbox" />
+                            <input class="mr-3" id="ethnicityNotHispanic" type="radio" />
                             <label for="ethnicityNotHispanic">Not Hispanic</label>
                         </div>
                         <div class="mr-4">
-                            <input class="mr-2" id="ethnicityRefuse" type="checkbox" />
+                            <input class="mr-3" id="ethnicityRefuse" type="radio" />
                             <label for="ethnicityRefuse">Refuse to Report</label>
                         </div>
                     </div>
@@ -220,9 +221,9 @@
         <table class="table table-bordered border-primary">
             <thead>
                 <tr class="bg-gray-200">
-                    <th class="border px-4 py-2">Patient Name</th>
-                    <th class="border px-4 py-2">Today's Visit</th>
-                    <th class="border px-4 py-2">Patient Demographics</th>
+                    <th class="border px-4 py-2">PatientName</th>
+                    <th class="border px-4 py-2">TodaysVisit</th>
+                    <th class="border px-4 py-2">PatientDemographics</th>
                     <th class="border px-4 py-2">Race</th>
                     <th class="border px-4 py-2">Ethnicity</th>
                     <th class="border px-4 py-2">Emergency Contact</th>
@@ -272,21 +273,32 @@
 
     <script>
 
-        var allRadioBtns = document.getElementsByName("Today's Visit");
-        var allCheckBoxes = document.getElementsByName("Patient Demographics");
+        let patients = [];
+        let editIndex = null;
 
-        function createUser() {
-            var user = {
-                firstName: "",
-                todayVisit: "",
-                PermanentAddress: "",
-                Race: "",
-                Ethnicity: "",
-                Emergency Contact: "",
-                Employment Information: "",
-                Responsible Party: ""
-            }
-        }
+        const submitBtn = document.getElementById('submitBtn');
+        const updateBtn = document.getElementById('updateBtn');
+
+        var allRadioBtns = document.getElementsByName("mr-3");
+        var allCheckBoxes = document.getElementsByName("mr-2");
+
+        submitBtn.addEventListener('click', () => {
+            const patient = {
+                PatientName: document.getElementById('firstName').value,
+                TodaysVisit: document.getElementById('todayVisit').value,
+                PatientDemographics: document.getElementById('PermanentAddress').value,
+                preferredName: document.getElementById('preferredName').value,
+                visitReason: document.getElementById('visitReason').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value
+            };
+
+            patients.push(patient);
+            form.reset();
+            renderTable();
+        });
+
+
     </script>
 </body>
 
