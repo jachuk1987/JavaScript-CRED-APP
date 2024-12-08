@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-100 p-4">
+    <div class="max-w-6xl mx-auto bg-white p-8 shadow-md">
+        <!-- Form Section -->
+        <form id="patientForm" class="mb-8">
+            <h1 class="text-2xl font-bold mb-6 text-center">Patient Registration Form</h1>
+
+            <!-- Patient Name -->
+            <div class="mb-4">
+                <h2 class="font-bold">Patient Name</h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+                    <input id="firstName" class="border p-2" placeholder="Legal First Name" type="text" required />
+                    <input id="lastName" class="border p-2" placeholder="Legal Last Name" type="text" required />
+                    <input id="suffix" class="border p-2" placeholder="Suffix" type="text" />
+                    <input id="preferredName" class="border p-2" placeholder="Preferred First Name" type="text" />
+                </div>
+            </div>
+
+            <!-- Today's Visit -->
+            <div class="mb-4">
+                <h2 class="font-bold">Today's Visit</h2>
+                <input id="visitReason" class="border p-2 w-full mt-2" placeholder="Reason for visit" type="text" />
+            </div>
+
+            <!-- Patient Demographics -->
+            <div class="mb-4">
+                <h2 class="font-bold">Patient Demographics</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                    <input id="address" class="border p-2" placeholder="Address" type="text" required />
+                    <input id="phone" class="border p-2" placeholder="Phone #" type="text" />
+                </div>
+            </div>
+
+            <!-- Submit and Update Buttons -->
+            <div class="text-center">
+                <button type="button" id="submitBtn" class="bg-blue-500 text-white px-6 py-2 rounded shadow-md hover:bg-blue-600">
+                    Submit
+                </button>
+                <button type="button" id="updateBtn" class="bg-green-500 text-white px-6 py-2 rounded shadow-md hover:bg-green-600 hidden">
+                    Update
+                </button>
+            </div>
+        </form>
+
+        <!-- Table Section -->
+        <h1 class="text-2xl font-bold mb-4 text-center">Patient Registration Table</h1>
+        <table class="w-full border-collapse border border-gray-400">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Patient Name</th>
+                    <th class="border px-4 py-2">Reason for Visit</th>
+                    <th class="border px-4 py-2">Address</th>
+                    <th class="border px-4 py-2">Phone</th>
+                    <th class="border px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="patientTable"></tbody>
+        </table>
+    </div>
+
+    <script>
+        let patients = [];
+        let editIndex = null;
+
+        const form = document.getElementById('patientForm');
+        const patientTable = document.getElementById('patientTable');
+        const submitBtn = document.getElementById('submitBtn');
+        const updateBtn = document.getElementById('updateBtn');
+
+        // Add a patient
+        submitBtn.addEventListener('click', () => {
+            const patient = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                suffix: document.getElementById('suffix').value,
+                preferredName: document.getElementById('preferredName').value,
+                visitReason: document.getElementById('visitReason').value,
+                address: document.getElementById('address').value,
+                phone: document.getElementById('phone').value
+            };
+
+            patients.push(patient);
+            form.reset();
+            renderTable();
+        });
+
+        // Update a patient
+        updateBtn.addEventListener('click', () => {
+            const patient = patients[editIndex];
+            patient.firstName = document.getElementById('firstName').value;
+            patient.lastName = document.getElementById('lastName').value;
+            patient.suffix = document.getElementById('suffix').value;
+            patient.preferredName = document.getElementById('preferredName').value;
+            patient.visitReason = document.getElementById('visitReason').value;
+            patient.address = document.getElementById('address').value;
+            patient.phone = document.getElementById('phone').value;
+
+            editIndex = null;
+            form.reset();
+            submitBtn.classList.remove('hidden');
+            updateBtn.classList.add('hidden');
+            renderTable();
+        });
+
+        // Render the table
+        function renderTable() {
+            patientTable.innerHTML = '';
+            patients.forEach((patient, index) => {
+                const row = `
+                    <tr>
+                        <td class="border px-4 py-2">${patient.firstName} ${patient.lastName} ${patient.suffix || ''}</td>
+                        <td class="border px-4 py-2">${patient.visitReason}</td>
+                        <td class="border px-4 py-2">${patient.address}</td>
+                        <td class="border px-4 py-2">${patient.phone}</td>
+                        <td class="border px-4 py-2 text-center">
+                            <button class="bg-yellow-500 text-white px-2 py-1 rounded" onclick="editPatient(${index})">Edit</button>
+                            <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="deletePatient(${index})">Delete</button>
+                        </td>
+                    </tr>
+                `;
+                patientTable.innerHTML += row;
+            });
+        }
+
+        // Edit a patient
+        window.editPatient = (index) => {
+            const patient = patients[index];
+            document.getElementById('firstName').value = patient.firstName;
+            document.getElementById('lastName').value = patient.lastName;
+            document.getElementById('suffix').value = patient.suffix;
+            document.getElementById('preferredName').value = patient.preferredName;
+            document.getElementById('visitReason').value = patient.visitReason;
+            document.getElementById('address').value = patient.address;
+            document.getElementById('phone').value = patient.phone;
+
+            editIndex = index;
+            submitBtn.classList.add('hidden');
+            updateBtn.classList.remove('hidden');
+        };
+
+        // Delete a patient
+        window.deletePatient = (index) => {
+            patients.splice(index, 1);
+            renderTable();
+        };
+    </script>
+</body>
+
+</html>
