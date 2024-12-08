@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 class="text-2xl font-bold mb-6 text-center">Patient Registration Form</h1>
+    <div class="mt-2">
+        <!-- Patient Name -->
+        <div class="mb-4">
+            <h2 class="font-bold">Patient Name</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+                <input id="firstName" class="border p-2" placeholder="Legal First Name" type="text" required />
+                <input id="lastName" class="border p-2" placeholder="Legal Last Name" type="text" required />
+                <input id="suffix" class="border p-2" placeholder="Suffix" type="text" />
+                <input id="preferredName" class="border p-2" placeholder="Preferred First Name" type="text" />
+            </div>
+        </div>
+        <!-- Ethnicity  -->
+        <div class="mt-2">
+            <label>Ethnicity:</label>
+            <div class="flex flex-wrap mt-2">
+                <div class="mr-4">
+                    <input class="mr-3" name="ethnicity" type="radio" />
+                    <label for="ethnicityHispanic">Hispanic</label>
+                </div>
+                <div class="mr-4">
+                    <input class="mr-3" name="ethnicity" type="radio" />
+                    <label for="ethnicityNotHispanic">Not Hispanic</label>
+                </div>
+                <div class="mr-4">
+                    <input class="mr-3" name="ethnicity" type="radio" />
+                    <label for="ethnicityRefuse">Refuse to Report</label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded shadow-md hover:bg-blue-600"
+                        onclick="createUser()" id="submitBtn" class="btn btn-primary">
+                        Submit
+                    </button>
+                    <button type="button" class="bg-blue-500 text-white px-6 py-2 rounded shadow-md hover:bg-blue-600"
+                        onclick="updateUser()" id="updatebtn" class="btn btn-primary"
+                        style="display:none;">Update</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <h1 class="text-2xl font-bold mb-4 text-center">Patient Registration Table</h1>
+        <table class="table table-bordered border-primary">
+            <table border="1" cellspacing="0" cellpadding="8" style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th>Legal First Name</th>
+                        <th>Legal Last Name</th>
+                        <th>Suffix</th>
+                        <th>Preferred First Name</th>
+                        <th class="border px-4 py-2">Ethnicity</th>
+                    </tr>
+
+                </thead>
+
+            </table>
+
+            <tbody>
+                <!-- Dynamically filled rows -->
+            </tbody>
+
+        </table>
+    </div>
+
+    <script>
+        let patientData = [];
+        let editIndex = -1;
+
+        var allRadioBtns = document.getElementsByName("ethnicity");
+
+        function createUser() {
+            var patient = {
+                ethnicity: "",
+            }
+            for (a in patient) {
+                if (a !== "ethnicity") {
+                    student[a] = document.getElementById(a).value;
+                } else {
+                    for (i = 0; i < allRadioBtns.length; i++) {
+                        if (allRadioBtns[i].checked) {
+                            student[a] = allRadioBtns[i].value;
+                        }
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>

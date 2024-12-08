@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                        <label for="FirstName" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="FullName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="Phone" class="form-label">Phone</label>
+                        <input type="text" class="form-control" id="Phone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="City" class="form-label">City</label>
+                        <input type="text" class="form-control" id="City">
+                    </div>
+                    <div class="mb-3">
+                        <label for="State" class="form-label">State</label>
+                        <select class="form-select" id="state">
+                            <option selected>Select State</option>
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tamilnadu">Tamilnadu</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Do you have hosting?</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Hosting" value="Yes" id="HostingYes">
+                            <label class="form-check-label" for="HostingYes">
+                                Yes
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="Hosting" value="No" id="HostingNo">
+                            <label class="form-check-label" for="HostingNo">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                    <button type="button" onclick="createUser()" id="submitbtn" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="updateUser()" id="updatebtn" class="btn btn-primary"
+                        style="display:none;">Update</button>
+                </form>
+            </div>
+            <div class="col">
+                <table class="table table-bordered border-primary">
+                    <thead>
+                        <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Hosting</th>
+                            <th>Edit</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var persons = [];
+
+        function createUser() {
+            var person = {
+                FullName: "",
+                Email: "",
+                Phone: "",
+                city: "",
+                Hosting: "",
+            }
+            for ( a in person) {
+                if ()
+            }
+        }
+
+    </script>
+</body>
+
+</html>
