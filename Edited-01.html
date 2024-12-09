@@ -21,7 +21,14 @@
             <div><input type="email" id="mail"></div>
             <div><label>Password</label></div>
             <div><input type="password" id="password"></div>
-            
+            <div><label>Domine</label></div>
+            <div>
+                <select name="domine" id="domine">
+                    <option value="">Select</option>
+                    <option value="IT">IT</option>
+                    <option value="core">Core</option>
+                </select>
+            </div>
             <div style="margin:20px">
                 <button type="button" id="submit" onclick="displayData()">Submit</button>
             </div>
@@ -34,6 +41,7 @@
                     <th>Name</th>
                     <th>Mail</th>
                     <th>Password</th>
+                    <th>Domine</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -46,30 +54,34 @@
     <script>
         var user = [
             {
-                name: "Jeswanth",
-                mail: "jeswanth@gmail.com",
-                password: "123456",
+                name: "manisha",
+                mail: "theju@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
             },
             {
-                name: "Vishal",
-                mail: "vishal@gmail.com",
-                password: "258963",
-
+                name: "manisha1",
+                mail: "theju1@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
             },
             {
-                name: "Nethaji",
-                mail: "nethaji@gmail.com",
-                password: "456123",
+                name: "manisha2",
+                mail: "theju2@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
             },
             {
-                name: "Sai",
-                mail: "sai@gmail.com",
-                password: "789456",
+                name: "manisha3",
+                mail: "theju3@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
             },
             {
-                name: "Sekhar",
-                mail: "sekhar@gmail.com",
-                password: "147852",
+                name: "manisha4",
+                mail: "theju4@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
             }
         ];
 
@@ -79,6 +91,7 @@
                 name: document.getElementById("name").value,
                 mail: document.getElementById("mail").value,
                 password: document.getElementById("password").value,
+                domine: document.getElementById("domine").value,
             }
             user.push(newUsers);
             tableData();
@@ -100,14 +113,14 @@
                 var editTd = document.createElement("td");
                 var editBTN = document.createElement("button");
                 editBTN.innerHTML = "Edit";
-                editBTN.setAttribute("onclick", editUser($ { i }));
+                editBTN.setAttribute("onclick", editUser(${ i }));
                 editTd.appendChild(editBTN);
                 tr.appendChild(editTd);
 
                 var deleteTd = document.createElement("td");
                 var deleteBTN = document.createElement("button");
                 deleteBTN.innerHTML = "Delete";
-                deleteBTN.setAttribute("onclick", deleteUser($ { i }));
+                deleteBTN.setAttribute("onclick", deleteUser(${ i }));
                 deleteTd.appendChild(deleteBTN);
                 tr.appendChild(deleteTd);
 
@@ -116,49 +129,46 @@
         }
 
         function editUser(i) {
-            var tr = document.querySelectorAll("tbody tr")[i]
-            var tds = tr.querySelectorAll("td[data-field]")
-            tds.forEach(td => {
-                var field = td.getAttribute("data-field")
-                td.innerHTML = <input value='${user[i][field]}' />
-            })
-
-            var editTd = tr.querySelector("td:nth-last-child(2)")
-            editTd.innerHTML = <button onclick="updateUser(${i})">Update</button>
-        }
-        function updateUser(i) {
-            var tr = document.querySelectorAll("tbody tr")[i]
-            var tds = tr.querySelectorAll("td[data-field]")
-
+            var tr = document.querySelectorAll("tbody tr")[i];
+            var tds = tr.querySelectorAll("td[data-field]");
 
             tds.forEach(td => {
-                var field = td.getAttribute("data-field")
-                var input = td.querySelector("input")
-                user[i][field] = input.value
-                td.innerHTML = user[i][field]
-            })
-            var editTd = tr.querySelector("td:nth-last-child(2)")
-            editTd.innerHTML = <button onclick="editUser(${i})">Edit</button>
+                var field = td.getAttribute("data-field");
+                td.innerHTML = <input value='${user[i][field]}'>;
+            });
 
+                    var editTd = tr.querySelector("td:nth-last-child(2)");
+                    editTd.innerHTML = <button onclick="updateUser(${i})">Update</button>;
         }
 
+                    function updateUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i];
+                    var tds = tr.querySelectorAll("td[data-field]");
 
+            tds.forEach(td => {
+                var field = td.getAttribute("data-field");
+                    var input = td.querySelector("input");
+                    user[i][field] = input.value;
+                    td.innerHTML = user[i][field];
+            });
 
-
-
-        function deleteUser(i) {
-            user.splice(i, 1);
-            tableData();
+                    var editTd = tr.querySelector("td:nth-last-child(2)");
+                    editTd.innerHTML = <button onclick="editUser(${i})">Edit</button>;
         }
 
-        function clearForm() {
-            document.getElementById("name").value = "";
-            document.getElementById("mail").value = "";
-            document.getElementById("password").value = "";
-            document.getElementById("domine").value = "";
+                    function deleteUser(i) {
+                        user.splice(i, 1);
+                    tableData();
         }
 
-        tableData();
+                    function clearForm() {
+                        document.getElementById("name").value = "";
+                    document.getElementById("mail").value = "";
+                    document.getElementById("password").value = "";
+                    document.getElementById("domine").value = "";
+        }
+
+                    tableData();
     </script>
 </body>
 
