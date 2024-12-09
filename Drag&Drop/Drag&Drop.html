@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reorder table rows using Drag and Drop</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Reorder Table Rows using Drag and Drop</h1>
     <table>
@@ -72,5 +74,33 @@
     </table>
 
     <script src="script.js" defer></script>
+    <!-- <script>
+        const tbody = document.getElementsByTagName("tbody")[0];
+        const rows = tbody.rows
+
+
+        for (i = 0; i < rows.length; i++) {
+            var row = rows[i];
+
+            row.setAttribute("draggable", true)
+
+
+            row.addEventListener("dragstart", (event) => {
+                row = event.target
+            })
+            row.addEventListener("dragover", (event) => {
+                var e = event
+                e.preventDefault()
+
+                var allrows = Array.from(rows)
+                if (allrows.indexOf(e.target.parentNode) > allrows.indexOf(row))
+                    e.target.parentNode.after(row)
+                else
+                    e.target.parentNode.before(row)
+
+            })
+        }
+    </script> -->
 </body>
+
 </html>
