@@ -45,7 +45,7 @@
     </div>
     <script>
         var user = [
-        {
+            {
                 name: "Jeswanth",
                 mail: "jeswanth@gmail.com",
                 password: "123456",
@@ -54,7 +54,7 @@
                 name: "Vishal",
                 mail: "vishal@gmail.com",
                 password: "258963",
-                
+
             },
             {
                 name: "Nethaji",
@@ -79,7 +79,6 @@
                 name: document.getElementById("name").value,
                 mail: document.getElementById("mail").value,
                 password: document.getElementById("password").value,
-                domine: document.getElementById("domine").value,
             }
             user.push(newUsers);
             tableData();
@@ -101,14 +100,14 @@
                 var editTd = document.createElement("td");
                 var editBTN = document.createElement("button");
                 editBTN.innerHTML = "Edit";
-                editBTN.setAttribute("onclick", editUser(${i}));
+                editBTN.setAttribute("onclick", editUser($ { i }));
                 editTd.appendChild(editBTN);
                 tr.appendChild(editTd);
 
                 var deleteTd = document.createElement("td");
                 var deleteBTN = document.createElement("button");
                 deleteBTN.innerHTML = "Delete";
-                deleteBTN.setAttribute("onclick", deleteUser(${i}));
+                deleteBTN.setAttribute("onclick", deleteUser($ { i }));
                 deleteTd.appendChild(deleteBTN);
                 tr.appendChild(deleteTd);
 
@@ -116,36 +115,36 @@
             }
         }
 
-        function editUser(i){
-            var tr=document.querySelectorAll("tbody tr")[i]
-            var tds=tr.querySelectorAll("td[data-field]")
-             tds.forEach(td=>{
-                var field=td.getAttribute("data-field")
-                td.innerHTML=<input value='${user[i][field]}'>
-             })
-
-            var editTd=tr.querySelector("td:nth-last-child(2)")
-            editTd.innerHTML=<button onclick="updateUser(${i})">Update</button>
-        }
-        function updateUser(i){
-            var tr=document.querySelectorAll("tbody tr")[i]
-            var tds=tr.querySelectorAll("td[data-field]")
-
-
-            tds.forEach(td=>{
-                var field=td.getAttribute("data-field")
-                var input=td.querySelector("input")
-                user[i][field]=input.value
-                td.innerHTML=user[i][field]
+        function editUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i]
+            var tds = tr.querySelectorAll("td[data-field]")
+            tds.forEach(td => {
+                var field = td.getAttribute("data-field")
+                td.innerHTML = <input value='${user[i][field]}' />
             })
-            var editTd=tr.querySelector("td:nth-last-child(2)")
-            editTd.innerHTML=<button onclick="editUser(${i})">Edit</button>
+
+            var editTd = tr.querySelector("td:nth-last-child(2)")
+            editTd.innerHTML = <button onclick="updateUser(${i})">Update</button>
+        }
+        function updateUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i]
+            var tds = tr.querySelectorAll("td[data-field]")
+
+
+            tds.forEach(td => {
+                var field = td.getAttribute("data-field")
+                var input = td.querySelector("input")
+                user[i][field] = input.value
+                td.innerHTML = user[i][field]
+            })
+            var editTd = tr.querySelector("td:nth-last-child(2)")
+            editTd.innerHTML = <button onclick="editUser(${i})">Edit</button>
 
         }
 
-    
 
-       
+
+
 
         function deleteUser(i) {
             user.splice(i, 1);
