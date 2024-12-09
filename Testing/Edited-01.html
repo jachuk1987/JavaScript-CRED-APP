@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit-Button</title>
+    <title>Document</title>
     <style>
         button#update {
             display: none;
@@ -29,7 +29,6 @@
                     <option value="core">Core</option>
                 </select>
             </div>
-
             <div style="margin:20px">
                 <button type="button" id="submit" onclick="displayData()">Submit</button>
             </div>
@@ -54,12 +53,38 @@
     </div>
     <script>
         var user = [
-            { name: "Jeswanth", mail: "jeswanth@gmail.com", password: "123456", domine: "Core" },
-            { name: "Vishal", mail: "vishal@gmail.com", password: "258963", domine: "Core" },
-            { name: "Nethaji", mail: "nethaji@gmail.com", password: "456123", domine: "IT" },
-            { name: "Sai", mail: "sai@gmail.com", password: "789456", domine: "Core" },
-            { name: "Sekhar", mail: "sekhar@gmail.com", password: "147852", domine: "IT" },
+            {
+                name: "manisha",
+                mail: "theju@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
+            },
+            {
+                name: "manisha1",
+                mail: "theju1@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
+            },
+            {
+                name: "manisha2",
+                mail: "theju2@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
+            },
+            {
+                name: "manisha3",
+                mail: "theju3@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
+            },
+            {
+                name: "manisha4",
+                mail: "theju4@gmail.com",
+                password: "nxgfyf",
+                domine: "mhfruy"
+            }
         ];
+
 
         function displayData() {
             var newUsers = {
@@ -67,14 +92,10 @@
                 mail: document.getElementById("mail").value,
                 password: document.getElementById("password").value,
                 domine: document.getElementById("domine").value,
-            };
-            if (newUsers.name && newUsers.mail && newUsers.password) {
-                user.push(newUsers);
-                tableData();
-                clearForm();
-            } else {
-                alert("Please fill all fields.");
             }
+            user.push(newUsers);
+            tableData();
+            clearForm();
         }
 
         function tableData() {
@@ -92,14 +113,14 @@
                 var editTd = document.createElement("td");
                 var editBTN = document.createElement("button");
                 editBTN.innerHTML = "Edit";
-                editBTN.setAttribute("onclick", `editUser(${i})`);
+                editBTN.setAttribute("onclick", editUser(${ i }));
                 editTd.appendChild(editBTN);
                 tr.appendChild(editTd);
 
                 var deleteTd = document.createElement("td");
                 var deleteBTN = document.createElement("button");
                 deleteBTN.innerHTML = "Delete";
-                deleteBTN.setAttribute("onclick", `deleteUser(${i})`);
+                deleteBTN.setAttribute("onclick", deleteUser(${ i }));
                 deleteTd.appendChild(deleteBTN);
                 tr.appendChild(deleteTd);
 
@@ -113,11 +134,11 @@
 
             tds.forEach(td => {
                 var field = td.getAttribute("data-field");
-                td.innerHTML = `<input value="${user[i][field]}" />`;
+                td.innerHTML = <input value='${user[i][field]}'/>;
             });
 
             var editTd = tr.querySelector("td:nth-last-child(2)");
-            editTd.innerHTML = `<button onclick="updateUser(${i})">Update</button>`;
+            editTd.innerHTML = <button onclick="updateUser(${i})">Update</button>;
         }
 
         function updateUser(i) {
@@ -125,14 +146,14 @@
             var tds = tr.querySelectorAll("td[data-field]");
 
             tds.forEach(td => {
-                var field = td.getAttribute("data-field");
-                var input = td.querySelector("input");
-                user[i][field] = input.value;
-                td.innerHTML = user[i][field];
+            var field = td.getAttribute("data-field");
+            var input = td.querySelector("input");
+            user[i][field] = input.value;
+            td.innerHTML = user[i][field];
             });
 
             var editTd = tr.querySelector("td:nth-last-child(2)");
-            editTd.innerHTML = `<button onclick="editUser(${i})">Edit</button>`;
+            editTd.innerHTML = <button onclick="editUser(${i})">Edit</button>;
         }
 
         function deleteUser(i) {
@@ -148,6 +169,7 @@
         }
 
         tableData();
+        
     </script>
 </body>
 
