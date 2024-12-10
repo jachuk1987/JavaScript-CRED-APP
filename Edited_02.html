@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit-Button</title>
+    <style>
+        button#update {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding:20px;margin:20px">
+        <form>
+            <div><label>Name</label></div>
+            <div><input type="text" id="name"></div>
+            <div><label>Email</label></div>
+            <div><input type="email" id="mail"></div>
+            <div><label>Password</label></div>
+            <div><input type="password" id="password"></div>
+            <div><label>Domine</label></div>
+            <div>
+                <select name="domine" id="domine">
+                    <option value="">Select</option>
+                    <option value="IT">IT</option>
+                    <option value="Core">Core</option>
+                </select>
+            </div>
+
+            <div style="margin:20px">
+                <button type="button" id="submit" onclick="displayData()">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div style="padding:20px;margin:20px">
+        <table border="1" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Mail</th>
+                    <th>Password</th>
+                    <th>Domine</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var user = [
+            { name: "Jeswanth", mail: "jeswanth@gmail.com", password: "123456", domine: "Core" },
+            { name: "Vishal", mail: "vishal@gmail.com", password: "258963", domine: "Core" },
+            { name: "Nethaji", mail: "nethaji@gmail.com", password: "456123", domine: "IT" },
+            { name: "Sai", mail: "sai@gmail.com", password: "789456", domine: "Core" },
+            { name: "Sekhar", mail: "sekhar@gmail.com", password: "147852", domine: "IT" },
+        ];
+
+        function displayData() {
+            var newUsers = {
+                name: document.getElementById("name").value.trim(),
+                mail: document.getElementById("mail").value.trim(),
+                password: document.getElementById("password").value.trim(),
+                domine: document.getElementById("domine").value.trim(),
+            };
+
+            if (newUsers.name && newUsers.mail && newUsers.password && newUsers.domine) {
+                user.push(newUsers);
+                tableData();
+                clearForm();
+            } else {
+                alert("Please fill all fields.");
+            }
+        }
+
+        function tableData() {
+            document.querySelector("tbody").innerHTML = "";
+            user.forEach((u, i) => {
+                var tr = document.createElement("tr");
+
+                for (var key in u) {
+                    var td = document.createElement("td");
+                    td.innerHTML = u[key];
+                    td.setAttribute("data-field", key);
+                    tr.appendChild(td);
+                }
+
+                var editTd = document.createElement("td");
+                var editBTN = document.createElement("button");
+                editBTN.innerHTML = "Edit";
+                editBTN.setAttribute("onclick", `editUser(${i})`);
+                editTd.appendChild(editBTN);
+                tr.appendChild(editTd);
+
+                var deleteTd = document.createElement("td");
+                var deleteBTN = document.createElement("button");
+                deleteBTN.innerHTML = "Delete";
+                deleteBTN.setAttribute("onclick", `deleteUser(${i})`);
+                deleteTd.appendChild(deleteBTN);
+                tr.appendChild(deleteTd);
+
+                document.querySelector("tbody").appendChild(tr);
+            });
+        }
+
+        function editUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i];
+            var tds = tr.querySelectorAll("td[data-field]");
+            var editTd = tr.querySelector("td:nth-last-child(2)");
+
+            tds.forEach(td => {
+                var field = td.getAttribute("data-field");
+                var input = document.createElement("input");
+                input.value = user[i][field];
+                td.innerHTML = "";
+                td.appendChild(input);
+            });
+
+            var editBTN = `<button onclick="updateUser(${i})">Update</button>`;
+            editTd.innerHTML = editBTN;
+        }
+
+        function updateUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i];
+            var tds = tr.querySelectorAll("td[data-field]");
+            var editTd = tr.querySelector("td:nth-last-child(2)");
+
+            tds.forEach(td => {
+                var field = td.getAttribute("data-field");
+                var input = td.querySelector("input");
+                user[i][field] = input.value.trim();
+                td.innerHTML = user[i][field];
+            });
+
+            var editBTN = `<button onclick="editUser(${i})">Edit</button>`;
+            editTd.innerHTML = editBTN;
+        }
+
+        function deleteUser(i) {
+            user.splice(i, 1);
+            tableData();
+        }
+
+        function clearForm() {
+            document.getElementById("name").value = "";
+            document.getElementById("mail").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("domine").value = "";
+        }
+
+        tableData();
+    </script>
+</body>
+
+</html>
