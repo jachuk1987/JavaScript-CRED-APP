@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+
+</head>
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: white;
+        scroll-behavior: smooth;
+    }
+
+    .pagination-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pagination-controls {
+        margin-bottom: 10px;
+    }
+
+    .pagination-controls label {
+        margin-right: 10px;
+    }
+
+    select {
+        outline: 0;
+        border: 0;
+        padding: 10px;
+        box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    #list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .pagination-container ul li {
+        width: 150px;
+        height: 100px;
+        margin-bottom: 10px;
+        color: #fff;
+        background-color: darkblue;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        padding: 10px 0;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .pagination {
+        text-align: center;
+        display: inline-block;
+        padding: 8px 12px;
+        margin-right: 5px;
+        background-color: #dadada;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .pagination.active {
+        background-color: darkblue;
+        color: white;
+    }
+
+    .pagination-container ul li.fade-in {
+        opacity: 1;
+        transform: scale(1);
+    }
+</style>
+
+<body>
+    <div class="pagination-container">
+        <h1>Pagination</h1>
+        <div class="pagination-controls">
+            <label for="itemsperpage">Items per page:</label>
+            <select id="itemsperpage">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+        <ul id="list" style="height:500px;overflow: scroll"></ul>
+        <div id="pagination"></div>
+    </div>
+   
+
+    
+</body>
+</html>
