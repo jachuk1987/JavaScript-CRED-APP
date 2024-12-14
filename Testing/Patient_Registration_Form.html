@@ -246,91 +246,155 @@
         </div>
     </form>
 
-    <div class="container mx-auto p-4">
-        <h2 class="text-2xl font-bold mb-4 text-center">Patient Information Summary</h2>
-        <table class="min-w-full table-auto bg-white shadow-md rounded-lg">
-            <thead class="bg-blue-100">
-                <tr>
-                    <th class="border px-4 py-2">Section</th>
-                    <th class="border px-4 py-2">Details</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Patient Name</td>
-                    <td class="border px-4 py-2">
-                        Legal First Name: John<br />
-                        Legal Last Name: Doe<br />
-                        Suffix: Jr.<br />
-                        Preferred First Name: Johnny
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Today's Visit</td>
-                    <td class="border px-4 py-2">
-                        Reason: General Checkup<br />
-                        Treated Before: Yes<br />
-                        Changes in Information: No
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Demographics</td>
-                    <td class="border px-4 py-2">
-                        Address: 123 Main St, Apt 4, Cityville, CA, 90210<br />
-                        Phone: (555) 123-4567<br />
-                        SSN: ***-**-1234<br />
-                        Gender: Male<br />
-                        Birth Date: 01/01/1990<br />
-                        Language: English<br />
-                        Marital Status: Single<br />
-                        Email: john.doe@example.com<br />
-                        Alternate Address: None<br />
-                        Alternate Phone: (555) 234-5678<br />
-                        Race: White<br />
-                        Ethnicity: Not Hispanic
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Emergency Contact</td>
-                    <td class="border px-4 py-2">
-                        Contact Name: Jane Doe<br />
-                        Phone: (555) 345-6789<br />
-                        Relationship: Sister<br />
-                        Relative (Not Residing): Mark Doe<br />
-                        Phone: (555) 456-7890
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Employment</td>
-                    <td class="border px-4 py-2">
-                        Employer Name: Acme Corp<br />
-                        Employer Phone: (555) 567-8901
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Responsible Party</td>
-                    <td class="border px-4 py-2">
-                        Name: Mary Johnson<br />
-                        SSN: ***-**-5678<br />
-                        Address: 456 Elm St, Cityville, CA, 90210
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Medical Insurance</td>
-                    <td class="border px-4 py-2">
-                        Insurance Company: HealthPlus<br />
-                        Policy Holder: John Doe<br />
-                        Relation: Self<br />
-                        Policy Address: 123 Main St, Cityville, CA, 90210<br />
-                        Birth Date: 01/01/1990<br />
-                        SSN: ***-**-1234<br />
-                        Employer: Acme Corp
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <table style="border-collapse: collapse; width: 70%; border: 1px solid black; text-align: left;">
+        <!-- Title Row -->
+        <tr>
+            <td colspan="2" style="text-align: center; padding: 10px; border: 1px solid black;">
+                <h1 style="margin: 0;">PATIENT REGISTRATION TABLE</h1>
+            </td>
+        </tr>
     
+        <!-- Patient Name Section -->
+        <tr>
+            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Patient Name</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Legal First Name" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Legal Last Name" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Suffix" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Preferred First Name" style="width: 100%;" />
+            </td>
+        </tr>
+    
+        <!-- Today's Visit Section -->
+        <tr>
+            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Today's Visit</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="What is the reason for your visit today?" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="checkbox" id="treatedYes" /> Yes
+                <input type="checkbox" id="treatedNo" style="margin-left: 20px;" /> No
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="checkbox" id="changesYes" /> Yes
+                <input type="checkbox" id="changesNo" style="margin-left: 20px;" /> No
+                <span>(if no, please skip to the back page)</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="checkbox" id="treatedYes" /> Treated Before?
+            </td>
+        </tr>
+    
+        <!-- Patient Demographics Section -->
+        <tr>
+            <td rowspan="8" style="border: 1px solid black; padding: 10px;">Patient Demographics</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Permanent Address" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Apt. #" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="City" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="State" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Zip" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Phone #" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Social Security #" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Gender" style="width: 100%;" />
+            </td>
+        </tr>
+    
+        <!-- Emergency Contact Section -->
+        <tr>
+            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Emergency Contact</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Contact Name" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Phone #" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Relationship to Patient" style="width: 100%;" />
+            </td>
+        </tr>
+    
+        <!-- Employment Section -->
+        <tr>
+            <td rowspan="2" style="border: 1px solid black; padding: 10px;">Employment</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Employer Name" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Employer Phone #" style="width: 100%;" />
+            </td>
+        </tr>
+    
+        <!-- Insurance Section -->
+        <tr>
+            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Insurance</td>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Insurance Company" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Policy Holder's Name" style="width: 100%;" />
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid black; padding: 10px;">
+                <input type="text" placeholder="Policy Holder's Relationship" style="width: 100%;" />
+            </td>
+        </tr>
+    </table>
     
 
 </body>
