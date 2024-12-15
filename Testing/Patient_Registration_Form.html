@@ -11,7 +11,407 @@
 </head>
 
 <body>
-    <form class="bg-blue-100 p-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <form class="bg-blue-100 p-4">
+                    <div class="max-w-4xl mx-auto bg-white p-8 shadow-md">
+                        <div class="flex items-center mb-6" style="margin-left: 250px;">
+                            <h1 class="text-2xl font-bold">
+                                PATIENT REGISTRATION FORM
+                            </h1>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Patient Name
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Legal First Name" type="text" />
+                                <input class="border p-2" placeholder="Legal Last Name" type="text" />
+                                <input class="border p-2" placeholder="Suffix" type="text" />
+                                <input class="border p-2" placeholder="Preferred First Name" type="text" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Today's Visit
+                            </h2>
+                            <div class="mt-2">
+                                <label>
+                                    What is the reason for your visit today?
+                                </label>
+                                <input class="border p-2 w-full mt-2" type="text" />
+                            </div>
+                            <div class="mt-2 flex items-center">
+                                <label>
+                                    Have you been treated at any Doctors Care office location before?
+                                </label>
+                                <div class="ml-4">
+                                    <input class="mr-2" id="treatedYes" type="checkbox" />
+                                    <label for="treatedYes">
+                                        Yes
+                                    </label>
+                                    <input class="ml-4 mr-2" id="treatedNo" type="checkbox" />
+                                    <label for="treatedNo">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mt-2 flex items-center">
+                                <label>
+                                    Have there been any changes to your information in the past 6 months?
+                                </label>
+                                <div class="ml-4">
+                                    <input class="mr-2" id="changesYes" type="checkbox" />
+                                    <label for="changesYes">
+                                        Yes
+                                    </label>
+                                    <input class="ml-4 mr-2" id="changesNo" type="checkbox" />
+                                    <label for="changesNo">
+                                        No
+                                    </label>
+                                    <span>
+                                        (if no, please skip to the back page)
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Patient Demographics
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
+                                <input class="border p-2 col-span-3" placeholder="Permanent Address" type="text" />
+                                <input class="border p-2" placeholder="Apt. #" type="text" />
+                                <input class="border p-2" placeholder="City" type="text" />
+                                <input class="border p-2" placeholder="State" type="text" />
+                                <input class="border p-2" placeholder="Zip" type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Phone #" type="text" />
+                                <input class="border p-2" placeholder="Social Security #" type="text" />
+                                <input class="border p-2" placeholder="Gender" type="text" />
+                                <input class="border p-2" placeholder="Birth Date" type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Language" type="text" />
+                                <input class="border p-2" placeholder="Marital Status" type="text" />
+                                <input class="border p-2"
+                                    placeholder="Email Address (We will never rent or sell your email address -- we value your privacy.)"
+                                    type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Local or Alternate Address" type="text" />
+                                <input class="border p-2" placeholder="Alternate Phone #" type="text" />
+                                <input class="border p-2" placeholder="Today's Date" type="text" />
+                            </div>
+                            <div class="mt-2">
+                                <label>
+                                    Race:
+                                </label>
+                                <div class="flex flex-wrap mt-2">
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceAfricanAmerican" type="checkbox" />
+                                        <label for="raceAfricanAmerican">
+                                            African American
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceAmericanIndian" type="checkbox" />
+                                        <label for="raceAmericanIndian">
+                                            American Indian/Alaska Native
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceAsian" type="checkbox" />
+                                        <label for="raceAsian">
+                                            Asian
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceHispanic" type="checkbox" />
+                                        <label for="raceHispanic">
+                                            Hispanic
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceMixedRace" type="checkbox" />
+                                        <label for="raceMixedRace">
+                                            Mixed Race
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceWhite" type="checkbox" />
+                                        <label for="raceWhite">
+                                            White
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceOther" type="checkbox" />
+                                        <label for="raceOther">
+                                            Other
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="raceRefuse" type="checkbox" />
+                                        <label for="raceRefuse">
+                                            Refuse to Report
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label>
+                                    Ethnicity:
+                                </label>
+                                <div class="flex flex-wrap mt-2">
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="ethnicityHispanic" type="checkbox" />
+                                        <label for="ethnicityHispanic">
+                                            Hispanic
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="ethnicityNotHispanic" type="checkbox" />
+                                        <label for="ethnicityNotHispanic">
+                                            Not Hispanic
+                                        </label>
+                                    </div>
+                                    <div class="mr-4">
+                                        <input class="mr-2" id="ethnicityRefuse" type="checkbox" />
+                                        <label for="ethnicityRefuse">
+                                            Refuse to Report
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Emergency Contact Information
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Contact Name" type="text" />
+                                <input class="border p-2" placeholder="Phone #" type="text" />
+                                <input class="border p-2" placeholder="Relationship to Patient" type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Name of a Relative not Residing With You"
+                                    type="text" />
+                                <input class="border p-2" placeholder="Phone #" type="text" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Patient Employment Information
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Employer Name" type="text" />
+                                <input class="border p-2" placeholder="Employer Phone #" type="text" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Responsible Party's Information
+                                <span class="text-sm">
+                                    (if someone other than patient)
+                                </span>
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
+                                <input class="border p-2 col-span-2" placeholder="Legal Name of Responsible Party"
+                                    type="text" />
+                                <input class="border p-2" placeholder="Social Security #" type="text" />
+                                <input class="border p-2 col-span-2" placeholder="Address" type="text" />
+                                <input class="border p-2" placeholder="City" type="text" />
+                                <input class="border p-2" placeholder="State" type="text" />
+                                <input class="border p-2" placeholder="Zip" type="text" />
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <h2 class="font-bold">
+                                Medical Insurance Information
+                            </h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Insurance Company" type="text" />
+                                <input class="border p-2" placeholder="Policy Holder's Name" type="text" />
+                                <input class="border p-2" placeholder="Policy Holder's Relationship to Patient"
+                                    type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-6 gap-4 mt-2">
+                                <input class="border p-2 col-span-2" placeholder="Policy Holder's Address"
+                                    type="text" />
+                                <input class="border p-2" placeholder="City" type="text" />
+                                <input class="border p-2" placeholder="State" type="text" />
+                                <input class="border p-2" placeholder="Zip" type="text" />
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
+                                <input class="border p-2" placeholder="Policy Holder's Birth Date" type="text" />
+                                <input class="border p-2" placeholder="Policy Holder's Social Security #" type="text" />
+                                <input class="border p-2" placeholder="Policy Holder's Employer" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-9">
+                    <table style="border-collapse: collapse; width: 70%; border: 1px solid black; text-align: left;">
+                        <!-- Title Row -->
+                        <tr>
+                            <td colspan="2" style="text-align: center; padding: 10px; border: 1px solid black;">
+                                <h1 style="margin: 0;">PATIENT REGISTRATION TABLE</h1>
+                            </td>
+                        </tr>
+    
+                        <!-- Patient Name Section -->
+                        <tr>
+                            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Patient Name</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Legal First Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Legal Last Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Suffix" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Preferred First Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+    
+                        <!-- Today's Visit Section -->
+                        <tr>
+                            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Today's Visit</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="What is the reason for your visit today?"
+                                    style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="checkbox" id="treatedYes" /> Yes
+                                <input type="checkbox" id="treatedNo" style="margin-left: 20px;" /> No
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="checkbox" id="changesYes" /> Yes
+                                <input type="checkbox" id="changesNo" style="margin-left: 20px;" /> No
+                                <span>(if no, please skip to the back page)</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="checkbox" id="treatedYes" /> Treated Before?
+                            </td>
+                        </tr>
+    
+                        <!-- Patient Demographics Section -->
+                        <tr>
+                            <td rowspan="8" style="border: 1px solid black; padding: 10px;">Patient Demographics</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Permanent Address" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Apt. #" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="City" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="State" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Zip" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Phone #" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Social Security #" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Gender" style="width: 100%;" />
+                            </td>
+                        </tr>
+    
+                        <!-- Emergency Contact Section -->
+                        <tr>
+                            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Emergency Contact</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Contact Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Phone #" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Relationship to Patient" style="width: 100%;" />
+                            </td>
+                        </tr>
+    
+                        <!-- Employment Section -->
+                        <tr>
+                            <td rowspan="2" style="border: 1px solid black; padding: 10px;">Employment</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Employer Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Employer Phone #" style="width: 100%;" />
+                            </td>
+                        </tr>
+    
+                        <!-- Insurance Section -->
+                        <tr>
+                            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Insurance</td>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Insurance Company" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Policy Holder's Name" style="width: 100%;" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid black; padding: 10px;">
+                                <input type="text" placeholder="Policy Holder's Relationship" style="width: 100%;" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <form class="bg-blue-100 p-4">
         <div class="max-w-4xl mx-auto bg-white p-8 shadow-md">
             <div class="flex items-center mb-6" style="margin-left: 250px;">
                 <h1 class="text-2xl font-bold">
@@ -244,158 +644,9 @@
                 </div>
             </div>
         </div>
-    </form>
+    </form> -->
 
-    <table style="border-collapse: collapse; width: 70%; border: 1px solid black; text-align: left;">
-        <!-- Title Row -->
-        <tr>
-            <td colspan="2" style="text-align: center; padding: 10px; border: 1px solid black;">
-                <h1 style="margin: 0;">PATIENT REGISTRATION TABLE</h1>
-            </td>
-        </tr>
-    
-        <!-- Patient Name Section -->
-        <tr>
-            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Patient Name</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Legal First Name" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Legal Last Name" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Suffix" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Preferred First Name" style="width: 100%;" />
-            </td>
-        </tr>
-    
-        <!-- Today's Visit Section -->
-        <tr>
-            <td rowspan="4" style="border: 1px solid black; padding: 10px;">Today's Visit</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="What is the reason for your visit today?" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="checkbox" id="treatedYes" /> Yes
-                <input type="checkbox" id="treatedNo" style="margin-left: 20px;" /> No
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="checkbox" id="changesYes" /> Yes
-                <input type="checkbox" id="changesNo" style="margin-left: 20px;" /> No
-                <span>(if no, please skip to the back page)</span>
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="checkbox" id="treatedYes" /> Treated Before?
-            </td>
-        </tr>
-    
-        <!-- Patient Demographics Section -->
-        <tr>
-            <td rowspan="8" style="border: 1px solid black; padding: 10px;">Patient Demographics</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Permanent Address" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Apt. #" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="City" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="State" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Zip" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Phone #" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Social Security #" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Gender" style="width: 100%;" />
-            </td>
-        </tr>
-    
-        <!-- Emergency Contact Section -->
-        <tr>
-            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Emergency Contact</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Contact Name" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Phone #" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Relationship to Patient" style="width: 100%;" />
-            </td>
-        </tr>
-    
-        <!-- Employment Section -->
-        <tr>
-            <td rowspan="2" style="border: 1px solid black; padding: 10px;">Employment</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Employer Name" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Employer Phone #" style="width: 100%;" />
-            </td>
-        </tr>
-    
-        <!-- Insurance Section -->
-        <tr>
-            <td rowspan="3" style="border: 1px solid black; padding: 10px;">Insurance</td>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Insurance Company" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Policy Holder's Name" style="width: 100%;" />
-            </td>
-        </tr>
-        <tr>
-            <td style="border: 1px solid black; padding: 10px;">
-                <input type="text" placeholder="Policy Holder's Relationship" style="width: 100%;" />
-            </td>
-        </tr>
-    </table>
-    
+   
 
 </body>
 
