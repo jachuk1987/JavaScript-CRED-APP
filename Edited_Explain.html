@@ -132,7 +132,7 @@
                 input.value = user[i][field];
                 td.innerHTML = "",
                 td.appendChild(input);
-            });
+            })
 
             var editBTN = `<button onclick="updateUser(${i})">Update</button>`;
             editTd.innerHTML = editBTN;
@@ -149,12 +149,12 @@
                 user[i][field] = input.value.trim();
                 td.innerHTML = user[i][field];
             });
-            
+
             var editBTN = `<button onclick="editUser(${i})">Edit</button>`;
-            editTd.innerHTML =editBTN;
+            editTd.innerHTML = editBTN;
         }
 
-    
+
     </script>
 </body>
 
