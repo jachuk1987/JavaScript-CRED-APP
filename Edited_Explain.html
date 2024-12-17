@@ -129,7 +129,13 @@
             tds.forEach(td =>{
                 var field = td.getAttribute("data-field");
                 var input = document.createElement("input");
-            })
+                input.value = user[i][field];
+                td.innerHTML = "",
+                td.appendChild(input);
+            });
+
+            var editBTN = `<button onclick="updateUser(${i})">Update</button>`;
+            editTd.innerHTML = editBTN;
         }
 
         function updateUser(i) {
