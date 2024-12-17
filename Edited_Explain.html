@@ -122,6 +122,10 @@
         tableData();
 
         function editUser(i) {
+            var tr = document.querySelectorAll("tbody tr")[i];
+            var tds = tr.querySelectorAll("td[data-field]");
+            var editTd = tr.querySelector("td:last-child(2)");
+
             
         }
 
