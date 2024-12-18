@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates</title>
+</head>
+<body>
+    <h1>Remove Duplicate Elements from Array</h1>
+    <label for="inputArray">Enter an array (comma-separated values):</label>
+    <input type="text" id="inputArray" placeholder="e.g., 1,2,3,2,4">
+    <button onclick="removeAndDisplayDuplicates()">Remove Duplicates</button>
+    <p id="result"></p>
+
+    <script>
+        // Function to remove duplicate elements from an array
+        function removeDuplicates(arr) {
+            return [...new Set(arr)];
+        }
+
+        // Function to handle input, remove duplicates, and display result
+        function removeAndDisplayDuplicates() {
+            const inputElement = document.getElementById('inputArray');
+            const resultElement = document.getElementById('result');
+            const inputValue = inputElement.value;
+
+            // Convert input string to array
+            const inputArray = inputValue.split(',').map(item => item.trim());
+
+            // Remove duplicates
+            const resultArray = removeDuplicates(inputArray);
+
+            // Display the result
+            resultElement.textContent = `Array without duplicates: [${resultArray.join(', ')}]`;
+        }
+
+        // Example usage of removeDuplicates function
+        console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5])); // Output: [1, 2, 3, 4, 5]
+        console.log(removeDuplicates(["apple", "banana", "apple", "orange"])); // Output: ["apple", "banana", "orange"]
+        console.log(removeDuplicates([])); // Output: []
+    </script>
+</body>
+</html>
