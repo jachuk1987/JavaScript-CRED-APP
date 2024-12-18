@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FizzBuzz</title>
+</head>
+<body>
+    <h1>FizzBuzz Program</h1>
+    <label for="inputNumber">Enter a number:</label>
+    <input type="number" id="inputNumber" placeholder="Enter a number">
+    <button onclick="runFizzBuzz()">Run FizzBuzz</button>
+    <div id="output"></div>
+
+    <script>
+        function fizzBuzz(n) {
+            const result = [];
+            for (let i = 1; i <= n; i++) {
+                if (i % 3 === 0 && i % 5 === 0) {
+                    result.push("FizzBuzz");
+                } else if (i % 3 === 0) {
+                    result.push("Fizz");
+                } else if (i % 5 === 0) {
+                    result.push("Buzz");
+                } else {
+                    result.push(i);
+                }
+            }
+            return result;
+        }
+
+        function runFizzBuzz() {
+            const inputElement = document.getElementById('inputNumber');
+            const outputElement = document.getElementById('output');
+            const inputValue = parseInt(inputElement.value, 10);
+
+            if (isNaN(inputValue) || inputValue <= 0) {
+                outputElement.innerHTML = "<p>Please enter a valid positive number.</p>";
+                return;
+            }
+
+            const result = fizzBuzz(inputValue);
+            outputElement.innerHTML = `<p>${result.join('<br>')}</p>`;
+        }
+    </script>
+</body>
+</html>
