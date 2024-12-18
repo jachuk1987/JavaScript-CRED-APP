@@ -1,25 +1,54 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+   
+    <title>Document</title>
+    <label for="">userinput</label>
+    <input type="text" name="" id="uservalue">
+    <button onclick="reverseString()">submit</button>
+</head>
+<body>
+    <script>
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+        }
+        
+        // Example usage:
+        const input =document.getElementById("uservalue")
+        document.write(reverseString(input)); 
+        
+    </script>
+    
+</body>
+
+
+</html> -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>String Reverser</title>
 </head>
-
 <body>
+    <h1>String Reverser</h1>
+    <label for="inputString">Enter a string:</label>
+    <input type="text" id="inputString" placeholder="Enter text here">
+    <button onclick="handleReverse()">Reverse String</button>
+    <p id="result">Reversed String: </p>
+
     <script>
-        function reverseString(input) {
-            return input.split('').reverse().join('');
+        function reverseString(str) {
+            return str.split('').reverse().join('');
         }
 
-        // Example usage:
-        const originalString = "hello";
-        const reversedString = reverseString(originalString);
-        console.log(reversedString); // Output: "olleh"
-
+        function handleReverse() {
+            const inputElement = document.getElementById('inputString');
+            const resultElement = document.getElementById('result');
+            const input = inputElement.value;
+            const reversed = reverseString(input);
+            resultElement.textContent = Reversed String: ${reversed};
+        }
     </script>
-
- </body>
-
+</body>
 </html>
