@@ -102,6 +102,13 @@
         const list = document.getElementById("list");
         const pagination = document.getElementById("pagination");
         const selectitems = document.getElementById("itemsperpage");
+
+        let itemsperpage = parseInt(selectitems.value)
+        let currentpage = 1;
+        const data = []
+        for (let i = 0; i <= 40; i++) {
+            data.push("item" + i);
+        }
     </script>
 </body>
 </html>
