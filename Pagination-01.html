@@ -109,6 +109,23 @@
         for (let i = 0; i <= 40; i++) {
             data.push("item" + i);
         }
+
+        selectitems.addEventListener("change", function (e) {
+            itemsperpage = parseInt(e.target.value);
+            currentpage = 1;
+
+            displaydata()
+        })
+        pagination.addEventListener("click", function (e) {
+            if (e.target.tagName === "SPAN") {
+                currentpage = parseInt(e.target.textContent);
+                displaydata()
+            }
+        })
+
+        function displaydata() {
+            
+        }
     </script>
 </body>
 </html>
