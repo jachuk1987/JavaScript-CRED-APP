@@ -7,35 +7,18 @@
 </head>
 <body>
     <h1>Palindrome Checker</h1>
-    <label for="inputString">Enter a string:</label>
-    <input type="text" id="inputString" placeholder="Enter text here">
-    <button onclick="checkPalindrome()">Check Palindrome</button>
+    <input type="text" id="inputString" placeholder="Enter text">
+    <button onclick="checkPalindrome()">Check</button>
     <p id="result"></p>
 
     <script>
-        // Function to check if a string is a palindrome
-        function isPalindrome(str) {
-            // Normalize the string: convert to lowercase and remove non-alphanumeric characters
-            const normalizedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-            // Reverse the string
-            const reversedStr = normalizedStr.split('').reverse().join('');
-            // Compare normalized string with its reversed version
-            return normalizedStr === reversedStr;
-        }
-
-        // Function to handle user input and display the result
         function checkPalindrome() {
-            const inputElement = document.getElementById('inputString');
-            const resultElement = document.getElementById('result');
-            const input = inputElement.value;
-            const isPalindromeResult = isPalindrome(input);
-
-            // Display result to the user
-            if (isPalindromeResult) {
-                resultElement.textContent = `"${input}" is a palindrome.`;
-            } else {
-                resultElement.textContent = `"${input}" is not a palindrome.`;
-            }
+            const input = document.getElementById('inputString').value;
+            const cleaned = input.toLowerCase().replace(/[^a-z0-9]/g, '');
+            const Palindrome = cleaned === cleaned.split('').reverse().join('');
+            document.getElementById('result').textContent = Palindrome ? 
+                `"${input}" is a palindrome.` : 
+                `"${input}" is not a palindrome.`;
         }
     </script>
 </body>

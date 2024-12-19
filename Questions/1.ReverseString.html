@@ -7,23 +7,17 @@
 </head>
 <body>
     <h1>String Reverser</h1>
-    <label for="inputString">Enter a string:</label>
-    <input type="text" id="inputString" placeholder="Enter text here">
-    <button onclick="handleReverse()">Reverse String</button>
-    <p id="result">Reversed String: </p>
+    <input type="text" id="inputString" placeholder="Enter text">
+    <button onclick="reverse()">Reverse</button>
+    <p id="result"></p>
 
     <script>
-        function reverseString(str) {
-            return str.split('').reverse().join('');
-        }
-
-        function handleReverse() {
-            const inputElement = document.getElementById('inputString');
-            const resultElement = document.getElementById('result');
-            const input = inputElement.value;
-            const reversed = reverseString(input);
-            resultElement.textContent = `Reversed String: ${reversed}`;
+        
+        function reverse() {
+            const input = document.getElementById('inputString').value;
+            document.getElementById('result').textContent = input.split('').reverse().join('');
         }
     </script>
 </body>
 </html>
+
