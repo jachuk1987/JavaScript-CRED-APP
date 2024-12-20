@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flatten Nested Array</title>
+</head>
+<body>
+    <h1>Flatten Nested Array</h1>
+    <!-- <label for="inputArray">Enter a nested array (e.g., [1, [2, [3, [4]]]]):</label><br> -->
+    <input type="text" id="inputArray" placeholder="Enter nested array">
+    <button onclick="flattenAndDisplay()">Flatten</button>
+    <p id="result"></p>
+
+    <script>
+        function flattenArray(arr) {
+            return arr.reduce((flat, item) => 
+                Array.isArray(item) ? flat.concat(flattenArray(item)) : flat.concat(item), 
+                []
+            );
+        }
+
+        function flattenAndDisplay() {
+            const input = document.getElementById('inputArray').value;
+            let parsedArray;
+
+            try {
+                parsedArray = JSON.parse(input); // Parse input as JSON to get an array
+                if (!Array.isArray(parsedArray)) throw new Error();
+            } catch {
+                document.getElementById('result').textContent = "Please enter a valid nested array in JSON format.";
+                return;
+            }
+
+            const flattened = flattenArray(parsedArray);
+            document.getElementById('result').textContent = `Flattened Array: [${flattened.join(', ')}]`;
+        }
+    </script>
+</body>
+</html>
