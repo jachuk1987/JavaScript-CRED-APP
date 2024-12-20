@@ -13,11 +13,11 @@
 
     <script>
         function secondLargest(num) {
-            num.sort((a, b) => a - b)
-            console.log(num[num.length - 2])
+            num.sort((a, b) => b - a)
+            return num[1]
         }
         var num = [12, 23, 34, 12, 23, 65, 56]
-        secondLargest(num)
+        console.log(secondLargest(num));
 
     </script>
 </body>

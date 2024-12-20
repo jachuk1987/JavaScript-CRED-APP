@@ -9,13 +9,13 @@
 
 <body>
     <script>
-        // 2.Implement a function to flatten a nested array (e.g., [1, [2, [3, [4]]]] to [1, 2, 3, 4]).
         function flattenArray(arr) {
-            var flatten = arr.flat(Infinity)
-            console.log(flatten)
+            // var flatten = arr.flat(Infinity)
+            // console.log(flatten)
+            return arr.flat(Infinity)
         }
         var array = [1, [2, [3, [4]]]]
-        flattenArray(array)
+        console.log(flattenArray(array));
     </script>
 </body>
 

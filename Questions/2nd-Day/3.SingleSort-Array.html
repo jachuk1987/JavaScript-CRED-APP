@@ -9,15 +9,13 @@
 
 <body>
     <script>
-        //3.Write a function to merge two sorted arrays into a single sorted array.
-        function SortedArray() {
-            var arr1 = [12, 23, 32, 24, 10]
-            var arr2 = [13, 24, 54, 56]
-            var singleArray = arr1.concat(arr2)
-            singleArray.sort((a, b) => a - b)
-            console.log(singleArray)
+        function SortedArray(arr1, arr2) {
+            return arr1.concat(arr2).sort()  
         }
-        SortedArray()
+        var array1 = [12, 23, 32, 24, 10]
+        var array2 = [13, 24, 54, 56]
+
+        console.log(SortedArray(array1, array2));
     </script>
 </body>
 
