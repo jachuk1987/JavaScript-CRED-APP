@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce Example</title>
+</head>
+<body>
+    <h1>Debounce Example</h1>
+    <input type="text" id="inputBox" placeholder="Type here...">
+    <p id="output"></p>
+
+    <script>
+        // Simple debounce function
+        function debounce(func, delay) {
+            let timeout;
+            return function (...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func(...args), delay);
+            };
+        }
+
+        // Function to show input text
+        function showText(text) {
+            document.getElementById('output').textContent = `You typed: ${text}`;
+        }
+
+        // Apply debounce
+        const input = document.getElementById('inputBox');
+        input.addEventListener('input', debounce(() => showText(input.value), 500));
+    </script>
+</body>
+</html>
