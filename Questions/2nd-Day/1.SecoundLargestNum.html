@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Second Largest Number</title>
 </head>
+
 <body>
     <h1>Find Second Largest</h1>
     <!-- <input type="text" id="inputArray" placeholder="Enter numbers, e.g., 10,20,30">
@@ -12,13 +14,22 @@
     <p id="result"></p> -->
 
     <script>
+        // function secondLargest(num) {
+        //     num.sort((a, b) => a - b)
+        //     console.log(num[num.length - 2])
+        // }
+        // var num = [12, 23, 34, 12, 23, 65, 56]
+        // secondLargest(num)
+
         function secondLargest(num) {
-            num.sort((a, b) => b - a)
-            return num[1]
+            num.sort((a, b) => a - b)
+            // return num[length - 2]
         }
         var num = [12, 23, 34, 12, 23, 65, 56]
-        console.log(secondLargest(num));
+        secondLargest(num)
+        console.log(num[num.length - 2]);
 
     </script>
 </body>
+
 </html>
