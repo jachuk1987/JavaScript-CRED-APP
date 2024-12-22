@@ -10,13 +10,23 @@
 <body>
     <script>
 
-        function interSection(arr1, arr2) {
-            return arr1.filter(item => arr2.includes(item))
-        }
-        var array1 = [12, 23, 45, 24, 23]
-        var array2 = [13, 12, 24, 65, 45]
+        function findIntersection(arr1, arr2) {
+            const intersection = [];
 
-        console.log(interSection(array1, array2));
+            for (let element of arr1) {
+                if (arr2.includes(element) && !intersection.includes(element)) {
+                    intersection.push(element);
+                }
+            }
+
+            return intersection;
+        }
+
+        // Example usage:
+        const array1 = [1, 2, 2, 3, 4];
+        const array2 = [2, 3, 5];
+        console.log(findIntersection(array1, array2)); // Output: [2, 3]
+
     </script>
 </body>
 

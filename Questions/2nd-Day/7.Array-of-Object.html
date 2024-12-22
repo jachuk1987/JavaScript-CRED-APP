@@ -19,16 +19,19 @@
         ];
 
 
-        function arrayOfAnObject(arr, property) {
-            return arr.reduce((result, item) => {
-                const key = item[property];
-                (result[key] = result[key] || []).push(item);
-                return result;
-            }, {});
+        function FunName(arr,property){
+            return arr.reduce((acc,item)=>{
+                var key=item[property]
+                if(!acc[key]){
+                    acc[key]=[]
+                }
+                acc[key].push(item)
+                return acc
+            },{})
         }
-
-        const arrayOfObj = arrayOfAnObject(arr, "age");
-        console.log(arrayOfObj);
+        
+        var property=FunName(arr,"name")
+        console.log(property)
 
     </script>
 </body>

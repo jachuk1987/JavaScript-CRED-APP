@@ -24,17 +24,16 @@
         function sumOfElements(arr) {
             let sum = 0;
 
-            function calculateSum(subArray) {
-                for (let element of subArray) {
-                    if (Array.isArray(element)) {
-                        calculateSum(element); // Recursive call for nested arrays
-                    } else {
-                        sum += element; // Add the number to the sum
-                    }
+            for (let element of arr) {
+                if (Array.isArray(element)) {
+                    sum += sumOfElements(element); // Recursive call for nested arrays
+                } 
+                else {
+                    sum += element; // Add the number to the sum
                 }
             }
 
-            calculateSum(arr); // Start the recursive summation
+            ; // Start the recursive summation
             return sum;
         }
 
