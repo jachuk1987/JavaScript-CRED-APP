@@ -27,13 +27,12 @@
             for (let element of arr) {
                 if (Array.isArray(element)) {
                     sum += sumOfElements(element); // Recursive call for nested arrays
-                } 
+                }
                 else {
                     sum += element; // Add the number to the sum
                 }
             }
 
-            ; // Start the recursive summation
             return sum;
         }
 
