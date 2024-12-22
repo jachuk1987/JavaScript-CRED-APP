@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        
+        function balanceparantesis(str) {
+            let stack = [];
+            for (element in str) {
+                if (element === '(') {
+                    stack.push(element);
+
+                }
+                else if (element === ")") {
+                    if (stack.length === 0) {
+                        return false
+                    }
+                    stack.pop()
+                }
+
+            }
+            return stack.length === 0;
+        }
+        console.log(balanceparantesis(""))
+    </script>
+</body>
+
+</html>
