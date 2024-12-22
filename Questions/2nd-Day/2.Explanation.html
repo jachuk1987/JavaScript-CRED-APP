@@ -8,10 +8,10 @@
 <body>
     <script>
         function flattenArray(arr) {
-            const result = [];
+            const result =[];
             const stack = [...arr];
 
-            while (stack.length > 0) {
+            while (stack.length >0) {
                 const current = stack.pop();
 
                 if (Array.isArray(current)) {
@@ -20,7 +20,6 @@
                     result.push(current);
                 }
             }
-
             return result.reverse();
         }
 

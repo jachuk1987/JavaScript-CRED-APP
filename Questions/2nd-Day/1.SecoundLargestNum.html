@@ -9,25 +9,36 @@
 
 <body>
     <h1>Find Second Largest</h1>
-    <!-- <input type="text" id="inputArray" placeholder="Enter numbers, e.g., 10,20,30">
-    <button onclick="SecondLargest()">Find</button>
-    <p id="result"></p> -->
 
     <script>
+
         // function secondLargest(num) {
         //     num.sort((a, b) => a - b)
-        //     console.log(num[num.length - 2])
+        //     // return num[length - 2]
         // }
         // var num = [12, 23, 34, 12, 23, 65, 56]
         // secondLargest(num)
+        // console.log(num[num.length - 2]);
 
-        function secondLargest(num) {
-            num.sort((a, b) => a - b)
-            // return num[length - 2]
+        function findSecondLargest(arr) {
+            let largest = -Infinity, secondLargest = -Infinity;
+
+            for (let num of arr) {
+                if (num > largest) {
+                    secondLargest = largest;
+                    largest = num;
+                } else if (num > secondLargest && num < largest) {
+                    secondLargest = num;
+                }
+            }
+
+            return secondLargest;
         }
-        var num = [12, 23, 34, 12, 23, 65, 56]
-        secondLargest(num)
-        console.log(num[num.length - 2]);
+
+        // Example usage:
+        const numbers = [12, 23, 34, 12, 23, 65, 56];
+        console.log(findSecondLargest(numbers));
+
 
     </script>
 </body>
