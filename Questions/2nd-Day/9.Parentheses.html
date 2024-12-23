@@ -12,7 +12,7 @@
         
         function balanceparantesis(str) {
             let stack = [];
-            for (element in str) {
+            for (element of str) {
                 if (element === '(') {
                     stack.push(element);
 
@@ -27,7 +27,7 @@
             }
             return stack.length === 0;
         }
-        console.log(balanceparantesis(""))
+        console.log(balanceparantesis("(())"))
     </script>
 </body>
 

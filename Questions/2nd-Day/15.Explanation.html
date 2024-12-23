@@ -10,15 +10,22 @@
 <body>
     <script>
 
-        function sumOfElements(arr) {
+        function sumOfElements(arr){
             let sum = 0;
-            for (let element of arr) {
-                if (Array.isArray(element)) {
-                    sum += sumOfElements(element);
-                }else {
-                    sum += element;
+
+            function calculateSum(subArray) {
+                console.log(subArray)
+                for (let element of subArray) {
+                    if (Array.isArray(element)) {
+                        calculateSum(element);
+                    }
+                    else {
+                        sum += element;
+                    }
                 }
+
             }
+            calculateSum(arr);
             return sum;
         }
 
