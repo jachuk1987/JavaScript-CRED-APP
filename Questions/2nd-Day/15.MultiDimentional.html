@@ -13,8 +13,8 @@
         function sumOfElements(arr) {
             let sum = 0;
 
-            function calculateSum(subArray) {
-                for (let element of subArray) {
+            function calculateSum(arr) {
+                for (let element of arr) {
                     if (Array.isArray(element)) {
                         calculateSum(element); // Recursive call for nested arrays
                     } else {
