@@ -38,14 +38,14 @@
         const numbers = [12, 23, 34, 12, 23, 65, 56];
         console.log(findSecondLargest(numbers));
 
-        function secoundLargest() {
+        function secoundLargest(arr) {
             let largest = -Infinity, secoundLargest = -Infinity;
 
             for (let num of arr) {
                 if (num > largest) {
                     secoundLargest = largest;
                     largest = num;
-                } else if (num >secoundLargest && num < largest) {
+                } else if (num > secoundLargest && num < largest) {
                     secoundLargest = num;
                 }
             }
@@ -53,7 +53,8 @@
             return secoundLargest;
         }
 
-        
+        const numbe = [22, 12, 30, 33, 44, 55, 64];
+        console.log(secoundLargest(numbe));
 
 
     </script>
