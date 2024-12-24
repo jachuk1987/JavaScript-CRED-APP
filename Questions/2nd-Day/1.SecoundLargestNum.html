@@ -38,6 +38,23 @@
         const numbers = [12, 23, 34, 12, 23, 65, 56];
         console.log(findSecondLargest(numbers));
 
+        function secoundLargest() {
+            let largest = -Infinity, secoundLargest = -Infinity;
+
+            for (let num of arr) {
+                if (num > largest) {
+                    secoundLargest = largest;
+                    largest = num;
+                } else if (num >secoundLargest && num < largest) {
+                    secoundLargest = num;
+                }
+            }
+
+            return secoundLargest;
+        }
+
+        
+
 
     </script>
 </body>
