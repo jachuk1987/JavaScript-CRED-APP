@@ -42,11 +42,11 @@
             let largest = -Infinity, secoundLargest = -Infinity;
 
             for (let num of arr) {
-                if (num > Largest) {
+                if (num > largest) {
                     secoundLargest = largest;
                     largest = num;
                 } else if (num > secoundLargest && num < largest) {
-                    secoundLargest = num
+                    secoundLargest = num;
                 }
             }
 
