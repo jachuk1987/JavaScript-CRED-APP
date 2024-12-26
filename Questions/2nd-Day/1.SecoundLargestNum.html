@@ -45,6 +45,8 @@
                 if (num > Largest) {
                     secoundLargest = largest;
                     largest = num;
+                } else if (num > secoundLargest && num < largest) {
+                    secoundLargest = num
                 }
             }
         }
