@@ -7,7 +7,31 @@
 </head>
 <body>
     <script>
-        
+        function generatePermutations(str) {
+    if (str.length <= 1) {
+        return [str];
+    }
+
+    const permutations = [];
+
+    for (let i = 0; i < str.length; i++) {
+        const currentChar = str[i];
+        const remainingChars = str.slice(0, i) + str.slice(i + 1);
+        const remainingPermutations = generatePermutations(remainingChars);
+
+        for (const perm of remainingPermutations) {
+            permutations.push(currentChar + perm);
+        }
+    }
+
+    return permutations;
+}
+
+// Example usage:
+const input = "abc";
+const result = generatePermutations(input);
+console.log(`Permutations of "${input}":`, result);
+
     </script>
 </body>
 </html>
