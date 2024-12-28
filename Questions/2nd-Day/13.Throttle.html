@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Throttle Function
+        function throttle(func, limit) {
+            let lastFunc; // Tracks the last scheduled function call
+            let lastRan;  // Tracks the last time the function was executed
+
+            return function (...args) {
+                const context = this;
+                const now = Date.now();
+
+                if (!lastRan) {
+                    // If the function hasn't been executed yet, run it immediately
+                    func.apply(context, args);
+                    lastRan = now;
+                } else {
+                    if (lastFunc) clearTimeout(lastFunc); // Clear any scheduled calls
+                    if (now - lastRan >= limit) {
+                        // If enough time has passed, execute the function
+                        func.apply(context, args);
+                        lastRan = now;
+                    } else {
+                        // Schedule the function to run after the remaining time
+                        lastFunc = setTimeout(() => {
+                            func.apply(context, args);
+                            lastRan = Date.now();
+                        }, limit - (now - lastRan));
+                    }
+                }
+            };
+        }
+
+        // Example Function to Throttle
+        function logMessage(message) {
+            console.log(`${new Date().toISOString()}: ${message}`);
+        }
+
+        // Create a Throttled Version of the Function
+        const throttledLog = throttle(logMessage, 2000);
+
+        // Simulating Rapid Function Calls
+        console.log('Starting rapid calls...');
+        setInterval(() => {
+            throttledLog('This is a throttled message!');
+        }, 500);
+
+    </script>
+</body>
+
+</html>
