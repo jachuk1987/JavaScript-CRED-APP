@@ -1,74 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         function createEventEmitter() {
-    const events = {};
+            const events = {};
 
-    return {
-        // Register an event listener
-        on(event, listener) {
-            if (!events[event]) {
-                events[event] = [];
-            }
-            events[event].push(listener);
-        },
+            return {
+                // Register an event listener
+                on(event, listener) {
+                    if (!events[event]) {
+                        events[event] = [];
+                    }
+                    events[event].push(listener);
+                },
 
-        // Remove an event listener
-        off(event, listener) {
-            if (!events[event]) return;
-            events[event] = events[event].filter(l => l !== listener);
-        },
+                // Remove an event listener
+                off(event, listener) {
+                    if (!events[event]) return;
+                    events[event] = events[event].filter(l => l !== listener);
+                },
 
-        // Emit an event
-        emit(event, ...args) {
-            if (!events[event]) return;
-            events[event].forEach(listener => listener(...args));
-        },
+                // Emit an event
+                emit(event, ...args) {
+                    if (!events[event]) return;
+                    events[event].forEach(listener => listener(...args));
+                },
 
-        // Register a one-time event listener
-        once(event, listener) {
-            const wrapper = (...args) => {
-                listener(...args);
-                this.off(event, wrapper); // Remove the listener after it's called
+                // Register a one-time event listener
+                once(event, listener) {
+                    const wrapper = (...args) => {
+                        listener(...args);
+                        this.off(event, wrapper); // Remove the listener after it's called
+                    };
+                    this.on(event, wrapper);
+                }
             };
-            this.on(event, wrapper);
         }
-    };
-}
 
-// Example Usage:
-const emitter = createEventEmitter();
+        // Example Usage:
+        const emitter = createEventEmitter();
 
-// Register an event listener
-emitter.on('greet', name => {
-    console.log(`Hello, ${name}!`);
-});
+        // Register an event listener
+        emitter.on('greet', name => {
+            console.log(`Hello, ${name}!`);
+        });
 
-// Emit the event
-emitter.emit('greet', 'Alice'); // Output: Hello, Alice!
+        // Emit the event
+        emitter.emit('greet', 'Alice'); // Output: Hello, Alice!
 
-// Register a one-time listener
-emitter.once('farewell', name => {
-    console.log(`Goodbye, ${name}!`);
-});
+        // Register a one-time listener
+        emitter.once('farewell', name => {
+            console.log(`Goodbye, ${name}!`);
+        });
 
-// Emit the event
-emitter.emit('farewell', 'Bob'); // Output: Goodbye, Bob!
-emitter.emit('farewell', 'Bob'); // No output (listener was removed)
+        // Emit the event
+        emitter.emit('farewell', 'Bob'); // Output: Goodbye, Bob!
+        emitter.emit('farewell', 'Bob'); // No output (listener was removed)
 
-// Remove a listener
-const greetListener = name => console.log(`Hi, ${name}!`);
-emitter.on('greet', greetListener);
-emitter.emit('greet', 'Charlie'); // Output: Hello, Charlie! and Hi, Charlie!
-emitter.off('greet', greetListener);
-emitter.emit('greet', 'Charlie'); // Output: Hello, Charlie!
+        // Remove a listener
+        const greetListener = name => console.log(`Hi, ${name}!`);
+        emitter.on('greet', greetListener);
+        emitter.emit('greet', 'Charlie'); // Output: Hello, Charlie! and Hi, Charlie!
+        emitter.off('greet', greetListener);
+        emitter.emit('greet', 'Charlie'); // Output: Hello, Charlie!
 
     </script>
 </body>
+
 </html>
