@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         function generatePermutations(str) {
-    if (str.length <= 1) {
-        return [str];
-    }
+            if (str.length <= 1) {
+                return [str];
+            }
 
-    const permutations = [];
+            const permutations = [];
 
-    for (let i = 0; i < str.length; i++) {
-        const currentChar = str[i];
-        const remainingChars = str.slice(0, i) + str.slice(i + 1);
-        const remainingPermutations = generatePermutations(remainingChars);
+            for (let i = 0; i < str.length; i++) {
+                const currentChar = str[i];
+                const remainingChars = str.slice(0, i) + str.slice(i + 1);
+                const remainingPermutations = generatePermutations(remainingChars);
 
-        for (const perm of remainingPermutations) {
-            permutations.push(currentChar + perm);
+                for (const perm of remainingPermutations) {
+                    permutations.push(currentChar + perm);
+                }
+            }
+
+            return permutations;
         }
-    }
 
-    return permutations;
-}
-
-// Example usage:
-const input = "abc";
-const result = generatePermutations(input);
-console.log(`Permutations of "${input}":`, result);
+        // Example usage:
+        const input = "abc";
+        const result = generatePermutations(input);
+        console.log(`Permutations of "${input}":`, result);
 
     </script>
 </body>
+
 </html>
