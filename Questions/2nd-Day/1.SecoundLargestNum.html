@@ -44,9 +44,13 @@
             for (let num of arr) {
                 if (num > largest) {
                     secondLargest = largest;
-                    la
+                    largest = num;
+                } else if (num > secondLargest && num < largest) {
+                    secondLargest = num;
                 }
             }
+
+            return secondLargest;
         }
 
         // const numbe = [22, 12, 30, 33, 44, 55, 64];
