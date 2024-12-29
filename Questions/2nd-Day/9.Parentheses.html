@@ -31,17 +31,17 @@
         function Parantesis(str) {
             let stack = [];
             for (element of str) {
-                if (element ==='(') {
+                if (element === '(') {
                     stack.push(element);
                 }
-                else if (element ===')') {
-                    if (stack.length===0) {
+                else if (element === ')') {
+                    if (stack.length === 0) {
                         return false
                     }
                     stack.pop()
                 }
             }
-            return stack.length ===0;
+            return stack.length === 0;
         }
 
     </script>
