@@ -26,7 +26,16 @@
             }
             return stack.length === 0;
         }
-        console.log(balanceparantesis("(())"))
+        console.log(balanceparantesis("(())"));
+
+        function Parantesis(str) {
+            let stack = [];
+            for (element of str) {
+                if (element ==='(') {
+                    stack.push(element);
+                }
+            }
+        }
 
     </script>
 </body>
