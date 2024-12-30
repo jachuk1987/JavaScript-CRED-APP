@@ -9,46 +9,62 @@
 
 <body>
     <script>
-        function deepClone(obj) {
-            // Check if the input is not an object or is null
-            if (obj === null || typeof obj !== 'object') {
-                return obj;
+        var person = {
+            lname: "Jachu",
+            fname: "Kotholla",
+            address: {
+                city: "Chittoor"
             }
-
-            // Handle Array
-            if (Array.isArray(obj)) {
-                return obj.map(deepClone);
-            }
-
-            // Handle Object
-            const clonedObj = {};
-            for (const key in obj) {
-                if (obj.hasOwnProperty(key)) {
-                    clonedObj[key] = deepClone(obj[key]);
-                }
-            }
-
-            // Return cloned object
-            return clonedObj;
         }
 
-        // Example usage:
-        const original = {
-            name: 'Alice',
-            age: 25,
-            hobbies: ['reading', 'traveling'],
-            address: { city: 'Paris', zip: 75001 }
-        };
+        // var newPerson = {...person};
 
-        const cloned = deepClone(original);
+        var newPerson = JSON.parse(JSON.stringify(person));
 
-        // Modify the clone
-        cloned.address.city = 'London';
-        cloned.hobbies.push('cycling');
+        person.address.city = "Banglore";
+        console.log(person);
+        console.log(newPerson);
 
-        // Check that the original is not affected
-        console.log('Original:', original);
-        console.log('Cloned:', cloned);
+        // function deepClone(obj) {
+        //     // Check if the input is not an object or is null
+        //     if (obj === null || typeof obj !== 'object') {
+        //         return obj;
+        //     }
+
+        //     // Handle Array
+        //     if (Array.isArray(obj)) {
+        //         return obj.map(deepClone);
+        //     }
+
+        //     // Handle Object
+        //     const clonedObj = {};
+        //     for (const key in obj) {
+        //         if (obj.hasOwnProperty(key)) {
+        //             clonedObj[key] = deepClone(obj[key]);
+        //         }
+        //     }
+
+        //     // Return cloned object
+        //     return clonedObj;
+        // }
+
+        // // Example usage:
+        // const original = {
+        //     name: 'Alice',
+        //     age: 25,
+        //     hobbies: ['reading', 'traveling'],
+        //     address: { city: 'Paris', zip: 75001 }
+        // };
+
+        // const cloned = deepClone(original);
+
+        // // Modify the clone
+        // cloned.address.city = 'London';
+        // cloned.hobbies.push('cycling');
+
+        // // Check that the original is not affected
+        // console.log('Original:', original);
+        // console.log('Cloned:', cloned);
 
     </script>
 </body>
