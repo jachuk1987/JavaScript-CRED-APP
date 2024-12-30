@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var person = {
+            lname: "Jachu",
+            fname:"Kumar"
+        }
+        console.log(typeof person);
+
+        var newPerson = JSON.stringify(person);
+        console.log(typeof newPerson);
+
+        var newPerson2 = JSON.parse(newPerson);
+
+        console.log(typeof newPerson2);
+    </script>
+</body>
+</html>
