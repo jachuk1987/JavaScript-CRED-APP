@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         var person = {
             lname: "Jachu",
-            fname:"Kumar"
+            fname: "Kotholla",
+            address: {
+                city: "Chittoor"
+            }
         }
-        console.log(typeof person);
+        // var newPerson = {...person};
+        // console.log(typeof person);
 
-        var newPerson = JSON.stringify(person);
-        console.log(typeof newPerson);
+        // var newPerson = JSON.stringify(person);
+        // console.log(typeof newPerson);
 
-        var newPerson2 = JSON.parse(newPerson);
+        // var newPerson2 = JSON.parse(newPerson);
 
-        console.log(typeof newPerson2);
+        // console.log(typeof newPerson2);
+
+
+        var newPerson = JSON.parse(JSON.stringify(person));
+
+        person.address.city = "Banglore";
+        console.log(person);
+        console.log(newPerson);
     </script>
 </body>
+
 </html>
