@@ -21,21 +21,21 @@
         console.log(car.make); // Output: Tesla
         car.drive();           // Output: The car is driving.
 
-        const cars = {
+        const motorCar = {
             make: "Toyota",          // A string property
             model: "Corolla",        // Another string property
             year: 2021,              // A number property
             isElectric: false,       // A boolean property
             start: function () {      // A function property (method)
-                console.log("The car has started.");
+                console.log("The motorCar has started.");
             },
             features: ["Airbags", "ABS", "Sunroof"] // An array property
         };
 
-        console.log(cars.make);          // Output: Toyota
-        console.log(cars["model"]);      // Output: Corolla
-        cars.start();                    // Output: The car has started.
-        console.log(cars.features[1]);   // Output: ABS
+        console.log(motorCar.make);          // Output: Toyota
+        console.log(motorCar["model"]);      // Output: Corolla
+        motorCar.start();                    // Output: The motorCar has started.
+        console.log(motorCar.features[1]);   // Output: ABS
 
 
     </script>
