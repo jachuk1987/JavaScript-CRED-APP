@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object References and Comparison</title>
+</head>
+<body>
+    <h1>Object References and Comparison</h1>
+    <p>Open the console to see the examples demonstrating shallow copy, deep copy, and object comparison.</p>
+
+    <script>
+        // 1. Shallow Copy vs Deep Copy
+        console.log("Shallow Copy vs Deep Copy:");
+
+        const original = {
+            name: "Alice",
+            details: { age: 25, city: "New York" }
+        };
+
+        // Shallow Copy (using Object.assign or spread operator)
+        const shallowCopy = { ...original };
+        shallowCopy.details.city = "San Francisco"; // Modifies nested object in both shallowCopy and original
+        console.log("Original Object after Shallow Copy modification:", original);
+
+        // Deep Copy (using JSON methods)
+        const deepCopy = JSON.parse(JSON.stringify(original));
+        deepCopy.details.city = "Los Angeles"; // Modifies only the deep copy
+        console.log("Original Object after Deep Copy modification:", original);
+
+        // 2. Comparing Objects
+        console.log("\nComparing Objects:");
+
+        const obj1 = { name: "Alice", age: 25 };
+        const obj2 = { name: "Alice", age: 25 };
+        const obj3 = obj1;
+
+        // Compare by Reference
+        console.log("obj1 === obj2:", obj1 === obj2); // false (different references)
+        console.log("obj1 === obj3:", obj1 === obj3); // true (same reference)
+
+        // Compare by Value (Using JSON.stringify)
+        console.log(
+            "JSON.stringify(obj1) === JSON.stringify(obj2):",
+            JSON.stringify(obj1) === JSON.stringify(obj2)
+        ); // true (same values)
+
+        // Recursive Comparison Function
+        function deepEqual(objA, objB) {
+            if (objA === objB) return true; // Same reference
+            if (typeof objA !== "object" || typeof objB !== "object" || objA === null || objB === null) return false;
+
+            const keysA = Object.keys(objA);
+            const keysB = Object.keys(objB);
+            if (keysA.length !== keysB.length) return false;
+
+            for (const key of keysA) {
+                if (!deepEqual(objA[key], objB[key])) return false;
+            }
+            return true;
+        }
+
+        console.log("deepEqual(obj1, obj2):", deepEqual(obj1, obj2)); // true (same values)
+        console.log("deepEqual(obj1, obj3):", deepEqual(obj1, obj3)); // true (same reference)
+    </script>
+</body>
+</html>
