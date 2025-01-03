@@ -9,34 +9,18 @@
 
 <body>
     <script>
-        const car = {
-            make: "Tesla",
-            model: "Model S",
-            year: 2023,
-            drive: function () {
-                console.log("The car is driving.");
-            }
-        };
+       class person{
+        constructor(name,place){
+            this.name=name;
+            this.place=place;
+        }
+        about(){
+            console.log(`I am ${this.name} from ${this.place}`)
+        }
+       }
 
-        console.log(car.make); // Output: Tesla
-        car.drive();           // Output: The car is driving.
-
-        const motorCar = {
-            make: "Toyota",          // A string property
-            model: "Corolla",        // Another string property
-            year: 2021,              // A number property
-            isElectric: false,       // A boolean property
-            start: function () {      // A function property (method)
-                console.log("The motorCar has started.");
-            },
-            features: ["Airbags", "ABS", "Sunroof"] // An array property
-        };
-
-        console.log(motorCar.make);          // Output: Toyota
-        console.log(motorCar["model"]);      // Output: Corolla
-        motorCar.start();                    // Output: The motorCar has started.
-        console.log(motorCar.features[1]);   // Output: ABS
-
+       var user=new person("Jeswanth", "Chittoor")
+       console.log(user);
 
         // var data = {
         //     name: "Jeswanth",
