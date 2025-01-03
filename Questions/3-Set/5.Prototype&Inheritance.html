@@ -7,9 +7,21 @@
 </head>
 <body>
     <h1>Object Prototype and Inheritance</h1>
-    <p>Open the console to see examples of prototypes and inheritance in JavaScript.</p>
 
     <script>
+        var person = {
+            fname:"Nethaji",
+            lname:"Jeswanth",
+        };
+        // console.log(person);
+        
+        // inheritance
+        person.age = 24
+        console.log(person);
+
+        person
+    </script>
+    <!-- <script>
         // 1. Prototype of an Object
         console.log("Prototype of an Object:");
         const obj = { name: "Alice" };
@@ -71,6 +83,6 @@
         console.log("\nPrototype Chain:");
         console.log("dog.__proto__:", dog.__proto__); // Dog's prototype
         console.log("dog.__proto__.__proto__:", dog.__proto__.__proto__); // Animal's prototype
-    </script>
+    </script> -->
 </body>
 </html>

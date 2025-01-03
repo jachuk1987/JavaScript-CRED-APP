@@ -9,31 +9,35 @@
 
 <body>
     <script>
-       class person{
-        constructor(name,place){
-            this.name=name;
-            this.place=place;
+        class person {
+            constructor(name, place) {
+                this.name = name;
+                this.place = place;
+            }
+            about() {
+                console.log(`I am ${this.name} from ${this.place}`)
+            }
         }
-        about(){
-            console.log(`I am ${this.name} from ${this.place}`)
-        }
-       }
 
-       var user=new person("Jeswanth", "Chittoor");
-       user.about();
+        var user = new person("Jeswanth", "Chittoor");
+        user.about();
+        
 
-       const car = {
-            make: "Hundai",
-            model: "Kiger",
-            year: 2023,
-            isAutomatic: false,
-            drive: function () {
-                console.log("The car is driving.");
+        var personInfo = {
+            greet() {
+                console.log(`${this.name} How are you: welcome to ${this.place}`)
             }
         };
 
-        console.log(car.model);
-        car.drive();
+        var user1 = Object.create(personInfo)
+        user1.name = "Jeswanth"
+        user1.place = "Chittoor"
+        user1.greet();
+
+        var user2 = Object.create(personInfo)
+        user2.name = "Jachu"
+        user2.place = "Banglore"
+        user2.greet();
 
     </script>
 </body>

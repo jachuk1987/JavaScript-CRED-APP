@@ -32,10 +32,10 @@
             console.log(`${key}: ${value}`)
         });
 
-        // var mergedObject = Object.assign({},person,data)
-        // console.log(mergedObject)
+        var mergedObject = Object.assign({}, person, data)
+        console.log(mergedObject)
 
-        var spreadObject = {...person, ...data};
+        var spreadObject = { ...person, ...data };
         console.log(spreadObject)
     </script>
 </body>
