@@ -7,40 +7,21 @@
 </head>
 <body>
     <h1>JavaScript Objects: Access and Manipulation</h1>
-    <p>Open the console to see the results of the JavaScript code.</p>
 
     <script>
-        // Example Object
         const obj = {
-            name: "Alice",
-            age: 25,
-            "first-name": "Alice",
+            name: "Jeswanth",
+            age: 34,
+            collage:"Narayana"
         };
 
-        console.log("Original Object:", obj);
-
-        // Accessing Properties
-        console.log("Accessing with dot notation:", obj.name); // Output: Alice
-        console.log("Accessing with bracket notation:", obj["age"]); // Output: 25
-        console.log("Accessing key with special character:", obj["first-name"]); // Output: Alice
-
-        // Adding Properties
-        obj.gender = "Female"; // Add using dot notation
-        obj["country"] = "USA"; // Add using bracket notation
-        console.log("After Adding Properties:", obj);
-
-        // Removing Properties
-        delete obj.age; // Remove using dot notation
-        delete obj["first-name"]; // Remove using bracket notation
-        console.log("After Removing Properties:", obj);
-
-        // Dynamic Property Access
-        const dynamicKey = "name";
-        console.log("Accessing dynamically:", obj[dynamicKey]); // Output: Alice
-
-        // Summary of Dot vs Bracket Notation
-        console.log("Dot notation works for valid keys:", obj.name); // Output: Alice
-        console.log("Bracket notation works for special keys:", obj["country"]); // Output: USA
+        obj.gender = "male";
+        var dynamicKey= "City";
+        obj[dynamicKey]= "Chittoor";
+        delete obj.collage
+        console.log(obj.name);
+        console.log(obj["age"]);
+        console.log(obj);
     </script>
 </body>
 </html>

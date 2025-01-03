@@ -10,43 +10,12 @@
     <p>Check the console for examples of <code>Object.keys()</code>, <code>Object.values()</code>, <code>Object.entries()</code>, and object merging.</p>
 
     <script>
-        // Example Object
         const person = {
-            name: "Alice",
-            age: 25,
-            profession: "Engineer"
+            name: "Jeswanth",
+            profession: "Engineer",
+            city:"Chittoor"
         };
 
-        // 1. Object.keys()
-        console.log("Object.keys():");
-        console.log(Object.keys(person)); // Output: ["name", "age", "profession"]
-
-        // 2. Object.values()
-        console.log("Object.values():");
-        console.log(Object.values(person)); // Output: ["Alice", 25, "Engineer"]
-
-        // 3. Object.entries()
-        console.log("Object.entries():");
-        console.log(Object.entries(person)); 
-        // Output: [["name", "Alice"], ["age", 25], ["profession", "Engineer"]]
-
-        // 4. Merging Objects
-        const address = {
-            city: "New York",
-            country: "USA"
-        };
-
-        // Using Object.assign()
-        const mergedUsingAssign = Object.assign({}, person, address);
-        console.log("Merged Object (Object.assign):", mergedUsingAssign);
-
-        // Using the Spread Operator
-        const mergedUsingSpread = { ...person, ...address };
-        console.log("Merged Object (Spread Operator):", mergedUsingSpread);
-
-        // Overriding properties during merge
-        const updatedPerson = { ...person, age: 30 };
-        console.log("Updated Person (age overridden):", updatedPerson);
     </script>
 </body>
 </html>
