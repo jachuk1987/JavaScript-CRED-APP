@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Object Methods</title>
 </head>
+
 <body>
     <h1>Object Methods in JavaScript</h1>
-    <p>Check the console for examples of <code>Object.keys()</code>, <code>Object.values()</code>, <code>Object.entries()</code>, and object merging.</p>
 
     <script>
         const person = {
             name: "Jeswanth",
             profession: "Engineer",
-            city:"Chittoor"
+            city: "Chittoor"
+        };
+        const data = {
+            state: "AndhraPradesh",
+            zipcode: 517001
         };
 
+        Object.keys(person).forEach(key => {
+            console.log(key)
+        });
+        Object.values(person).forEach(value => {
+            console.log(value)
+        });
+
+        Object.entries(person).forEach(([key, value]) => {
+            console.log(`${key}: ${value}`)
+        });
+
+        // var mergedObject = Object.assign({},person,data)
+        // console.log(mergedObject)
+
+        var spreadObject = {...person, ...data};
+        console.log(spreadObject)
     </script>
 </body>
+
 </html>
