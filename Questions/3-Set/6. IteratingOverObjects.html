@@ -1,48 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iterating Over Object Properties</title>
 </head>
+
 <body>
     <h1>Iterating Over Object Properties</h1>
 
     <script>
-        const myObject = {
+        const obj = {
             name: "Jeswanth",
             age: 34,
-            job: "Developer"
-        };
-
-        // Add an inherited property
-        Object.prototype.inheritedProp = "This is inherited";
-
-        console.log("Original object:", myObject);
-
-        // Using for...in
-        console.log("\nUsing for...in:");
-        for (let key in myObject) {
-            console.log(key, ":", myObject[key]); // Includes inherited properties
+            job: "Developer",
+        }
+        const parentObj = {
+            country: "India"
         }
 
-        // Using Object.keys()
-        console.log("\nUsing Object.keys():");
-        Object.keys(myObject).forEach(key => {
-            console.log(key, ":", myObject[key]); // Own properties only
-        });
+        Object.setPrototypeOf(obj, parentObj)
 
-        // Using Object.entries()
-        console.log("\nUsing Object.entries():");
-        Object.entries(myObject).forEach(([key, value]) => {
-            console.log(key, ":", value); // Key-value pairs of own properties
-        });
+        for (key in obj) {
+            console.log(key, obj[key])
+        }
 
-        // Using Object.values()
-        console.log("\nUsing Object.values():");
-        Object.values(myObject).forEach(value => {
-            console.log("Value:", value); // Values of own properties only
-        });
+        Object.keys(obj).forEach(key => {
+            console.log(key, obj[key])
+        })
     </script>
 </body>
+
 </html>
