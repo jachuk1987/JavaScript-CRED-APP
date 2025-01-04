@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object vs Map and Object Freezing</title>
+</head>
+<body>
+    <h1>Object vs Map and Object Freezing</h1>
+    <p>Open the console to see examples of differences between Objects and Maps, and how to prevent modifications to an object.</p>
+
+    <script>
+        // 1. Difference between an Object and a Map
+        console.log("1. Difference between an Object and a Map:");
+
+        // Example of an Object
+        const obj = { key1: "value1", key2: "value2" };
+        obj["key3"] = "value3"; // Adding a new property
+        console.log("Object:", obj);
+
+        // Example of a Map
+        const map = new Map();
+        map.set("key1", "value1");
+        map.set(42, "value2"); // Allows non-string keys
+        map.set({ id: 1 }, "value3"); // Allows objects as keys
+        console.log("Map:", map);
+
+        // Retrieving values
+        console.log("Object key1:", obj.key1); // Accessing value in Object
+        console.log("Map key1:", map.get("key1")); // Accessing value in Map
+
+        console.log("\nObjects allow only string/Symbol keys, while Maps allow any data type as keys.");
+
+        // 2. Preventing Object Modification
+        console.log("\n2. Preventing Object Modification:");
+
+        const myObject = { name: "Alice", age: 30 };
+
+        // Using Object.freeze()
+        Object.freeze(myObject);
+        myObject.age = 40; // Attempt to modify a frozen property
+        myObject.newProp = "test"; // Attempt to add a new property
+        delete myObject.name; // Attempt to delete a property
+        console.log("After Object.freeze():", myObject);
+
+        // Using Object.seal()
+        const anotherObject = { name: "Bob", age: 25 };
+        Object.seal(anotherObject);
+        anotherObject.age = 26; // Modifying an existing property (allowed)
+        anotherObject.newProp = "test"; // Attempt to add a new property
+        delete anotherObject.name; // Attempt to delete a property
+        console.log("After Object.seal():", anotherObject);
+
+        console.log("\nObject.freeze() makes an object completely immutable, while Object.seal() allows modifying existing properties but prevents adding or deleting properties.");
+    </script>
+</body>
+</html>
