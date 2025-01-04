@@ -22,18 +22,22 @@
 
         Object.setPrototypeOf(obj, parentObj)
 
+        console.log("Iterating with for...in")
         for (key in obj) {
             console.log(key, obj[key])
         }
 
+        console.log("Using Object.keys()")
         Object.keys(obj).forEach(key => {
             console.log(key, obj[key])
         });
 
+        console.log("Using Object.entries()")
         Object.entries(obj).forEach(([key,value])=>{
             console.log(key,value)
         });
 
+        console.log("Using Object.values()")
         Object.values(obj).forEach(value=>{
             console.log(value)
         })
