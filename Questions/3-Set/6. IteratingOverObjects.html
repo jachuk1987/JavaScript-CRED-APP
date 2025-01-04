@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iterating Over Object Properties</title>
+</head>
+<body>
+    <h1>Iterating Over Object Properties</h1>
+
+    <script>
+        const myObject = {
+            name: "Jeswanth",
+            age: 34,
+            job: "Developer"
+        };
+
+        // Add an inherited property
+        Object.prototype.inheritedProp = "This is inherited";
+
+        console.log("Original object:", myObject);
+
+        // Using for...in
+        console.log("\nUsing for...in:");
+        for (let key in myObject) {
+            console.log(key, ":", myObject[key]); // Includes inherited properties
+        }
+
+        // Using Object.keys()
+        console.log("\nUsing Object.keys():");
+        Object.keys(myObject).forEach(key => {
+            console.log(key, ":", myObject[key]); // Own properties only
+        });
+
+        // Using Object.entries()
+        console.log("\nUsing Object.entries():");
+        Object.entries(myObject).forEach(([key, value]) => {
+            console.log(key, ":", value); // Key-value pairs of own properties
+        });
+
+        // Using Object.values()
+        console.log("\nUsing Object.values():");
+        Object.values(myObject).forEach(value => {
+            console.log("Value:", value); // Values of own properties only
+        });
+    </script>
+</body>
+</html>
