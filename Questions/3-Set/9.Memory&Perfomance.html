@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Assignment and Cloning</title>
+</head>
+<body>
+    <h1>Memory and Performance in JavaScript</h1>
+
+    <script>
+        console.log("1. Object Assignment:");
+
+        const originalObject = { name: "Jeswanth", age: 32 };
+        const assignedObject = originalObject;
+
+        console.log("Original Object:", originalObject);
+        console.log("Assigned Object:", assignedObject);
+
+        // Modifying the assignedObject
+        assignedObject.age = 35;
+        console.log("After modification:");
+        console.log("Original Object:", originalObject);
+        console.log("Assigned Object:", assignedObject);
+
+        console.log("\nWhen you assign one object to another variable, both variables reference the same object in memory.");
+
+        // 2. How do you clone an object in JavaScript?
+        console.log("\n2. Object Cloning:");
+
+        // Shallow cloning using Object.assign()
+        const shallowClone1 = Object.assign({}, originalObject);
+        shallowClone1.age = 35;
+        console.log("Using Object.assign():", shallowClone1);
+        console.log("Original Object after shallow cloning:", originalObject);
+
+        // Shallow cloning using spread operator
+        const shallowClone2 = { ...originalObject };
+        shallowClone2.name = "Bob";
+        console.log("Using spread operator:", shallowClone2);
+        console.log("Original Object after spread cloning:", originalObject);
+
+        // Deep cloning using JSON methods
+        const deepClone = JSON.parse(JSON.stringify(originalObject));
+        deepClone.age = 40;
+        console.log("Using JSON.stringify/JSON.parse:", deepClone);
+        console.log("Original Object after deep cloning:", originalObject);
+
+    </script>
+</body>
+</html>
