@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Method Example</title>
+</head>
+
+<body>
+    <script>
+        // Define the product object
+        var product = {
+            buyingPrice: 100,
+            sellingPrice: 120,
+            result: function () {
+                return this.sellingPrice - this.buyingPrice; // Return the calculated difference
+            }
+        };
+
+        // Log the result for the product object
+        // console.log(product.result());
+
+        // Define product1
+        var product1 = {
+            buyingPrice: 200,
+            sellingPrice: 240,
+        };
+
+        // Define product2
+        var product2 = {
+            buyingPrice: 1000,
+            sellingPrice: 120,
+        };
+
+        // Use the call method to calculate results for product1 and product2
+        console.log("Products result using call:");
+        console.log(product.result());
+        console.log(product.result.call(product1));
+        console.log(product.result.call(product2));
+
+        // Use the apply method to calculate results for product1 and product2
+        console.log("Products result using apply:");
+        console.log(product.result.apply(product1));
+        console.log(product.result.apply(product2));
+
+        // Use bind and call the returned function
+        console.log("Products result using bind:");
+        const boundResult1 = product.result.bind(product1);
+        console.log(boundResult1());
+
+        const boundResult2 = product.result.bind(product2);
+        console.log(boundResult2());
+    </script>
+</body>
+
+</html>

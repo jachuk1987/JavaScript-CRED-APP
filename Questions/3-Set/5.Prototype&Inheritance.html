@@ -1,88 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object Prototype and Inheritance</title>
+    <title>Document</title>
 </head>
+
 <body>
-    <h1>Object Prototype and Inheritance</h1>
-
     <script>
+        //prototype
         var person = {
-            fname:"Nethaji",
-            lname:"Jeswanth",
-        };
-        // console.log(person);
-        
-        // inheritance
-        person.age = 24
-        console.log(person);
+            name: "Jeswanth"
 
-        person
+        }
+
+
+
+        //ineritance 
+        // by using create function
+
+        const student = Object.create(person)
+        student.age = 32
+        console.log("By using create metod")
+        console.log(student.name)
+        console.log(student.age)
+
+
+      
+        // by using es6 class
+        class Product {
+            constructor(buyingPrice, sellingPrice) {
+                this.buyingPrice = buyingPrice;
+                this.sellingPrice = sellingPrice;
+            }
+        }
+ 
+        class Product2 extends Product {
+            constructor(buyingPrice, sellingPrice) {
+                super(buyingPrice, sellingPrice);
+                console.log(buyingPrice) // Call the parent class constructor
+            }
+        }
+     
+        const product1 = new Product(100, 120);
+        const product2 = new Product2(200, 290);
+
+
     </script>
-    <!-- <script>
-        // 1. Prototype of an Object
-        console.log("Prototype of an Object:");
-        const obj = { name: "Alice" };
-        console.log("Object's prototype (__proto__):", obj.__proto__);
-
-        // Adding a method to Object prototype
-        Object.prototype.sayHello = function() {
-            console.log("Hello from Object prototype!");
-        };
-        obj.sayHello(); // Access method from prototype
-
-        // 2. __proto__ vs prototype
-        console.log("\n__proto__ vs prototype:");
-
-        function Person(name) {
-            this.name = name;
-        }
-        Person.prototype.greet = function() {
-            console.log(`Hi, I'm ${this.name}`);
-        };
-
-        const bob = new Person("Bob");
-        console.log("bob.__proto__:", bob.__proto__); // Prototype of the bob object
-        console.log("Person.prototype:", Person.prototype); // Prototype property of the Person constructor
-
-        bob.greet(); // Accessing method from prototype
-
-        // 3. Inheritance with Object.create()
-        console.log("\nInheritance with Object.create():");
-        const parent = { role: "Parent" };
-        const child = Object.create(parent); // child inherits from parent
-        child.name = "Child";
-        console.log("Child object:", child);
-        console.log("Child's role (inherited):", child.role); // Access inherited property
-
-        // 4. Inheritance with ES6 Classes
-        console.log("\nInheritance with ES6 Classes:");
-
-        class Animal {
-            constructor(name) {
-                this.name = name;
-            }
-            makeSound() {
-                console.log(`${this.name} makes a sound.`);
-            }
-        }
-
-        class Dog extends Animal {
-            makeSound() {
-                console.log(`${this.name} barks.`);
-            }
-        }
-
-        const dog = new Dog("Buddy");
-        dog.makeSound(); // Buddy barks.
-        console.log("Dog inherits from Animal:", dog instanceof Animal);
-
-        // 5. Verifying Prototype Chain
-        console.log("\nPrototype Chain:");
-        console.log("dog.__proto__:", dog.__proto__); // Dog's prototype
-        console.log("dog.__proto__.__proto__:", dog.__proto__.__proto__); // Animal's prototype
-    </script> -->
 </body>
+
 </html>
