@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
+    .container {
+      margin: 0 auto;
+      max-width: 400px;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+    }
+    button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .lend {
+      background-color: #28a745;
+      color: #fff;
+    }
+    .return {
+      background-color: #dc3545;
+      color: #fff;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Library System</h1>
+    <ul id="bookList"></ul>
+  </div>
+
+  <script>
+    class Library {
+      constructor() {
+        this.books = [
+          { title: "The Great Gatsby", author: "F. Scott Fitzgerald", available: true },
+          { title: "1984", author: "George Orwell", available: true },
+          { title: "To Kill a Mockingbird", author: "Harper Lee", available: true },
+        ];
+      }
+
+      toggleBookStatus(title, action) {
+        const book = this.books.find(b => b.title === title);
+        if (book) {
+          book.available = action === 'return';
+          alert(`${action === 'lend' ? 'Borrowed' : 'Returned'}: ${title}`);
+          this.renderBooks();
+        }
+      }
+
+      renderBooks() {
+        const bookList = document.getElementById("bookList");
+        bookList.innerHTML = this.books.map(book => `
+          <li>
+            <strong>${book.title}</strong> by ${book.author}
+            <button 
+              class="lend" 
+              ${book.available ? '' : 'disabled'} 
+              onclick="library.toggleBookStatus('${book.title}', 'lend')">Lend</button>
+            <button 
+              class="return" 
+              ${book.available ? 'disabled' : ''} 
+              onclick="library.toggleBookStatus('${book.title}', 'return')">Return</button>
+          </li>
+        `).join('');
+      }
+    }
+
+    const library = new Library();
+    library.renderBooks();
+  </script>
+</body>
+</html>
