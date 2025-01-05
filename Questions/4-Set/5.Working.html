@@ -44,7 +44,9 @@
             ).join('');
         }
 
-        document.getElementById("userForm").addEventListener("submit")
+        document.getElementById("userForm").addEventListener("submit",(e) =>{
+            e.preventDefault();
+        })
     </script>
 </body>
 
