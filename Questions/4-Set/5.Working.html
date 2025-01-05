@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Management</h1>
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Name" required>
+            <input type="email" id="email" placeholder="Email" required>
+            <select id="role">
+                <option value="Subscriber">Subscriber</option>
+                <option value="Admin">Admin</option>
+            </select>
+            <button type="submit">Add User</button>
+        </form>
+        <ul id="userList"></ul>
+    </div>
+
+    <script>
+        class User {
+            constructor(name, email, role) {
+                this.name = name;
+                this.email = email;
+                this.role = role;
+            }
+        }
+
+        const users = [];
+
+        function renderUsers() {
+            const userList = document.getElementById("userList");
+            userList.innerHTML = users.map(
+                (user) =>`
+                    <li>
+                        <strong>${user.name}</strong> (${user.role})<br>
+                        Email: ${user.email}
+                    </li>`
+            ).join('');
+        }
+
+        document.getElementById("userForm").addEventListener("submit")
+    </script>
+</body>
+
+</html>
