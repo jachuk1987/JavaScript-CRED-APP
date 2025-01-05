@@ -56,7 +56,16 @@
 
         document.getElementById("userForm").addEventListener("submit", (e) => {
             e.preventDefault();
-        })
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const role = document.getElementById("role").value;
+
+            if (name && email) {
+                users.push(new User(name, email, role));
+                renderUsers();
+                e.target.reset();
+            }
+        });
     </script>
 </body>
 
