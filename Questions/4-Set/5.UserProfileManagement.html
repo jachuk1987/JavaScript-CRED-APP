@@ -92,9 +92,7 @@
         const user = users[i];
         const listItem = document.createElement("li");
 
-        let content = "<strong>" +user.name+ "</strong> ("+user.role+") <br>";
-        content += " Email:" +user.email;  //need to explain
-
+        let content = "<strong>" +user.name+ "</strong> ("+user.role+")<br> Email:" +user.email; ;
         listItem.innerHTML = content;
         userList.appendChild(listItem);  // need to explain
       }
