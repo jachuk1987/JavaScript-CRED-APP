@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Library System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+    }
+
+    #bookList li {
+      margin: 5px 0;
+    }
+
+    button {
+      margin: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+    }
+
+    #lendButton {
+      background-color: #007bff;
+      color: white;
+    }
+
+    #lendButton:hover {
+      background-color: #0056b3;
+    }
+
+    #returnButton {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #returnButton:hover {
+      background-color: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+  <h1>Library System</h1>
+
+  <ul id="bookList"></ul>
+
+  <input type="text" id="bookTitle" placeholder="Enter book title">
+  <button id="lendButton" onclick="lendBook()">Lend</button>
+  <button id="returnButton" onclick="returnBook()">Return</button>
+
+  <script>
+    const books = [
+      { title: "The Great Gatsby", available: true },
+      { title: "1984", available: true },
+      { title: "To Kill a Mockingbird", available: true },
+    ];
+
+    function listBooks() {
+      const bookList = document.getElementById("bookList");
+      bookList.innerHTML = books.map(
+        book => `<li>${book.title} - ${book.available ? "Available" : "Lent out"}</li>`
+      ).join('');
+    }
+
+    function lendBook() {
+      const title = document.getElementById("bookTitle").value.trim();
+      const book = books.find(b => b.title.toLowerCase() === title.toLowerCase());
+      if (book) {
+        if (book.available) {
+          book.available = false;
+          alert(`You borrowed "${title}"`);
+        } else {
+          alert(`"${title}" is already lent out.`);
+        }
+      } else {
+        alert("Book not found.");
+      }
+      listBooks();
+    }
+
+    function returnBook() {
+      const title = document.getElementById("bookTitle").value.trim();
+      const book = books.find(b => b.title.toLowerCase() === title.toLowerCase());
+      if (book) {
+        if (!book.available) {
+          book.available = true;
+          alert(`You returned "${title}"`);
+        } else {
+          alert(`"${title}" was not lent out.`);
+        }
+      } else {
+        alert("Book not found.");
+      }
+      listBooks();
+    }
+
+    listBooks();
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const numbers = [1, 2, 3, 4, 5];
+
+        numbers.forEach((num, index) => {
+            console.log(`Index: ${index}, Value: ${num}`);
+        });
+
+
+        const nums = [1, 2, 3];
+        numbers.forEach((num, index, arr) => {
+            arr[index] = num * 2;
+        });
+
+        console.log(nums);
+
+
+    </script>
+</body>
+
+</html>
