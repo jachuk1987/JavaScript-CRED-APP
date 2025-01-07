@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .container {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+      }
+      .container input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .container button {
+        width: 100%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .cart {
+        margin-top: 20px;
+        width: 80%;
+        max-width: 600px;
+      }
+      .cart h1 {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .cart-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+      .cart-item button {
+        padding: 5px 10px;
+        background-color: #f44336;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .total {
+        text-align: right;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Add Product</h2>
+      <div class="productForm">
+        <input type="text" id="productId" placeholder="Product ID" /><br />
+        <input type="text" id="productName" placeholder="Product Name" /><br />
+        <input type="number" id="ProductPrice" placeholder="Product Price" /><br />
+        <input type="number" id="ProductQuantity" placeholder="Product Quantity" /><br />
+        <button id="addProductbtn" onclick="productHandle()">Add Product</button>
+      </div>
+    </div>
+
+    <div class="cart">
+      <h1>Cart items Details</h1>
+      <div id="cartItems"></div>
+      <p class="total" id="totalPrice">Total: Rs0</p>
+    </div>
+
+    <script>
+      var cartItems = []
+
+      function productHandle() {
+        var items = {
+          productId: "",
+          productName: "",
+          ProductPrice: "",
+          ProductQuantity: "",
+        }
+        for(a in items) {
+          items[a] = document.getElementById(a).value
+        }
+        addProducts(items)
+        clearProducts()
+        readUser()
+      }
+
+      function clearProducts() {
+        var items = {
+          productId: "",
+          productName: "",
+          ProductPrice: "",
+          ProductQuantity: "",
+        }
+        for(a in items) {
+          document.getElementById(a).value = "";
+          
+        }
+      }
+
+      function addProducts(item) {
+        let isProductFind = false;
+
+        cartItems.forEach(function(cartItem) {
+          if(cartItem.productId === item.productId) {
+            cartItem.ProductQuantity = parse(cartItem.ProductQuantity) + parse(item.ProductQuantity);
+            isProductFind = true
+          }
+        })
+        if(!isProductFind) {
+          cartItems.push(item)
+        }
+      }
+
+      function removeCart(productId) {
+        cartItems.forEach(function(prodvalue, index) {
+          if(prodvalue.productId === productId) {
+            cartItems.splice(index, 1)
+          }
+        })
+        readUser()
+      }
+
+      function readUser() {
+        var cartItemContainner = document.getElementById("cartItems");
+        cartItemContainner.innerHTML = "";
+        var total = 0;
+
+        cartItems.forEach(function(read) {
+          var productElement = document.createElement("div");
+          productElement.classList.add("cart-item");
+          productElement.innerHTML = `
+          <p>ID: ${read.productId}</p>
+          <p>NAme: ${read.productName}</p>
+          <p>Price: ${read.ProductPrice}</p>
+          <p>Quantity: ${read.ProductQuantity}</p>
+          <button onclick="removeCart('${read.productId}')">Remove</button>
+          `
+          cartItemContainner.appendChild(productElement);
+          total += parseFloat(read.ProductPrice) * parseInt(read.ProductQuantity)
+        })
+        document.getElementById("totalPrice").textContent = Total: Rs${total}
+      }
+    </script>
+  </body>
+</html>
