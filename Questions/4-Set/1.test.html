@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+
+        .container input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cart {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .cart h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .cart-item button {
+            padding: 5px 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .total {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add Product</h2>
+        <div class="productForm">
+            <input type="text" id="proId" placeholder="Product ID" /><br />
+            <input type="text" id="proName" placeholder="Product Name" /><br />
+            <input type="number" id="proPrice" placeholder="Product Price" /><br />
+            <input type="number" id="proQty" placeholder="Product Quantity" /><br />
+            <button onclick="addProduct()">Add Product</button>
+        </div>
+    </div>
+
+    <div class="cart">
+        <h1>Cart Items Details</h1>
+        <div id="cartItems"></div>
+        <p class="total" id="totalPrice">Total: Rs0</p>
+    </div>
+
+    <script>
+        let cartItems = [];
+
+        function addProduct() {
+            const proId = document.getElementById("proId").value.trim();
+            const proName = document.getElementById("proName").value.trim();
+            const proPrice = parseFloat(document.getElementById("proPrice").value) || 0;
+            const proQty = parseInt(document.getElementById("proQty").value) || 0;
+
+            if (!proId || !proName || proPrice <= 0 || proQty <= 0) {
+                alert("Please enter valid product details.");
+                return;
+            }
+
+            const existingProduct = cartItems.find((item) => item.proId === proId);
+            if (existingProduct) {
+                existingProduct.proQty += proQty;
+            } else {
+                cartItems.push({ proId, proName, proPrice, proQty })
+            }
+
+            clearInputs();
+            updateCartDisplay();
+        }
+
+        function clearInputs() {
+            document.getElementById("proId").value = "";
+            document.getElementById("proName").value = "";
+            document.getElementById("proPrice").value = "";
+            document.getElementById("proQty").value = "";
+        }
+
+        function removeProduct(proId) {
+            cartItems = cartItems.filter((item) => item.proId !== proId);
+            updateCartDisplay();
+        }
+
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById("cartItems");
+            cartItemsContainer.innerHTML = "";
+
+            let total = 0;
+
+            cartItems.forEach((item) => {
+                const cartItemElement = document.createElement("div");
+                cartItemElement.className = "cart-item";
+
+                cartItemElement.innerHTML = `
+            <p>ID: ${item.proId}</p>
+            <p>Name: ${item.proName}</p>
+            <p>Price: ${item.proPrice.toFixed(2)}</p>
+            <p>Quantity: ${item.proQty}</p>
+            <button onclick="removeProduct('${item.proId}')">Remove</button>
+            `;
+                cartItemsContainer.appendChild(cartItemElement);
+
+                total += item.proPrice * item.proQty;
+            });
+
+            document.getElementById("totalPrice").textContent = `Total: Rs${total.toFixed(2)}`;
+        };
+    </script>
+</body>
+
+</html>
