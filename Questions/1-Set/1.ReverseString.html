@@ -12,21 +12,21 @@
     <p id="result"></p>
 
     <script>
-        // function reverseString(str) {
-        //     return str.split('').reverse().join('');
-        // }
-
-        // function reversed(){
-        //     var input = document.getElementById("inputString").value;
-        //     var result = document.getElementById("result");
-        //     var reversed = reverseString(input);
-        //     result.textContent = `Reverse String:${reversed}`;
-        // }
-
-        function reverse() {
-            const input = document.getElementById('inputString').value;
-            document.getElementById('result').textContent = input.split('').reverse().join('');
+        function reverseString(str) {
+            return str.split('').reverse().join('');
         }
+
+        function reversed(){
+            var input = document.getElementById("inputString").value;
+            var result = document.getElementById("result");
+            var reversed = reverseString(input);
+            result.textContent = `Reverse String:${reversed}`;
+        }
+
+        // function reverse() {
+        //     const input = document.getElementById('inputString').value;
+        //     document.getElementById('result').textContent = input.split('').reverse().join('');
+        // }
     </script>
 </body>
 </html>

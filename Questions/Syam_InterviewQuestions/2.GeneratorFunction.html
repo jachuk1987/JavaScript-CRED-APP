@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Function Demo</title>
+
+</head>
+
+<body>
+    <h1>Generator Function Demo</h1>
+    <button onclick="demoGenerator()">Run Generator</button>
+    <div id="output" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px;">
+        <!-- Generator output will appear here -->
+    </div>
+
+    <script>
+        // Define a generator function
+        function* exampleGenerator() {
+            yield 'Step 1';
+            yield 'Step 2';
+            yield 'Step 3';
+            return 'All done!';
+        }
+
+        // Function to demonstrate the generator
+        function demoGenerator() {
+            const output = document.getElementById("output");
+            output.innerHTML = ""; // Clear previous output
+
+            // Create the generator object
+            const gen = exampleGenerator();
+
+            // Call the generator step by step and display the results
+            let result = gen.next();
+            while (!result.done) {
+                output.innerHTML += `<p>Value: ${result.value}, Done: ${result.done}</p>`;
+                result = gen.next();
+            }
+            // Final result after the generator is done
+            output.innerHTML += `<p>Value: ${result.value}, Done: ${result.done}</p>`;
+        }
+    </script>
+</body>
+
+</html>
