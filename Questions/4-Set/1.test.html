@@ -84,10 +84,10 @@
     <div class="container">
         <h2>Add Product</h2>
         <div class="productForm">
-            <input type="text" id="proId" placeholder="Product ID" /><br />
-            <input type="text" id="proName" placeholder="Product Name" /><br />
-            <input type="number" id="proPrice" placeholder="Product Price" /><br />
-            <input type="number" id="proQty" placeholder="Product Quantity" /><br />
+            <input type="text" id="productId" placeholder="Product ID" /><br />
+            <input type="text" id="productName" placeholder="Product Name" /><br />
+            <input type="number" id="productPrice" placeholder="Product Price" /><br />
+            <input type="number" id="productQty" placeholder="Product Quantity" /><br />
             <button onclick="addProduct()">Add Product</button>
         </div>
     </div>
@@ -102,21 +102,22 @@
         let cartItems = [];
 
         function addProduct() {
-            const proId = document.getElementById("proId").value.trim();
-            const proName = document.getElementById("proName").value.trim();
-            const proPrice = parseFloat(document.getElementById("proPrice").value) || 0;
-            const proQty = parseInt(document.getElementById("proQty").value) || 0;
+            const productId = document.getElementById("productId").value.trim();
+            const productName = document.getElementById("productName").value.trim();
+            const productPrice = parseFloat(document.getElementById("productPrice").value) || 0;
+            const productQty = parseInt(document.getElementById("productQty").value) || 0;
 
-            if (!proId || !proName || proPrice <= 0 || proQty <= 0) {
+            if (!productId || !productName || productPrice <= 0 || productQty <= 0) {
                 alert("Please enter valid product details.");
                 return;
             }
 
-            const existingProduct = cartItems.find((item) => item.proId === proId);
+            const existingProduct = cartItems.find((item) => item.productId === productId);
+
             if (existingProduct) {
-                existingProduct.proQty += proQty;
+                existingProduct.productQty += productQty;
             } else {
-                cartItems.push({ proId, proName, proPrice, proQty })
+                cartItems.push({ productId, productName, productPrice, productQty });
             }
 
             clearInputs();
@@ -124,14 +125,14 @@
         }
 
         function clearInputs() {
-            document.getElementById("proId").value = "";
-            document.getElementById("proName").value = "";
-            document.getElementById("proPrice").value = "";
-            document.getElementById("proQty").value = "";
+            document.getElementById("productId").value = "";
+            document.getElementById("productName").value = "";
+            document.getElementById("productPrice").value = "";
+            document.getElementById("productQty").value = "";
         }
 
-        function removeProduct(proId) {
-            cartItems = cartItems.filter((item) => item.proId !== proId);
+        function removeProduct(productId) {
+            cartItems = cartItems.filter((item) => item.productId !== productId);
             updateCartDisplay();
         }
 
@@ -144,21 +145,20 @@
             cartItems.forEach((item) => {
                 const cartItemElement = document.createElement("div");
                 cartItemElement.className = "cart-item";
-
                 cartItemElement.innerHTML = `
-            <p>ID: ${item.proId}</p>
-            <p>Name: ${item.proName}</p>
-            <p>Price: ${item.proPrice.toFixed(2)}</p>
-            <p>Quantity: ${item.proQty}</p>
-            <button onclick="removeProduct('${item.proId}')">Remove</button>
-            `;
+                <p>ID: ${item.productId}</p>
+                <p>Name: ${item.productName}</p>
+                <p>Price: Rs${item.productPrice.toFixed(2)}</p>
+                <p>Quantity: ${item.productQty}</p>
+                <button onclick="removeProduct('${item.productId}')">Remove</button>
+                `;
                 cartItemsContainer.appendChild(cartItemElement);
 
-                total += item.proPrice * item.proQty;
+                total += item.productPrice * item.productQty;
             });
 
             document.getElementById("totalPrice").textContent = `Total: Rs${total.toFixed(2)}`;
-        };
+        }
     </script>
 </body>
 
