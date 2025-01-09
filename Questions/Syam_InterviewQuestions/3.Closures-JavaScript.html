@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Closures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+   
+</head>
+<body>
+    <h1>JavaScript Closures Examples</h1>
+
+    <h3>Example 1: Basic Closure</h3>
+    <button onclick="basicClosureExample()">Run Basic Closure Example</button>
+
+    <h3>Example 2: Counter with Closure</h3>
+    <button onclick="counterClosureExample()">Run Counter Example</button>
+
+    <h3>Example 3: Function Factory</h3>
+    <button onclick="functionFactoryExample()">Run Function Factory Example</button>
+
+    <h3>Example 4: Closures in Loops</h3>
+    <button onclick="loopClosureExample()">Run Closures in Loops Example</button>
+
+    <p>Open the browser console (F12 or right-click → Inspect → Console) to view detailed outputs for Example 4.</p>
+
+    <script>
+        // Example 1: Basic Closure
+        function basicClosureExample() {
+            function outerFunction() {
+                let outerVariable = "I'm from outer scope!";
+
+                function innerFunction() {
+                    alert(outerVariable);
+                }
+
+                return innerFunction;
+            }
+
+            const closureFunction = outerFunction();
+            closureFunction(); // Displays the message in an alert
+        }
+
+        // Example 2: Counter with Closure
+        function counterClosureExample() {
+            function createCounter() {
+                let count = 0;
+                return function() {
+                    count++;
+                    return count;
+                };
+            }
+
+            const counter = createCounter();
+            alert("First Call: " + counter());
+            alert("Second Call: " + counter());
+            alert("Third Call: " + counter());
+        }
+
+        // Example 3: Function Factory
+        function functionFactoryExample() {
+            function createMultiplier(multiplier) {
+                return function(value) {
+                    return value * multiplier;
+                };
+            }
+
+            const double = createMultiplier(2);
+            const triple = createMultiplier(3);
+
+            alert("Double of 5: " + double(5));
+            alert("Triple of 5: " + triple(5));
+        }
+
+        // Example 4: Closures in Loops
+        function loopClosureExample() {
+            for (var i = 0; i < 3; i++) {
+                (function(index) {
+                    setTimeout(function() {
+                        console.log("Closure in Loop (var):", index);
+                    }, index * 1000);
+                })(i);
+            }
+
+            for (let j = 0; j < 3; j++) {
+                setTimeout(function() {
+                    console.log("Closure in Loop (let):", j);
+                }, j * 1000);
+            }
+
+            alert("Check the console for loop closure outputs!");
+        }
+    </script>
+</body>
+</html>
