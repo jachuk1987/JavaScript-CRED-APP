@@ -1,198 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Warehouse Inventory</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Social Media Post Editor</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f4f4f9;
+    }
 
-        h1 {
-            text-align: center;
-        }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        form {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
 
-        input {
-            padding: 8px;
-            margin: 5px;
-            width: 200px;
-        }
+    .post-editor textarea {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
 
-        button {
-            padding: 8px 15px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin: 2px;
-        }
+    .post-editor button {
+      background-color: #5cb85c;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        button:hover {
-            background-color: #218838;
-        }
+    .post-editor button:hover {
+      background-color: #4cae4c;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
+    .posts {
+      margin-top: 20px;
+    }
 
-        th,
-        td {
-            padding: 10px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
+    .post {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
 
-        th {
-            background-color: #f8f9fa;
-        }
+    .post-actions button {
+      margin-right: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 
-        .edit-button,
-        .delete-button {
-            padding: 5px 10px;
-            cursor: pointer;
-        }
+    .post-actions button:hover {
+      background-color: #0056b3;
+    }
 
-        .edit-button {
-            background-color: #007bff;
-            color: white;
-        }
+    .comments {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
 
-        .delete-button {
-            background-color: #dc3545;
-            color: white;
-            margin: 10px
-        }
+    .comment {
+      margin-bottom: 5px;
+    }
 
-        .edit-button:hover {
-            background-color: #0056b3;
-        }
-
-        .delete-button:hover {
-            background-color: #c82333;
-        }
-    </style>
+    .total-likes {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Warehouse Inventory Management</h1>
+  <div class="container">
+    <h1>Social Media Post Editor</h1>
+    <div class="post-editor">
+      <textarea id="postContent" placeholder="Write your post here..."></textarea>
+      <button onclick="createPost()">Post</button>
+    </div>
+    <div class="posts" id="posts"></div>
+  </div>
 
-    <form id="addProductForm">
-        <input type="number" id="productId" placeholder="Product ID (Optional)" />
-        <input type="text" id="itemName" placeholder="Item Name" required />
-        <input type="number" id="quantity" placeholder="Quantity" required />
-        <input type="number" id="cost" placeholder="Cost" required />
-        <button type="button" onclick="recordData(event)">Add Product</button> <!-- Added event parameter to onclick -->
-    </form>
+  <script>
+    // Constructor for Social Media Post
+    function SocialMediaPost(content) {
+      this.content = content;
+      this.likes = 0;
+      this.comments = [];
+    }
 
-    <h2>Product List</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Cost</th>
-                <th>Total Cost</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="productList"></tbody>
-    </table>
+    // Prototype Methods
+    SocialMediaPost.prototype.editContent = function (newContent) {
+      this.content = newContent;
+    };
+
+    SocialMediaPost.prototype.addLike = function () {
+      this.likes++;
+    };
+
+    SocialMediaPost.prototype.addComment = function (comment) {
+      this.comments.push(comment);
+    };
+
+    SocialMediaPost.prototype.sharePost = function () {
+      alert(`Sharing post: "${this.content}"`);
+    };
+
+    SocialMediaPost.prototype.clonePost = function (deep = false) {
+      if (deep) {
+        return structuredClone(this); // Deep copy
+      } else {
+        return Object.assign(Object.create(Object.getPrototypeOf(this)), this); // Shallow copy
+      }
+    };
+
+    // Global Post List
+    const posts = [];
+
+    // Function to Create a Post
+    function createPost() {
+      const content = document.getElementById('postContent').value.trim();
+      if (!content) {
+        alert('Please enter some content for the post.');
+        return;
+      }
+
+      const newPost = new SocialMediaPost(content);
+      posts.push(newPost);
+      document.getElementById('postContent').value = '';
+      renderPosts();
+    }
+
+    // Function to Render Posts
+    function renderPosts() {
+      const postsContainer = document.getElementById('posts');
+      postsContainer.innerHTML = '';
+
+      posts.forEach((post, index) => {
+        const postElement = document.createElement('div');
+        postElement.className = 'post';
+        postElement.innerHTML = `
+          <p>${post.content}</p>
+          <div class="post-actions">
+            <button onclick="likePost(${index})">Like (${post.likes})</button>
+            <button onclick="commentOnPost(${index})">Comment</button>
+            <button onclick="editPost(${index})">Edit</button>
+            <button onclick="sharePost(${index})">Share</button>
+            <button onclick="clonePost(${index}, false)">Clone (Shallow)</button>
+            <button onclick="clonePost(${index}, true)">Clone (Deep)</button>
+          </div>
+          <div class="comments">
+            ${post.comments.map(comment => `<div class="comment">- ${comment}</div>`).join('')}
+          </div>
+        `;
+        postsContainer.appendChild(postElement);
+      });
+    }
+
+    // Post Action Handlers
+    function likePost(index) {
+      posts[index].addLike();
+      renderPosts();
+    }
+
+    function commentOnPost(index) {
+      const comment = prompt('Enter your comment:');
+      if (comment) {
+        posts[index].addComment(comment);
+        renderPosts();
+      }
+    }
+
+    function editPost(index) {
+      const newContent = prompt('Edit your post:', posts[index].content);
+      if (newContent) {
+        posts[index].editContent(newContent);
+        renderPosts();
+      }
+    }
+
+    function sharePost(index) {
+      posts[index].sharePost();
+    }
+
+    function clonePost(index, deep) {
+      const clonedPost = posts[index].clonePost(deep);
+      posts.push(clonedPost);
+      renderPosts();
+    }
+  </script>
 </body>
-<script>
-    var allProducts = []
-    var uniqueID = 0
-    function recordData(event) {
-        event.preventDefault()
-        var newProduct = {
-            userId: parseInt(document.getElementById("productId").value) || uniqueID++,
-            itemName: document.getElementById("itemName").value,
-            quantity: document.getElementById("quantity").value,
-            cost: document.getElementById("cost").value
-        }
-        console.log(newProduct.userId)
-        allProducts.push(newProduct)
-        // allProducts[newProduct.userId]=newProduct
-        displayData()
-        clearForm()
-        console.log(allProducts)
-    }
-    function displayData() {
-        var productList = document.getElementById("productList")
-        productList.innerHTML = ""
-        Object.keys(allProducts).forEach(function (productId) { // the object,keys will cover the iterated keyes into array
-            var product = allProducts[productId]
-            var row = document.createElement("tr")
-            var cellid = document.createElement("td")
-            cellid.textContent = product.userId
-            row.appendChild(cellid)
-            for (var key in product) {
-                if (key !== "userId") {
-                    var cell = document.createElement("td")
-                    cell.textContent = product[key]
-                    row.appendChild(cell)
-                }
-            }
-            var totalCostCell = document.createElement("td")
-            totalCostCell.textContent = product.quantity * product.cost
-            row.appendChild(totalCostCell)
-            var action = document.createElement("td")
-            var editButton = document.createElement("button")
-            editButton.textContent = "Edit"
-            editButton.setAttribute("onclick", "editProduct(" + product.userId + ")")
-            action.appendChild(editButton)
-
-            var deleteButton = document.createElement("button")
-            deleteButton.textContent = "Delete"
-            deleteButton.setAttribute("onclick", "deleteProduct(" + product.userId + ")")
-            action.appendChild(deleteButton)
-            row.appendChild(action)
-            productList.appendChild(row)
-        })
-    }
-
-    function deleteProduct(userId) {
-        // delete allProducts[]
-        displayData()
-    }
-    function editProduct(userId) {
-        var product = allProducts.find((prod) => {
-            return prod.userId == userId
-        })
-        if (product) {
-            var newQuantity = prompt("enter the quntity", product.quantity)
-            if (newQuantity !== null && !isNaN(newQuantity) && newQuantity > 0) {
-                product.quantity = parseInt(newQuantity);
-                 
-                displayData()
-            }
-            else{
-                alert("invalid")
-            }
-        }else{
-            alert("not found")
-        }
-    }
-    function clearForm(){
-        document.getElementById("productId").value=""
-        document.getElementById("itemName").value=""
-        document.getElementById("quantity").value=""
-        document.getElementById("cost").value=""
-    }
-
-</script>
-
 </html>
