@@ -110,7 +110,6 @@
             if (!productId || !productName || productPrice <= 0 || productQty <= 0) {
                 alert("Please enter valid product details")
                 return;
-
             }
 
             const existingProduct = cartItems.find((item) => item.productId === productId);
@@ -123,7 +122,7 @@
 
             clearInputs();
             updateCartDisplay();
-            
+
             // console.log(productId,productName,productPrice,productQty)
         }
 
