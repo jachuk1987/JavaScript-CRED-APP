@@ -88,7 +88,7 @@
             <input type="text" id="productName" placeholder="Product Name" /><br />
             <input type="number" id="productPrice" placeholder="Product Price" /><br />
             <input type="number" id="productQty" placeholder="Product Quantity" /><br />
-            <button onclick="addProduct()">Add Product</button>
+            <button type="button" onclick="addProduct()">Add Product</button>
         </div>
     </div>
 
@@ -108,8 +108,9 @@
             const productQty = parseInt(document.getElementById("productQty").value) || 0;
 
             if (!productId || !productName || productPrice <= 0 || productQty <= 0) {
-                alert("Please enter valid product details.");
+                alert("Please enter valid product details")
                 return;
+
             }
 
             const existingProduct = cartItems.find((item) => item.productId === productId);
@@ -117,11 +118,12 @@
             if (existingProduct) {
                 existingProduct.productQty += productQty;
             } else {
-                cartItems.push({ productId, productName, productPrice, productQty });
+                cartItems.push({ productId, productName, productPrice, productQty })
             }
 
             clearInputs();
             updateCartDisplay();
+            // console.log(productId,productName,productPrice,productQty)
         }
 
         function clearInputs() {
@@ -129,9 +131,10 @@
             document.getElementById("productName").value = "";
             document.getElementById("productPrice").value = "";
             document.getElementById("productQty").value = "";
+
         }
 
-        function removeProduct(productId) {
+        function removeProduct() {
             cartItems = cartItems.filter((item) => item.productId !== productId);
             updateCartDisplay();
         }
