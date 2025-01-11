@@ -1,164 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile Management</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        form {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 20px;
-        }
-        label {
-            margin: 5px 0;
-        }
-        input, select, button {
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        .user-list {
-            margin-top: 20px;
-        }
-        .user-item {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .user-item p {
-            margin: 0;
-        }
-        .actions button {
-            margin-left: 5px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    input, select, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .user-list {
+      margin-top: 20px;
+    }
+    .user-item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .user-item:last-child {
+      border-bottom: none;
+    }
+    .role-admin {
+      color: #d9534f;
+    }
+    .role-subscriber {
+      color: #5cb85c;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>User Profile Management</h1>
-        <form id="userForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" placeholder="Enter user name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" placeholder="Enter user email" required>
-            
-            <label for="role">Role:</label>
-            <select id="role" required>
-                <option value="Admin">Admin</option>
-                <option value="Subscriber">Subscriber</option>
-            </select>
-            
-            <button type="submit">Add User</button>
-        </form>
+  <div class="container">
+    <h1>User Management System</h1>
+    <form id="userForm">
+      <input type="text" id="name" placeholder="Name" required />
+      <input type="email" id="email" placeholder="Email" required />
+      <select id="role">
+        <option value="Subscriber">Subscriber</option>
+        <option value="Admin">Admin</option>
+      </select>
+      <button type="submit">Add User</button>
+    </form>
+    <div class="user-list" id="userList"></div>
+  </div>
+  
+  <script>
+    const users = [];
 
-        <div>
-            <button id="sortUsers">Sort Users Alphabetically</button>
-            <button id="validateEmails">Validate Emails</button>
-        </div>
+    // Function to render users
+    function renderUsers() {
+      const userList = document.getElementById('userList');
+      userList.innerHTML = '';
 
-        <div class="user-list" id="userList"></div>
-    </div>
+      users.forEach(user => {
+        const userItem = document.createElement('div');
+        userItem.className = 'user-item';
+        userItem.innerHTML = `
+          <strong>${user.name}</strong> - ${user.email} 
+          (<span class="role-${user.role.toLowerCase()}">${user.role}</span>)
+          <button onclick="deleteUser('${user.email}')">Delete</button>
+        `;
+        userList.appendChild(userItem);
+      });
+    }
 
-    <script>
-        const users = [];
+    // Add user
+    document.getElementById('userForm').addEventListener('submit', (e) => {
+      e.preventDefault();
 
-        const userForm = document.getElementById('userForm');
-        const userList = document.getElementById('userList');
-        const sortUsersBtn = document.getElementById('sortUsers');
-        const validateEmailsBtn = document.getElementById('validateEmails');
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const role = document.getElementById('role').value;
 
-        // Add a new user
-        userForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const role = document.getElementById('role').value;
+      users.push({ name, email, role });
+      renderUsers();
 
-            users.push({ name, email, role });
-            userForm.reset();
-            displayUsers();
-        });
+      // Reset form
+      e.target.reset();
+    });
 
-        // Display all users
-        function displayUsers() {
-            userList.innerHTML = '';
-            users.forEach((user, index) => {
-                const userItem = document.createElement('div');
-                userItem.className = 'user-item';
-                userItem.innerHTML = `
-                    <p><strong>Name:</strong> ${user.name}</p>
-                    <p><strong>Email:</strong> ${user.email}</p>
-                    <p><strong>Role:</strong> ${user.role}</p>
-                    <div class="actions">
-                        <button onclick="editUser(${index})">Edit</button>
-                        <button onclick="deleteUser(${index})">Delete</button>
-                    </div>
-                `;
-                userList.appendChild(userItem);
-            });
+    // Find user by email
+    function findUser(email) {
+      return users.find(user => user.email === email);
+    }
+
+    // Update user preferences
+    function updateUser(email, updates) {
+      users.map(user => {
+        if (user.email === email) {
+          Object.assign(user, updates);
         }
+        return user;
+      });
+      renderUsers();
+    }
 
-        // Edit a user
-        function editUser(index) {
-            const user = users[index];
-            document.getElementById('name').value = user.name;
-            document.getElementById('email').value = user.email;
-            document.getElementById('role').value = user.role;
-            deleteUser(index); // Remove the user to replace with updated info
+    // Delete user
+    function deleteUser(email) {
+      const confirmation = confirm('Are you sure you want to delete this user?');
+      if (confirmation) {
+        users = users.filter(user => user.email !== email);
+        renderUsers();
+      }
+    }
+
+    // Check if all users have valid email addresses
+    function validateEmails() {
+      return users.every(user => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email));
+    }
+
+    // Sort users alphabetically by name
+    function sortUsers() {
+      users.sort((a, b) => a.name.localeCompare(b.name));
+      renderUsers();
+    }
+
+    // Demo Role-Based Access
+    function checkRoleAccess(email, action) {
+      const user = findUser(email);
+      if (user) {
+        if (user.role === 'Admin') {
+          alert(`Admin access granted for ${action}`);
+        } else {
+          alert(`Access denied for ${action}`);
         }
-
-        // Delete a user
-        function deleteUser(index) {
-            users.splice(index, 1);
-            displayUsers();
-        }
-
-        // Sort users alphabetically by name
-        sortUsersBtn.addEventListener('click', () => {
-            users.sort((a, b) => a.name.localeCompare(b.name));
-            displayUsers();
-        });
-
-        // Validate email addresses
-        validateEmailsBtn.addEventListener('click', () => {
-            const allValid = users.every(user => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(user.email));
-            alert(allValid ? 'All emails are valid!' : 'Some emails are invalid.');
-        });
-        
-    </script>
+      } else {
+        alert('User not found');
+      }
+    }
+  </script>
 </body>
 </html>
