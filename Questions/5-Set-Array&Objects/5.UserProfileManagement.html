@@ -84,8 +84,8 @@
         const userItem = document.createElement('div');
         userItem.className = 'user-item';
         userItem.innerHTML = `
-          <strong>${user.name}</strong> - ${user.email} 
-          (<span class="role-${user.role.toLowerCase()}">${user.role}</span>)<br>
+          <strong>${user.name}</strong>
+          (<span class="role-${user.role.toLowerCase()}">${user.role}</span>)<br>${user.email}
           <button onclick="deleteUser('${user.email}')">Delete</button>
         `;
         userList.appendChild(userItem);
