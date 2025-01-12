@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile Management</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Management</h1>
+
+        <form id="userForm">
+            <input type="text" id="name" placeholder="Name" required><br>
+            <input type="email" id="email" placeholder="Email" required><br>
+            <label for="role">Role:</label><br>
+            <select id="role">
+                <option value="Subscriber">Subscriber</option>
+                <option value="Admin">Admin</option>
+            </select><br>
+            <button type="button" onclick="addUser()">Add User</button>
+            <ul id="userList"></ul>
+        </form>
+
+        <script>
+            let users = [];
+
+            function addUser() {
+                const name = document.getElementById("name").value;
+                const email = document.getElementById("email").value;
+                const role = document.getElementById("role").value;
+
+                if (name && email && role) {
+
+                    if(isEmailExist(email)) {
+                        alert("this email id is already existing");
+                        return;
+                    }
+
+                    let newUser = { name, email, role };
+                    users.push(newUser)
+                    displayUser()
+                }
+            }
+
+            function displayUser() {
+                const ul = document.getElementById("userList");
+                ul.innerHTML = "";
+
+                users.forEach(user => {
+                    const li = document.createElement("li");
+                    li.innerHTML = `
+                            Name: ${user.name}<br> Email: ${user.email}<br> Role: ${user.role}
+                            <button onclick="deleteUser('${user.email}')">Delete</button>
+                            <button onclick="editUser('${user.email}')">Edit</button>
+                    `;
+                    ul.appendChild(li)
+                })
+            }
+
+            function isEmailExist(email) {
+                return users.some(user => user.email === email);
+            }
+
+            function emailValidation() {
+                const emailPatturn = /\S+@\S+\.\S+/;
+                return emailPatturn.test()
+            }
+
+        </script>
+    </div>
+</body>
+
+</html>

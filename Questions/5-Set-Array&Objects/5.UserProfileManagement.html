@@ -85,7 +85,7 @@
         userItem.className = 'user-item';
         userItem.innerHTML = `
           <strong>${user.name}</strong> - ${user.email} 
-          (<span class="role-${user.role.toLowerCase()}">${user.role}</span>)
+          (<span class="role-${user.role.toLowerCase()}">${user.role}</span>)<br>
           <button onclick="deleteUser('${user.email}')">Delete</button>
         `;
         userList.appendChild(userItem);
