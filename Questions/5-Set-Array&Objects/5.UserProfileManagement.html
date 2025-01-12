@@ -73,7 +73,7 @@
   </div>
   
   <script>
-    const users = [];
+    let users = []; // Use `let` for flexibility if reassigning the array
 
     // Function to render users
     function renderUsers() {
@@ -127,7 +127,10 @@
     function deleteUser(email) {
       const confirmation = confirm('Are you sure you want to delete this user?');
       if (confirmation) {
-        users = users.filter(user => user.email !== email);
+        const index = users.findIndex(user => user.email === email);
+        if (index !== -1) {
+          users.splice(index, 1); // Remove the user by index
+        }
         renderUsers();
       }
     }
