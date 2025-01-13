@@ -130,7 +130,12 @@
 
         if (book.available) {
           var borrowButton = document.createElement("button");
-          borrowButton.cl
+          borrowButton.className = "action";
+          borrowButton.textContent = "Borrow";
+          borrowButton.onclick = function() {
+            borrowBook(book.title);
+          };
+          
         }
       })
     }
