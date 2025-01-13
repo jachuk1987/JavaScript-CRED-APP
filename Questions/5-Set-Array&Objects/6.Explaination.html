@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
       margin: 20px;
       background-color: #f9f9f9;
     }
+
     .container {
       max-width: 800px;
       margin: auto;
@@ -19,29 +21,37 @@
       border-radius: 5px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
+
     h1 {
       text-align: center;
       color: #333;
     }
-    input, button, select {
+
+    input,
+    button,
+    select {
       margin: 10px 0;
       padding: 10px;
       width: 100%;
       border: 1px solid #ddd;
       border-radius: 4px;
     }
+
     button {
       background-color: #007bff;
       color: white;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #0056b3;
     }
+
     ul {
       list-style: none;
       padding: 0;
     }
+
     li {
       margin: 10px 0;
       padding: 10px;
@@ -51,19 +61,23 @@
       justify-content: space-between;
       align-items: center;
     }
+
     li.borrowed {
       background-color: #f8d7da;
       color: #721c24;
     }
+
     li.available {
       background-color: #d4edda;
       color: #155724;
     }
+
     button.action {
       margin-left: 10px;
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>Library Management System</h1>
@@ -79,35 +93,42 @@
   </div>
 
   <script>
-    var books =[];
+    var books = [];
 
     function addBook() {
-        var title = document.getElementById("bookTitle").value;
-        var author = document.getElementById("bookAuthor").value;
+      var title = document.getElementById("bookTitle").value;
+      var author = document.getElementById("bookAuthor").value;
 
-        if(title && author) {
-            books.push({title, author, available: true})
+      if (title && author) {
+        books.push({ title, author, available: true })
 
-            document.getElementById("bookTitle").value = "";
-            document.getElementById("bookAuthor").value = "";
-        }
-        else {
-            alert("Please provide both title and author")
-        }
+        document.getElementById("bookTitle").value = "";
+        document.getElementById("bookAuthor").value = "";
+      }
+      else {
+        alert("Please provide both title and author")
+      }
 
-       
+
     }
 
     function displayBooks() {
-        var bookList = document.getElementById("bookList");
-        var availableBookList = document.getElementById("availableBookList");
-        bookList.innerHTML ="";
-        availableBookList = "";
+      var bookList = document.getElementById("bookList");
+      var availableBookList = document.getElementById("availableBookList");
 
+      bookList.innerHTML = "";
+      availableBookList.innerHTML = "";
 
+      books.forEach(function(book) {
+        var bookItem = document.createElement("li");
+        bookItem.className = book.available ? "available" : "borrowed";
+
+        var textContent
+      })
     }
 
   </script>
 
 </body>
+
 </html>
