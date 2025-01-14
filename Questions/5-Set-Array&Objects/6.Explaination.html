@@ -114,7 +114,7 @@
 
       books.forEach(book => {
         const bookItem = document.createElement("li");
-        bookItem.className = book.available ? "available" : "borrowed"; // Style based on availability
+        bookItem.className = book.available ? "available" : "borrowed";
 
         bookItem.textContent = `${book.title} by ${book.author}`;
 
