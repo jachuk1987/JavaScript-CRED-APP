@@ -116,20 +116,16 @@
         const bookItem = document.createElement("li");
         bookItem.className = book.available ? "available" : "borrowed"; // Style based on availability
 
-        // Add book title and author
         bookItem.textContent = `${book.title} by ${book.author}`;
 
-        // Create buttons for actions (borrow/return)
         const actionButton = document.createElement("button");
         actionButton.className = "action";
         actionButton.textContent = book.available ? "Borrow" : "Return";
         actionButton.onclick = () => book.available ? borrowBook(book.title) : returnBook(book.title);
 
-        // Append action button to the list item
         bookItem.appendChild(actionButton);
         bookList.appendChild(bookItem);
 
-        // If the book is available, also add it to the available books list
         if (book.available) {
           const availableItem = document.createElement("li");
           availableItem.className = "available";
@@ -139,29 +135,21 @@
       });
     }
 
-    /**
-     * Marks a book as borrowed
-     * @param {string} title - The title of the book to borrow
-     */
     function borrowBook(title) {
       const book = books.find(b => b.title === title);
       if (book && book.available) {
-        book.available = false; // Mark as borrowed
-        displayBooks(); // Refresh the book lists
+        book.available = false;
+        displayBooks();
       } else {
         alert("Book is not available.");
       }
     }
 
-    /**
-     * Marks a book as returned
-     * @param {string} title - The title of the book to return
-     */
     function returnBook(title) {
       const book = books.find(b => b.title === title);
       if (book && !book.available) {
-        book.available = true; // Mark as available
-        displayBooks(); // Refresh the book lists
+        book.available = true;
+        displayBooks();
       } else {
         alert("Book is already available.");
       }
