@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Cart Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 20px;
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .cart-summary {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>E-Commerce Cart</h1>
+    <div>
+      <input id="productName" type="text" placeholder="Enter Product Name">
+      <input id="productPrice" type="number" placeholder="Enter Product Price">
+      <button onclick="cart.addProduct()">Add Product</button>
+    </div>
+
+    <h3>Cart Items</h3>
+    <div id="cartItems"></div>
+
+    <div class="cart-summary">
+      <h3>Cart Summary</h3>
+      <p>Total Items: <span id="totalItems">0</span></p>
+      <p>Total Price: $<span id="totalPrice">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    const cart = {
+      items: [],
+      addProduct() {
+        const name = document.getElementById("productName").value.trim();
+        const price = parseFloat(document.getElementById("productPrice").value);
+        
+        if (!name || isNaN(price) || price <= 0) {
+          alert("Please enter a valid product name and price.");
+          return;
+        }
+
+        const productId = "P" + (this.items.length + 1); // Unique product ID
+        if (this.items.some(item => item.name === name)) {
+          alert("Product already exists in the cart.");
+          return;
+        }
+
+        this.items.push({ id: productId, name, price });
+        document.getElementById("productName").value = "";
+        document.getElementById("productPrice").value = "";
+        this.renderCart();
+      },
+      removeProduct(productId) {
+        this.items = this.items.filter(item => item.id !== productId);
+        this.renderCart();
+      },
+      calculateTotal() {
+        const total = this.items.reduce((sum, item) => sum + item.price, 0);
+        return total.toFixed(2);
+      },
+      renderCart() {
+        const cartItemsDiv = document.getElementById("cartItems");
+        cartItemsDiv.innerHTML = "";
+
+        this.items.forEach(item => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "cart-item";
+
+          itemDiv.innerHTML = `
+            <span>${item.name} - $${item.price.toFixed(2)}</span>
+            <button onclick="cart.removeProduct('${item.id}')">Remove</button>
+          `;
+
+          cartItemsDiv.appendChild(itemDiv);
+        });
+
+        document.getElementById("totalItems").textContent = this.items.length;
+        document.getElementById("totalPrice").textContent = this.calculateTotal();
+      }
+    };
+  </script>
+</body>
+</html>
