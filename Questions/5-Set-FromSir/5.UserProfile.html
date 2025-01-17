@@ -40,6 +40,66 @@
     </div>
 
     <script>
+        const userManagement = {
+            users: [],
+            isEditing: false,
+            editingEmail: null,
+
+            handleUserForm(name, email, role) {
+                if (this.isEditing) {
+                    this.updateUser(name, email, role);
+                } else {
+                    this.addUser(name, email, role);
+                }
+            },
+
+            addUser(name, email, role) {
+                if (!this.validateEmail(email)) {
+                    alert("Invalid email address !");
+                    return;
+                }
+
+                const newUser = {
+                    id: Date.now(),
+                    name,
+                    email,
+                    role,
+                    preference: {},
+                };
+
+                this.users.push(newUser);
+                this.renderUsers();
+                this.resetForm();
+            },
+
+            updateUser(name, email, role) {
+                this.users = this.users.map(user =>
+                    user.email === email ? { ...user, name, role } : user
+                );
+                this.renderUsers();
+                this.resetForm();
+            },
+
+            validateEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            },
+
+            deleteUser(email, requesterRole) {
+                if (requesterRole !== "Admin") {
+                    alert("Only Admins can delete users !");
+                    return;
+                }
+
+                this.users = this.users.filter(user => user.email !== email);
+                this.renderUsers();
+            },
+
+            editUser(email) {
+                
+            }
+        }
+
         document.getElementById("userForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -52,7 +112,7 @@
 
         function deleteUserPrompt(email) {
             const role = prompt("Enter your role (Admin/Subscriber):", "Subscriber");
-            userManagement.deleteUser(email, role);
+            userManagement.deleteUserPrompt(email, role);
         }
     </script>
 </body>
