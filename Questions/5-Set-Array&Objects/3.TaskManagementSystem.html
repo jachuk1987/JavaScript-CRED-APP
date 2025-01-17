@@ -95,7 +95,7 @@
     const taskInput = document.getElementById('taskInput');
     const task = taskInput.value.trim();
     if (task) {
-      pendingTasks.push({ name: task, immutable: false });
+      pendingTasks.push({ name: task });
       taskInput.value = '';
       renderTasks();
     }
@@ -106,9 +106,6 @@
     if (taskIndex > -1) {
       from.splice(taskIndex, 1);
       to.push(task);
-      if (to === completedTasks) {
-        task.immutable = true;
-      }
       renderTasks();
     }
   };
@@ -129,20 +126,23 @@
     };
 
     Object.keys(categories).forEach((category) => {
-      const taskContainer = document.getElementById(${category}Tasks);
+      const taskContainer = document.getElementById(`${category}Tasks`);
       taskContainer.innerHTML = '';
       categories[category].forEach((task) => {
         const taskElement = document.createElement('div');
         taskElement.className = 'task';
+
+        const buttons =
+          category === 'pending'
+            ? `<button onclick="moveTask(findTask('${task.name}', 'pending'), pendingTasks, inProgressTasks)">&#8594;</button>`
+            : category === 'inProgress'
+            ? `<button onclick="moveTask(findTask('${task.name}', 'inProgress'), inProgressTasks, completedTasks)">&#8594;</button>
+               <button onclick="deleteTask(findTask('${task.name}', 'inProgress'), inProgressTasks)">&#x2716;</button>`
+            : `<button onclick="deleteTask(findTask('${task.name}', 'completed'), completedTasks)">&#x2716;</button>`;
+
         taskElement.innerHTML = `
           <span>${task.name}</span>
-          <div>
-            ${category !== 'completed' ? `<button onclick="moveTask(findTask('${task.name}', '${category}'),
-             ${category === 'pending' ? 'pendingTasks' : 'inProgressTasks'},
-             ${category === 'pending' ? 'inProgressTasks' : 'completedTasks'})">&#8594;</button>` : ''}
-            ${category !== 'pending' ? `<button onclick="deleteTask(findTask('${task.name}', '${category}'),
-             ${category === 'inProgress' ? 'inProgressTasks' : 'completedTasks'})">&#x2716;</button>` : ''}
-          </div>
+          <div>${buttons}</div>
         `;
         taskContainer.appendChild(taskElement);
       });
