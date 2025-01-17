@@ -40,53 +40,6 @@
     </div>
 
     <script>
-        const userManagement = {
-            users: [],
-            isEditing: false,
-            editingEmail: null,
-
-            handleUserForm(name, email, role) {
-                if (this.isEditing) {
-                    this.updateUser(name, email, role);
-                } else {
-                    this.addUser(name, email, role);
-                }
-            },
-
-            addUser(name, email, role) {
-                if (!this.validateEmail(email)) {
-                    alert("Invalid email address!");
-                    return;
-                }
-
-                const newUser = {
-                    id: Date.now(),
-                    name,
-                    email,
-                    role,
-                    preferences: {},
-                };
-
-                this.users.push(newUser);
-                this.renderUsers();
-                this.resetForm();
-            },
-
-            updateUser(name, email, role) {
-                this.users = this.users.map(user =>
-                    user.email === email ? { ...user, name, role } : user
-                );
-                this.renderUsers();
-                this.resetForm();
-            },
-
-            deleteUser() {},
-            editUser() {},
-            validateEmail() {},
-            resetForm() {},
-            renderUsers() {},
-        };
-
         document.getElementById("userForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
@@ -97,7 +50,10 @@
             userManagement.handleUserForm(name, email, role);
         });
 
-        
+        function deleteUserPrompt(email) {
+            const role = prompt("Enter your role (Admin/Subscriber):", "Subscriber");
+            userManagement.deleteUser(email, role);
+        }
     </script>
 </body>
 
