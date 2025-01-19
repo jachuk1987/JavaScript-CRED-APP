@@ -185,18 +185,8 @@
             <div>
               ${
                 book.isAvailable
-                  ? `<button
-                      class="btn-borrow"
-                      onclick="libraryManagement.borrowBook(${book.id})"
-                    >
-                      Borrow
-                    </button>`
-                  : `<button
-                      class="btn-return"
-                      onclick="libraryManagement.returnBook(${book.id})"
-                    >
-                      Return
-                    </button>`
+                  ? `<button class="btn-borrow" onclick="libraryManagement.borrowBook(${book.id})">Borrow</button>`
+                  : `<button class="btn-return" onclick="libraryManagement.returnBook(${book.id})">Return</button>`
               }
             </div>
           `;
