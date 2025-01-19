@@ -141,7 +141,7 @@
           author,
           isAvailable: true,
         };
-        
+
         this.books.push(newBook);
         this.renderBooks();
         this.resetForm();
@@ -149,7 +149,7 @@
 
       borrowBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if(book && book.isAvailable) {
+        if (book && book.isAvailable) {
           book.isAvailable = false;
           this.renderBooks();
         } else {
@@ -159,7 +159,7 @@
 
       returnBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if(book && !book.isAvailable) {
+        if (book && !book.isAvailable) {
           book.isAvailable = true;
           this.renderBooks();
         } else {
@@ -173,20 +173,23 @@
 
       renderBooks() {
         const bookList = document.getElementById("bookList");
-        bookList.innerHTML = "";
+        bookList.innerHTML = ""; // Clear existing list
 
         this.books.forEach(book => {
           const bookDiv = document.createElement("div");
           bookDiv.className = "book-card";
 
+          // Create title and author paragraph
           const titleParagraph = document.createElement("p");
           titleParagraph.className = "book-title";
           titleParagraph.textContent = `${book.title} by ${book.author}`;
 
+          // Create status paragraph
           const statusParagraph = document.createElement("p");
           statusParagraph.className = "book-status";
           statusParagraph.textContent = book.isAvailable ? "Available" : "Borrowed";
 
+          // Create button
           const actionButton = document.createElement("button");
           if (book.isAvailable) {
             actionButton.className = "btn-borrow";
@@ -198,17 +201,20 @@
             actionButton.onclick = () => libraryManagement.returnBook(book.id);
           }
 
+          // Create a div for the button and append the button
           const buttonContainer = document.createElement("div");
           buttonContainer.appendChild(actionButton);
 
+          // Append all elements to the book card
           bookDiv.appendChild(titleParagraph);
           bookDiv.appendChild(statusParagraph);
           bookDiv.appendChild(buttonContainer);
 
+          // Add the book card to the book list
           bookList.appendChild(bookDiv);
-        })
+        });
       },
-     
+
       resetForm() {
         document.getElementById("bookTitle").value = "";
         document.getElementById("bookAuthor").value = "";

@@ -131,47 +131,59 @@
   </div>
 
   <script>
-
     const libraryManagement = {
-      books: [],
+        books: [],
 
-      addBook(title, author) {
-        const newBook = {
-          id: Date.now(),
-          title,
-          author,
-          isAvailable: true,
-        }
+        addBook(title, author) {
+            const newBook = {
+                id: Date.now(),
+                title,
+                author,
+                isAvailable: true,
+            }
 
-        this.books.push(newBook);
-        this.renderBooks();
-        this.resetForm();
-      },
-      
-      renderBooks() {
-        const bookList = document.getElementById("bookList");
-        bookList.innerHTML = "";
+            this.books.push(newBook);
+            this.renderBooks();
+            this.resetForm();
+        },
 
-        this.books.forEach(book => {
-          const bookDiv = document.createElement("div");
-          bookDiv.className = "book-card";
+        borrowBook(bookId) {
+            const book = this.books.find(book => book.id === bookId)
+            if (book && book.isAvailable) {
+                book.isAvailable = false
+                this.renderBooks();
+            } else {
+                alert("This book is currently available")
+            }
+        },
 
-          bookDiv.innerHTML= `
-          <p class="book-title">${id.title} by ${book.author}</p>
+        returnBook(bookId) {
+            const book = this.books.find(book => book.id === bookId)
+            if (book && !book.isAvailable) {
+                book.isAvailable = true
+                this.renderBooks();
+            } else {
+                alert("this book is not currently borrowed")
+            }
+        },
+
+        filterAvailableBooks() {
+          return this.books.filter(book.isAvailable);
+        },
+
+        renderBooks() {
           
-          `
-        })
-      }
+        }
     }
 
     document.getElementById("bookForm").addEventListener("submit", function (e) {
-      e.preventDefault();
+        e.preventDefault();
 
-      const title = document.getElementById("bookTitle").value;
-      const author = document.getElementById("bookAuthor").value;
+        const title = document.getElementById("bookTitle").value;
+        const author = document.getElementById("bookAuthor").value;
 
-      libraryManagement.addBook(title, author);
-    });
+        libraryManagement.addBook(title, author);
+    })
   </script>
 </body>
 
