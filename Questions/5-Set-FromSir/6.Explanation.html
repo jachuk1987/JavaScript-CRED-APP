@@ -159,7 +159,7 @@
 
       returnBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if(book && book.isAvailable) {
+        if(book && !book.isAvailable) {
           book.isAvailable = true;
           this.renderBooks();
         } else {
@@ -173,33 +173,34 @@
 
       renderBooks() {
         const bookList = document.getElementById("bookList");
-        bookList.innerHTML = "";
+        bookList.innerHTML = ""; // Clear existing list
 
         this.books.forEach(book => {
           const bookDiv = document.createElement("div");
           bookDiv.className = "book-card";
 
           bookDiv.innerHTML = `
-          <p class="book-title">${book.title} by ${book.author}</p>
-          <p class="book-status">${book.isAvailable ? "Available" : "Borrowed"}</p>
-          <div>
-            ${
-              book.isAvailable
-                ? `<button
-                    class="btn-borrow"
-                    onclick"libraryManagement.borrowBook(${book.id})"
-                >
-                    Borrow
-                  </button>`
-                  :`<button
-                    class="btn-return"
-                    onclick"libraryManagement.borrowBook(${book.id})"
-                >
-                    Return
-                  </button>`
+            <p class="book-title">${book.title} by ${book.author}</p>
+            <p class="book-status">${book.isAvailable ? "Available" : "Borrowed"}</p>
+            <div>
+              ${
+                book.isAvailable
+                  ? `<button
+                      class="btn-borrow"
+                      onclick="libraryManagement.borrowBook(${book.id})"
+                    >
+                      Borrow
+                    </button>`
+                  : `<button
+                      class="btn-return"
+                      onclick="libraryManagement.returnBook(${book.id})"
+                    >
+                      Return
+                    </button>`
               }
             </div>
           `;
+
           bookList.appendChild(bookDiv);
         });
       },
@@ -210,7 +211,7 @@
       }
     }
 
-    document.getElementById("bookList").addEventListener("submit", function (e) {
+    document.getElementById("bookForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
       const title = document.getElementById("bookTitle").value;
