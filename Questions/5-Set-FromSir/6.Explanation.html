@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -105,36 +106,23 @@
     }
   </style>
 </head>
+
 <body>
   <div>
     <div class="container">
       <h1>Library Management System</h1>
-      
+
       <!-- Add Book Form -->
       <div class="form-container">
         <form id="bookForm">
-          <input
-            type="text"
-            id="bookTitle"
-            placeholder="Enter book title"
-            required
-          />
-          <input
-            type="text"
-            id="bookAuthor"
-            placeholder="Enter author name"
-            required
-          />
-          <button
-            type="submit"
-            id="bookSubmitButton"
-            class="btn-submit"
-          >
+          <input type="text" id="bookTitle" placeholder="Enter book title" required />
+          <input type="text" id="bookAuthor" placeholder="Enter author name" required />
+          <button type="submit" id="bookSubmitButton" class="btn-submit">
             Add Book
           </button>
         </form>
       </div>
-      
+
       <!-- Book List Section -->
       <div id="bookList" class="book-list">
         <!-- Dynamic Book List Will Be Rendered Here -->
@@ -153,7 +141,7 @@
           author,
           isAvailable: true,
         };
-
+        
         this.books.push(newBook);
         this.renderBooks();
         this.resetForm();
@@ -161,31 +149,26 @@
 
       borrowBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if (book && book.isAvailable) {
+        if(book && book.isAvailable) {
           book.isAvailable = false;
           this.renderBooks();
         } else {
-          alert("This book is currently unavailable !");
+          alert("This book is currently unavailable!");
         }
       },
 
       returnBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if (book && !book.isAvailable) {
+        if(book && book.isAvailable) {
           book.isAvailable = true;
           this.renderBooks();
         } else {
-          alert("This book is not currently borrowed !")
+          alert("This book is  not currently borrowed!");
         }
       },
 
       filterAvailableBooks() {
         return this.books.filter(book => book.isAvailable);
-      },
-
-      sortBooks() {
-        this.books.sort((a, b) => a.title.localeCompare(b.title));
-        this.renderBooks();
       },
 
       renderBooks() {
@@ -201,42 +184,24 @@
           <p class="book-status">${book.isAvailable ? "Available" : "Borrowed"}</p>
           <div>
             ${
-            book.isAvailable
-            ? `<button
-            class="btn-borrow"
-            onclick="libraryMangement.borrowBook(${book.id})"
-            >
-              Borrow
-              </button>`
-              :`<button
-            class="btn-return"
-            onclick="libraryMangement.borrowBook(${book.id})"
-            >
-              Return
-              </button>`
-            }
-            
-          </div>
-          `;
-
-          bookList.appendChild(bookDiv);
+              book.isAvailable
+                ? `<button></button>`
+              }
+            </div>
+          `
         })
-      },
+      }
+    }
 
-      resetForm() {
-        document.getElementById("bookTitle").value = "";
-        document.getElementById("bookAuthor").value = "";
-      },
-    };
-
-    document.getElementById("bookForm").addEventListener("submit", function (e) {
+    document.getElementById("bookList").addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const title = document.getElementById("bookTitle").value.trim();
-      const author = document.getElementById("bookAuthor").value.trim();
+      const title = document.getElementById("bookTitle").value;
+      const author = document.getElementById("bookAuthor").value;
 
       libraryManagement.addBook(title, author);
     })
   </script>
 </body>
+
 </html>
