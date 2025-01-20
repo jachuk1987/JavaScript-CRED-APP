@@ -59,7 +59,9 @@
             returnBook: (bookId) => {
                 const lendTime = lendingDurations.get(bookId);
                 const duration = lendTime ? (Date.now() - lendTime) / 1000 : 0;
-            }
+                lendingDurations.delete(bookId);
+                return duration.toFixed(2);
+            },
         }
     }
   </script>

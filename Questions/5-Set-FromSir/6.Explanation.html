@@ -157,11 +157,21 @@
           bookDiv.className = "book-card";
 
           bookDiv.innerHTML= `
-          <p class="book-title">${id.title} by ${book.author}</p>
-          
-          `
+          <p class="book-title">${book.title} by ${book.author}</p>
+          <p class="book-status">${book.isAvailable ? "Available" : "Borrowed"}</p>
+          <div>
+            ${
+              book.isAvailable
+                ?`<button class="btn-borrow" onclick="libraryManagement.borrowBook(${book.id})">Borrow</button>`
+                :`<button class="btn-return" onclick="libraryManagement.returnBook(${book.id})">Return</button>`
+            }          
+            </div>
+          `;
+
+          bookList.appendChild(bookDiv);
         })
-      }
+      },
+    
     }
 
     document.getElementById("bookForm").addEventListener("submit", function (e) {
