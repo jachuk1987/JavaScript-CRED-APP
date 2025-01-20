@@ -131,7 +131,6 @@
   </div>
 
   <script>
-
     const libraryManagement = {
       books: [],
 
@@ -142,19 +141,18 @@
           author,
           isAvailable: true,
         }
-
         this.books.push(newBook);
         this.renderBooks();
         this.resetForm();
       },
-      
+
       renderBooks() {
         const bookList = document.getElementById("bookList");
         bookList.innerHTML = "";
 
         this.books.forEach(book => {
           const bookDiv = document.createElement("div");
-          bookDiv.className = "book-card";
+          bookDiv.className = "";
 
           bookDiv.innerHTML= `
           <p class="book-title">${book.title} by ${book.author}</p>
@@ -167,11 +165,10 @@
             }          
             </div>
           `;
-
           bookList.appendChild(bookDiv);
         })
       },
-    
+
       resetForm() {
         document.getElementById("bookTitle").value = "";
         document.getElementById("bookAuthor").value = "";
@@ -182,18 +179,18 @@
         if (book && book.isAvailable) {
           book.isAvailable = false;
           this.renderBooks();
-        } else{
-          alert("This book is currently unavailable!");
+        } else {
+          alert("This book is currently available");
         }
       },
 
       returnBook(bookId) {
         const book = this.books.find(book => book.id === bookId);
-        if (book && !book.isAvailable) {
+        if (book && !book.isAvailable){
           book.isAvailable = true;
           this.renderBooks();
         } else {
-          alert("This book is not currently borrowed!");
+          alert("This book is currently not borrowed");
         }
       },
     }
@@ -205,7 +202,7 @@
       const author = document.getElementById("bookAuthor").value;
 
       libraryManagement.addBook(title, author);
-    });
+    })
   </script>
 </body>
 
