@@ -132,32 +132,32 @@
 
   <script>
     const libraryManagement = {
-        books: [],
+      books: [],
 
-        addBook(title, author) {
-            const newBook = {
-                id: Date.now(),
-                title,
-                author,
-                isAvailable: true,
-            }
+      addBook(title, author) {
+        const newBook = {
+          id: Date.now(),
+          title,
+          author,
+          isAvailable: true,
+        }
 
-            this.books.push(newBook);
-            this.renderBooks();
-            this.resetForm();
-        },
+        this.books.push(newBook);
+        this.renderBooks();
+        this.resetForm();
+      },
 
-        borrowBook(bookId) {
-            const book = this.books.find(book => book.id === bookId)
-            if (book && book.isAvailable) {
-                book.isAvailable = false
-                this.renderBooks();
-            } else {
-                alert("This book is currently available")
-            }
-        },
+      borrowBook(bookId) {
+        const book = this.books.find(book => book.id === bookId)
+        if (book && book.isAvailable) {
+          book.isAvailable = false
+          this.renderBooks();
+        } else {
+          alert("This book is currently available")
+        }
+      },
 
-        renderBooks() {
+      renderBooks() {
         const bookList = document.getElementById("bookList");
         bookList.innerHTML = ""; // Clear existing list
 
@@ -169,11 +169,10 @@
             <p class="book-title">${book.title} by ${book.author}</p>
             <p class="book-status">${book.isAvailable ? "Available" : "Borrowed"}</p>
             <div>
-              ${
-                book.isAvailable
-                  ? `<button class="btn-borrow" onclick="libraryManagement.borrowBook(${book.id})">Borrow</button>`
-                  : `<button class="btn-return" onclick="libraryManagement.returnBook(${book.id})">Return</button>`
-              }
+              ${book.isAvailable
+              ? `<button class="btn-borrow" onclick="libraryManagement.borrowBook(${book.id})">Borrow</button>`
+              : `<button class="btn-return" onclick="libraryManagement.returnBook(${book.id})">Return</button>`
+            }
             </div>
           `;
 
@@ -181,22 +180,43 @@
         });
       },
 
-        filterAvailableBooks() {
-          return this.books.filter(book.isAvailable);
-        },
+      resetForm() {
+        document.getElementById("bookTitle").value = "";
+        document.getElementById("bookAuthor").value = "";
+      },
 
-        renderBooks() {
-          
+      borrowBook(bookId) {
+        const book = this.books.find(book => book.id === bookId);
+        if (book && book.isAvailable) {
+          book.isAvailable = false;
+          this.renderBooks();
+        } else{
+          alert("This book is currently unavailable!");
         }
+      },
+
+      returnBook(bookId) {
+        const book = this.books.find(book => book.id === bookId);
+        if (book && !book.isAvailable) {
+          book.isAvailable = true;
+          this.renderBooks();
+        } else {
+          alert("This book is not currently borrowed!");
+        }
+      },
+
+      filterAvailableBooks() {
+        return this.books.filter(book.isAvailable);
+      },
     }
 
     document.getElementById("bookForm").addEventListener("submit", function (e) {
-        e.preventDefault();
+      e.preventDefault();
 
-        const title = document.getElementById("bookTitle").value;
-        const author = document.getElementById("bookAuthor").value;
+      const title = document.getElementById("bookTitle").value;
+      const author = document.getElementById("bookAuthor").value;
 
-        libraryManagement.addBook(title, author);
+      libraryManagement.addBook(title, author);
     })
   </script>
 </body>
