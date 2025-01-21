@@ -165,7 +165,7 @@
       items: [],
 
       addProduct(newProduct) {
-        const exists = this.items.find(item => item.id === product.id);
+        const exists = this.items.find(item => item.id === newProduct.id);
         if(!exists) this.items.push(newProduct);
         console.log(this.items)
       },
@@ -192,6 +192,9 @@
 
       removeProduct(productId) {
         this.items = this.items.filter(item => item.id !== productId)
+      },
+      calculateTotal() {
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
       }
     }
 

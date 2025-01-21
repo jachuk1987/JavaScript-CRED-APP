@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -125,7 +124,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <h1>E-Commerce Cart Management</h1>
@@ -166,18 +164,10 @@
     const cart = {
       items: [],
 
-      addProduct(Product) {
-        const exists = this.items.find(item => item.id === Product.id);
-        if (!exists) this.items.push(Product);
+      addProduct(newProduct) {
+        const exists = this.items.find(item => item.id === newProduct.id);
+        if(!exists) this.items.push(newProduct);
         console.log(this.items)
-      },
-
-      removeProduct(productId) {
-        this.items = this.items.filter(item => item.id !== productId)
-      },
-
-      calculateTotal() {
-        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
       },
 
       renderCart() {
@@ -190,7 +180,7 @@
           li.innerHTML = `
                   <span>${item.name}</span>
                   <div>
-                    <span class="mr-4">$${item.price}</span>
+                    <span class="mr-4">${item.price}</span>
                     <button class="class-button" onclick="removeFromCart(${item.id})">Remove</button>
                   </div>
                 `;
@@ -200,20 +190,30 @@
         document.getElementById("totalPrice").textContent = this.calculateTotal();
       },
 
-
+      removeProduct(productId) {
+        this.items = this.items.filter(item => item.id !== productId)
+      },
+      calculateTotal() {
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+      }
     }
 
     document.getElementById("addProductForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
+      const productId = Date.now();
       const productName = document.getElementById("productName").value;
       const productPrice = parseFloat(document.getElementById("productPrice").value);
       const productQuantity = parseFloat(document.getElementById("productQuantity").value);
-      const productId = Date.now();
 
-      const newProduct = { id: productId, name: productName, price: productPrice, quantity: productQuantity };
+      const newProduct = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        quantity: productQuantity
+      };
       cart.addProduct(newProduct);
-      cart.renderCart()
+      cart.renderCart();
       e.target.reset();
     });
 
@@ -224,5 +224,4 @@
 
   </script>
 </body>
-
 </html>
