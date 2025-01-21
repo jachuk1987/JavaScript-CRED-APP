@@ -164,9 +164,6 @@
     const cart = {
       items: [],
 
-      addProduct(newProduct) {
-        const exists = this.items.find(item => item.id === newProduct.id)
-      }
     }
 
     document.getElementById("addProductForm").addEventListener("submit", function (e) {
@@ -182,12 +179,9 @@
         name: productName,
         price: productPrice,
         quantity: productQuantity
-      };
-      cart.addProduct(newProduct);
-      cart.renderCart();
-      e.target.reset();
-    });
-    
+      }
+      
+    })
   </script>
 </body>
 </html>
