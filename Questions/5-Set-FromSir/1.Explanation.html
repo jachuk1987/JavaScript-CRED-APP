@@ -165,36 +165,7 @@
       items: [],
 
       addProduct(newProduct) {
-        const exists = this.items.find(item => item.id === newProduct.id);
-        if(!exists) this.items.push(newProduct);
-        console.log(this.items)
-      },
-
-      renderCart() {
-        const cartItems = document.getElementById("cartItems");
-        cartItems.innerHTML = "";
-
-        this.items.forEach((item) => {
-          const li = document.createElement("li");
-          li.className = "li-class"
-          li.innerHTML = `
-                  <span>${item.name}</span>
-                  <div>
-                    <span class="mr-4">${item.price}</span>
-                    <button class="class-button" onclick="removeFromCart(${item.id})">Remove</button>
-                  </div>
-                `;
-          cartItems.appendChild(li);
-        });
-
-        document.getElementById("totalPrice").textContent = this.calculateTotal();
-      },
-
-      removeProduct(productId) {
-        this.items = this.items.filter(item => item.id !== productId)
-      },
-      calculateTotal() {
-        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+        const exists = this.items.find(item => item.id === newProduct.id)
       }
     }
 
@@ -216,12 +187,7 @@
       cart.renderCart();
       e.target.reset();
     });
-
-    function removeFromCart(productId) {
-      cart.removeProduct(productId)
-      cart.renderCart()
-    }
-
+    
   </script>
 </body>
 </html>
