@@ -180,8 +180,10 @@
         price: productPrice,
         quantity: productQuantity
       }
-      
-    })
+      cart.addProduct(newProduct);
+      cart.renderCart();
+      e.target.reset();
+    });
   </script>
 </body>
 </html>
