@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,7 +85,7 @@
       background-color: #3182ce;
     }
 
-    .li-clas {
+    .li-class {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -92,12 +93,12 @@
       border-bottom: 1px solid #e0e0e0;
     }
 
-    .li-clas span {
+    .li-class span {
       font-size: 14px;
       font-weight: 500;
     }
 
-    .li-clas div {
+    .li-class div {
       display: flex;
       align-items: center;
     }
@@ -124,6 +125,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h1>E-Commerce Cart Management</h1>
@@ -162,64 +164,65 @@
 
   <script>
     const cart = {
-        items: [],
-        
-        addProduct(Product) {
-            const exists = this.items.find(item => item.id === Product.id);
-            if(!exists) this.items.push(Product);
-            console.log(this.items)
-        },
+      items: [],
 
-        removeProduct(productId) {
-            this.items = this.items.filter(item => item.id !== productId)
-        },
+      addProduct(Product) {
+        const exists = this.items.find(item => item.id === Product.id);
+        if (!exists) this.items.push(Product);
+        console.log(this.items)
+      },
 
-        calculateTotal() {
-            return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
-        },
+      removeProduct(productId) {
+        this.items = this.items.filter(item => item.id !== productId)
+      },
 
-        renderCart() {
-            const cartItems = document.getElementById("cartItems");
-            cartItems.innerHTML = "";
-        
-            this.items.forEach((item) => {
-              const li = document.createElement("li");
-              li.className = "li-clas"
-              li.innerHTML = `
+      calculateTotal() {
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
+      },
+
+      renderCart() {
+        const cartItems = document.getElementById("cartItems");
+        cartItems.innerHTML = "";
+
+        this.items.forEach((item) => {
+          const li = document.createElement("li");
+          li.className = "li-class"
+          li.innerHTML = `
                   <span>${item.name}</span>
                   <div>
                     <span class="mr-4">$${item.price}</span>
-                    <button class="class-button" onclick="removeFromCartI(${item.id})">Remove</button>
+                    <button class="class-button" onclick="removeFromCart(${item.id})">Remove</button>
                   </div>
                 `;
-              cartItems.appendChild(li);
-            });
-        
-            document.getElementById("totalPrice").textContent = this.calculateTotal();
-          },
+          cartItems.appendChild(li);
+        });
+
+        document.getElementById("totalPrice").textContent = this.calculateTotal();
+      },
 
 
     }
 
-    document.getElementById("addProductForm").addEventListener("submit", function (e){
-        e.preventDefault();
+    document.getElementById("addProductForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-        const productName = document.getElementById("productName").value;
-        const productPrice = parseFloat(document.getElementById("productPrice").value);
-        const productQuantity = parseFloat(document.getElementById("productQuantity").value);
-        const productId = Date.now();
-      
-        const newProduct = { id: productId, name: productName, price: productPrice, quantity: productQuantity };
-        cart.addProduct(newProduct);
-        cart.renderCart()
-        e.target.reset();
+      const productName = document.getElementById("productName").value;
+      const productPrice = parseFloat(document.getElementById("productPrice").value);
+      const productQuantity = parseFloat(document.getElementById("productQuantity").value);
+      const productId = Date.now();
+
+      const newProduct = { id: productId, name: productName, price: productPrice, quantity: productQuantity };
+      cart.addProduct(newProduct);
+      cart.renderCart()
+      e.target.reset();
     });
 
-      function removeFromCartI(productId) {
-        cart.removeProduct(productId)
-        cart.renderCart()
-      }
-        
+    function removeFromCart(productId) {
+      cart.removeProduct(productId)
+      cart.renderCart()
+    }
+
   </script>
 </body>
+
 </html>
