@@ -193,6 +193,7 @@
       removeProduct(productId) {
         this.items = this.items.filter(item => item.id !== productId)
       },
+      
       calculateTotal() {
         return this.items.reduce((total, item) => total + (item.price * item.quantity), 0)
       }

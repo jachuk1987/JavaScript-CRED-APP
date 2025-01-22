@@ -181,7 +181,7 @@
           <span>${item.name}</span>
           <div>
             <span class="mr-4">${item.price}</span>
-            <button class="class-button" onclick"removeFromCart(${item.id})>Remove</button>
+            <button class="class-button" onclick="removeFromCart(${item.id})">Remove</button>
           </div>
           `;
           cartItems.appendChild(li);
@@ -189,6 +189,14 @@
 
         document.getElementById("totalPrice").textContent = this.calculateTotal();
       },
+
+      removeProduct(productId) {
+        this.items = this.items.filter(item => item.id !== productId)
+      },
+
+      calculateTotal() {
+        return this.items.reduce((total, item) => total +(item.price * item.quantity), 0)
+      }
     }
 
     document.getElementById("addProductForm").addEventListener("submit", function (e){
@@ -212,9 +220,10 @@
     });
 
     function removeFromCart(productId){
-      cart.removeFromCart(productId)
+      cart.removeProduct(productId)
       cart.renderCart()
     }
+
      </script>
 </body>
 </html>
