@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Post Editor</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            resize: none;
+            font-size: 1rem;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+
+        button {
+            width: 100%;
+            background-color: #3b82f6;
+            color: #ffffff;
+            padding: 12px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2563eb;
+        }
+
+        /* Post Styles */
+        .post-container {
+            background-color: #ffffff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .post {
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+
+        .post-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .edit-button,
+        .delete-button {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .edit-button {
+            background-color: #f59e0b;
+            color: #ffffff;
+        }
+
+        .edit-button:hover {
+            background-color: #d97706;
+        }
+
+        .delete-button {
+            background-color: #ef4444;
+            color: #ffffff;
+        }
+
+        .delete-button:hover {
+            background-color: #b91c1c;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Social Media Post Editor</h1>
+
+        <!-- Add Post Section -->
+        <div class="form-container">
+            <form id="addPostForm">
+                <textarea id="postContent" rows="3" placeholder="What's on your mind?" required></textarea>
+                <button type="submit">Add Post</button>
+            </form>
+        </div>
+
+        <!-- Posts Section -->
+        <div id="postsContainer">
+            <!-- Dynamic posts will appear here -->
+        </div>
+    </div>
+
+    <script>
+        const socialMediaApp = {
+            posts: [],
+
+            // Add a new post
+            addPost(content) {
+                const newPost = {
+                    id: Date.now(), // Unique ID based on timestamp
+                    content,
+                    likes: 0,
+                    comments: [],
+                    date: new Date(),
+                };
+                this.posts.push(newPost);
+            },
+
+            // Edit an existing post
+            editPost(postId, newContent) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) post.content = newContent;
+            },
+
+            // Like a post
+            likePost(postId) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) post.likes++;
+            },
+
+            // Add a comment to a post
+            addComment(postId, comment) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) post.comments.push(comment);
+            },
+
+            // Clone a post
+            clonePost(postId) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) {
+                    const clonedPost = { ...post, id: Date.now(), date: new Date() };
+                    this.posts.push(clonedPost);
+                }
+            },
+
+            // Render all posts
+            renderPosts() {
+                const container = document.getElementById("postsContainer");
+                container.innerHTML = ""; // Clear existing posts
+
+                this.posts.forEach((post) => {
+                    const postDiv = document.createElement("div");
+                    postDiv.className = "bg-white p-4 rounded shadow";
+
+                    postDiv.innerHTML = `
+            <p class="text-lg">${post.content}</p>
+            <div class="mt-4 flex justify-between items-center">
+              <span>${post.likes} Likes</span>
+              <button
+                class="bg-blue-500 text-white px-4 py-1 rounded hover:bg-blue-600"
+                onclick="socialMediaApp.likePost(${post.id}); socialMediaApp.renderPosts();"
+              >
+                Like
+              </button>
+              <button
+                class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600"
+                onclick="editPostPrompt(${post.id})"
+              >
+                Edit
+              </button>
+              <button
+                class="bg-gray-500 text-white px-4 py-1 rounded hover:bg-gray-600"
+                onclick="socialMediaApp.clonePost(${post.id}); socialMediaApp.renderPosts();"
+              >
+                Clone
+              </button>
+            </div>
+          `;
+
+                    container.appendChild(postDiv);
+                });
+            },
+        };
+
+        // Prompt user for editing a post
+        function editPostPrompt(postId) {
+            const post = socialMediaApp.posts.find((p) => p.id === postId);
+            if (post) {
+                const newContent = prompt("Edit your post:", post.content);
+                if (newContent) {
+                    socialMediaApp.editPost(postId, newContent);
+                    socialMediaApp.renderPosts();
+                }
+            }
+        }
+
+        // Handle the Add Post form submission
+        document.getElementById("addPostForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const content = document.getElementById("postContent").value;
+            socialMediaApp.addPost(content);
+            socialMediaApp.renderPosts();
+            e.target.reset(); // Clear the form
+        });
+    </script>
+</body>
+
+</html>
