@@ -164,10 +164,10 @@
     const cart = {
       items: [],
 
-      addProduct(newProduct){
+      addProduct(newProduct) {
         const exists = this.items.find(item => item.id === newProduct.id);
-        if(!exists) this.items.push(newProduct);
-        console.log(this.items)
+        if (!exists) this.items.push(newProduct);
+        console.log(this.items);
       },
 
       renderCart() {
@@ -175,7 +175,7 @@
         cartItems.innerHTML = "";
 
         this.items.forEach((item) => {
-          const li =document.createElement("li");
+          const li = document.createElement("li");
           li.className = "li-class";
           li.innerHTML = `
           <span>${item.name}</span>
@@ -195,11 +195,11 @@
       },
 
       calculateTotal() {
-        return this.items.reduce((total, item) => total +(item.price * item.quantity), 0)
+        return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
       }
     }
 
-    document.getElementById("addProductForm").addEventListener("submit", function (e){
+    document.getElementById("addProductForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
       const productId = Date.now();
@@ -219,11 +219,11 @@
       e.target.reset();
     });
 
-    function removeFromCart(productId){
+    function removeFromCart(productId) {
       cart.removeProduct(productId)
       cart.renderCart()
     }
 
-     </script>
+  </script>
 </body>
 </html>
