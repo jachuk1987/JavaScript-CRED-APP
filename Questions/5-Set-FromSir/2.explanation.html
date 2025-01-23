@@ -144,7 +144,86 @@
         </div>
     </div>
 
-    
+    <script>
+        const socialMediaApp = {
+            posts: [],
+
+            addPost(content) {
+                const newPost = {
+                    id: Date.now(),
+                    content,
+                    likes: 0,
+                    comments: [],
+                    date: new Date(),
+                };
+                this.posts.push(newPost);
+            },
+
+            renderPosts() {
+                const container = document.getElementById("postContent");
+                container.innerHTML = "";
+
+                this.posts.forEach((post) => {
+                    const postDiv = document.createElement("div");
+                    postDiv.className = "post-container";
+
+                    postDiv.innerHTML = `
+                        <p class="post-content">${post.content}</p>
+                        <div class="post-actions">
+                            <button class="action-button like-button" onclick="socialMediaApp.likePost(${post.id}); socialMediaApp.renderPosts();">
+                                Like (${post.likes})
+                            </button>
+                            <button class="action-button edit-button" onclick="editPostPrompt(${post.id});">
+                                Edit
+                            </button>
+                            <button class="action-button clone-button" onclick="socialMediaApp.clonePost(${post.id}); socialMediaApp.renderPosts();">
+                                Clone
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(postDiv);
+                })
+            },
+
+            editPost(postId, newContent) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) post.content = newContent;
+            },
+
+            likePost(postId) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) post.likes++;
+            },
+
+            clonePost(postId) {
+                const post = this.posts.find((p) => p.id === postId);
+                if (post) {
+                    const clonedPost = { ...post, id: Date.now(), date: new Date() };
+                    this.posts.push(clonedPost);
+                }
+            },
+        }
+
+        document.getElementById("addPostForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const content = document.getElementById("postContent").value;
+            socialMediaApp.addPost(content);
+            socialMediaApp.renderPost();
+            e.target.reset();
+        });
+
+        function editPostPrompt(postId) {
+            const post = socialMediaApp.posts.find((p) => p.id === postId);
+            if (post) {
+                const newContent = prompt("Edit your post:", post.content);
+                if (newContent) {
+                    socialMediaApp.editPost(postId, newContent);
+                    socialMediaApp.renderPosts();
+                }
+            }
+        };
+    </script>
 </body>
 
 </html>
