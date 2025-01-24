@@ -111,8 +111,7 @@
 
                 this.seats.forEach((seat) => {
                     const seatDiv = document.createElement("div");
-                    seatDiv.className = `seat ${seat.isBooked ? "seat-booked" : "seat-available"
-                        }`;
+                    seatDiv.className = `seat ${seat.isBooked ? "seat-booked" : "seat-available"}`;
                     seatDiv.textContent = seat.number;
 
                     // Add click functionality

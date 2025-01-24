@@ -89,18 +89,47 @@
         const movieBookingSystem = {
             seats: [],
 
-            initializeSeats(rows, cols) {
+            initializeSeats(rows, cols){
                 this.seats = [];
                 const rowLetters = "ABCDEFGHIJ";
                 for (let i = 0; i < rows; i++) {
-                    for (let j =1; j <= cols; j++) {
+                    for (let j = 1; j <= cols; j++) {
                         this.seats.push({
-                            number: `${rowLetters[i]}${j}`
-                        })
+                            number: `${rowLetters[i]}${j}`,
+                            isBooked: false,
+                        });
                     }
                 }
+                this.renderSeats();
+            },
+
+            renderSeats() {
+                const seatArrangement = document.getElementById("seatArrangement");
+                seatArrangement.innerHTML = "";
+
+                this.seats.forEach((seat) => {
+                    const seatDiv = document.createElement("div");
+                    seatDiv.className = `seat ${seat.isBooked ? "seat-booked" : "seat-available"}`;
+                    seatDiv.textContent = seat.number;
+
+                    seatDiv.onclick = () => {
+                        if (!seat.isBooked) {
+                            const confirmBooking = confirm(`Book seat ${seat.number}?`);
+                            if (confirmBooking) {
+                                seat.isBooked = true;
+                                this.renderSeats();
+                            }
+                        } else {
+                            alert(`Seat ${seat.number} is already booked.`);
+                        }
+                    };
+
+                    seatArrangement.appendChild(seatDiv);
+                });
             }
         }
+
+        movieBookingSystem.initializeSeats(5, 10);
     </script>
 </body>
 
