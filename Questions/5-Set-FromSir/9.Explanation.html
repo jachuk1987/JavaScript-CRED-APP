@@ -159,7 +159,7 @@
           <p>${product.name} (Quantity: ${product.quantity})</p>
           <div>
             <button onclick="inventorySystem.promptUpdateQuantity(${product.id})">Update Quantity</button>
-            <button class="remove" onclick="inventorySystem.RemoveProduct(${product.id})">Remove</button>
+            <button class="remove" onclick="inventorySystem.removeProduct(${product.id})">Remove</button>
           </div>
           `;
           productList.appendChild(productDiv);
@@ -199,11 +199,14 @@
       e.preventDefault();
 
       const name = document.getElementById("productName").value.trim();
-      const quantity = parseInt(document.getElementById("productName").value.trim());
+      const quantity = parseInt(document.getElementById("productQuantity").value.trim());
 
-      if (name && quantity) {
+      if (name && quantity > 0) {
         inventorySystem.addProduct(name, quantity);
+      } else {
+        alert("Please enter a valid name and a positive quantity.");
       }
+
 
       e.target.reset();
     })
