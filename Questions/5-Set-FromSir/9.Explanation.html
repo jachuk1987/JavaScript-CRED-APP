@@ -137,74 +137,8 @@
 
   <script>
     const inventorySystem = {
-        products: [],
-
-        addProduct(name, quantity) {
-            const newProduct = {
-                id: Date.now(),
-                name,
-                quantity,
-            }
-            this.products.push(newProduct);
-            this.renderProducts();
-        },
-
-        renderProducts() {
-            const productList = document.getElementById("productList");
-            productList.innerHTML = "";
-
-            this.products.forEach((product) => {
-                const productDiv = document.createElement("div");
-                productDiv.innerHTML = `
-                <p>${product.name} (Quantity: ${product.quantity})</p>
-                <div>
-                   <button onclick="inventorySystem.promptUpdateQuantity(${product.id})">Update Quantity</button>  
-                   <button class="remove" onclick="inventorySystem.removeProduct(${product.id})">Remove</button> 
-                </div>
-                `;
-                productList.appendChild(productDiv);
-            });
-            document.getElementById("totalQuantity").textContent = this.calculateTotal();
-        },
-
-        promptUpdateQuantity(id) {
-            const newQuantity = prompt("please enter a new quantity:");
-            if (newQuantity && !isNaN(newQuantity)) {
-                this.updateQuantity(id, parseFloat(newQuantity));
-            } else {
-                alert("Invalid quantity!");
-            }
-        },
-
-        removeProduct(id) {
-            this.products = this.products.filter((product) => product.id !== id);
-            this.renderProducts();
-        },
-
-        calculateTotal() {
-            return this.products.reduce((total, product) => total + product.quantity, 0);
-        },
-
-        updateQuantity( id, newQuantity) {
-            const productIndex = this.products.findIndex((product) => product.id === id);
-            if (productIndex !== -1) {
-                this.products[productIndex].quantity = newQuantity;
-                this.renderProducts();
-            }
-        }
+      
     }
-
-    document.getElementById("productForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-
-        const name = document.getElementById("productName").value.trim();
-        const quantity = parseFloat(document.getElementById("productQuantity").value.trim());
-
-        if (name && quantity) {
-            inventorySystem.addProduct(name, quantity);
-        }
-        e.target.reset();
-    })
   </script>
 </body>
 
