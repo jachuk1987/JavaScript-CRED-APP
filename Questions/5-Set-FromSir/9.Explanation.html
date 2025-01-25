@@ -176,15 +176,32 @@
           alert("Invalid quantity!");
         }
       },
+
+      removeProduct(id) {
+        this.products = this.products.filter((product) => product.id !== id);
+        this.renderProducts();
+      },
+
+      calculateTotal() {
+        return this.products.reduce((total, product) => total + product.quantity, 0);
+      },
+
+      updateQuantity(id, newQuantity) {
+        const productIndex = this.products.findIndex((product) => product.id === id);
+        if (productIndex !== -1) {
+          this.products[productIndex].quantity = newQuantity;
+          this.renderProducts();
+        }
+      }
     }
 
     document.getElementById("productForm").addEventListener("submit", function (e) {
       e.preventDefault();
 
       const name = document.getElementById("productName").value.trim();
-      const quantity = document.getElementById("productName").value.trim();
+      const quantity = parseInt(document.getElementById("productName").value.trim());
 
-      if(name && quantity) {
+      if (name && quantity) {
         inventorySystem.addProduct(name, quantity);
       }
 
