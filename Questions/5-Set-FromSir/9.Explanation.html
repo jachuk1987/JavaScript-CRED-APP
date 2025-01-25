@@ -193,6 +193,10 @@
           this.renderProducts();
         }
       },
+
+      sortProducts() {
+        this.products.sort((a, b) => a.name.localeCompare(b.name));
+      },
     }
 
     document.getElementById("productForm").addEventListener("submit", function (e) {
