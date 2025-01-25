@@ -157,23 +157,23 @@
           const productDiv = document.createElement("div");
           productDiv.innerHTML = `
           <p>${product.name} (Quantity: ${product.quantity})</p>
-          <div>
+          <div class="product-actions">
             <button onclick="inventorySystem.promptUpdateQuantity(${product.id})">Update Quantity</button>
             <button class="remove" onclick="inventorySystem.removeProduct(${product.id})">Remove</button>
           </div>
           `;
           productList.appendChild(productDiv);
-        });
+        })
 
         document.getElementById("totalQuantity").textContent = this.calculateTotal();
       },
 
       promptUpdateQuantity(id) {
-        const newQuantity = prompt("Please enter a new quantity:");
+        const newQuantity = prompt("Please enter a new Quantity!");
         if (newQuantity && !isNaN(newQuantity)) {
           this.updateQuantity(id, parseInt(newQuantity));
         } else {
-          alert("Invalid quantity!");
+          alert("Invaild quantity!")
         }
       },
 
@@ -192,7 +192,7 @@
           this.products[productIndex].quantity = newQuantity;
           this.renderProducts();
         }
-      }
+      },
     }
 
     document.getElementById("productForm").addEventListener("submit", function (e) {
@@ -204,9 +204,8 @@
       if (name && quantity > 0) {
         inventorySystem.addProduct(name, quantity);
       } else {
-        alert("Please enter a valid name and a positive quantity.");
+        alert("Enter vaild Name and Quantity");
       }
-
 
       e.target.reset();
     })
