@@ -123,7 +123,23 @@
     </div>
 
     <script>
-        
+        const expenseTracker = {
+            expenses: {},
+
+            addExpense(category, amount) {
+                
+            }
+        }
+
+        document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const category = document.getElementById("category").valu.trim();
+            const amount = parseFloat(document.getElementById("amount").value);
+
+            expenseTracker.addExpense(category, amount);
+            e.target.reset();
+        });
     </script>
 </body>
 
