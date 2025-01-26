@@ -131,15 +131,27 @@
                     alert("Expense amount must be greater than Zero!");
                     return;
                 }
-            }
+
+                if (!this.expenses[category]) {
+                    this.expenses[category] = [];
+                }
+
+                this.expenses[category].push({
+                    id: Date.now(),
+                    amount: parseFloat(amount),
+                    date: new Date(),
+                });
+
+                this.renderCategories();
+                // console.log(this.expenses)
+            },
         }
 
         document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
             e.preventDefault();
 
-            const category = document.getElementById("category").valu.trim();
+            const category = document.getElementById("category").value.trim();
             const amount = parseFloat(document.getElementById("amount").value);
-
             expenseTracker.addExpense(category, amount);
             e.target.reset();
         });

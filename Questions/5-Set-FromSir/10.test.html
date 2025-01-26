@@ -146,14 +146,6 @@
                 this.renderCategories();
             },
 
-            // Get total expenses for a category
-            getTotalExpenses(category) {
-                return this.expenses[category].reduce(
-                    (total, expense) => total + expense.amount,
-                    0
-                );
-            },
-
             // Render all categories and their expenses
             renderCategories() {
                 const container = document.getElementById("categoriesContainer");
@@ -184,6 +176,14 @@
 
                     container.appendChild(categoryDiv);
                 });
+            },
+
+            // Get total expenses for a category
+            getTotalExpenses(category) {
+                return this.expenses[category].reduce(
+                    (total, expense) => total + expense.amount,
+                    0
+                );
             },
 
             // Remove an expense by ID
