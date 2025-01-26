@@ -144,6 +144,21 @@
 
                 this.renderCategories();
             },
+
+            renderCategories() {
+                const container = document.getElementById("categoriesContainer");
+                container.innerHTML = "";
+
+                Object.keys(this.expenses).forEach((category) => {
+                    const categoryDiv = document.createElement("div");
+                    categoryDiv.className = "category-container";
+
+                    categoryDiv.innerHTML = `
+                    <h2>${category} - Total: ${this.getTotalExpenses(category).toFixed(2)}</h2>
+                    
+                    `
+                })
+            }
         }
 
         document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
