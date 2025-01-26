@@ -127,7 +127,10 @@
             expenses: {},
 
             addExpense(category, amount) {
-                
+                if (amount <= 0) {
+                    alert("Expense amount must be greater than Zero!");
+                    return;
+                }
             }
         }
 
