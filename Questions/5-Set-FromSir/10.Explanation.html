@@ -128,7 +128,7 @@
 
             addExpense(category, amount) {
                 if (amount <= 0) {
-                    alert("Expense amount must be greater than Zero!");
+                    alert("Expense amount must be greater than zero!");
                     return;
                 }
 
@@ -143,6 +143,8 @@
                 });
 
                 this.renderCategories();
+                // console.log(this.expenses)
+
             },
 
             renderCategories() {
@@ -154,21 +156,50 @@
                     categoryDiv.className = "category-container";
 
                     categoryDiv.innerHTML = `
-                    <h2>${category} - Total: ${this.getTotalExpenses(category).toFixed(2)}</h2>
-                    
-                    `
-                })
-            }
-        }
+                        <h2>${category} - Total: $${this.getTotalExpenses(category).toFixed(2)}</h2>
+                        <ul class="expense-list">
+                            ${this.expenses[category].map(expense => `
+                                <li class="expense-item">
+                                    <span>$${expense.amount.toFixed(2)} - ${new Date(expense.date).toLocaleDateString()}</span>
+                                    <button class="remove-button" onclick="expenseTracker.removeExpense('${category}', ${expense.id})">Remove</button>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    `;
 
-        document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
-            e.preventDefault();
+                    container.appendChild(categoryDiv);
+                });
+            },
 
-            const category = document.getElementById("category").value.trim();
-            const amount = parseFloat(document.getElementById("amount").value);
-            expenseTracker.addExpense(category, amount);
-            e.target.reset();
-        });
+            getTotalExpenses(category) {
+                return this.expenses[category].reduce(
+                    (total, expense) => total + expense.amount,
+                    0
+                );
+            },
+
+            removeExpense(category, expenseId) {
+                this.expenses[category] = this.expenses[category].filter(
+                    (expense) => expense.id !== expenseId
+                );
+
+                if (this.expenses[category].length === 0) {
+                    delete this.expenses[category];
+                }
+
+                this.renderCategories();
+            },
+        };
+
+        document
+            .getElementById("addExpenseForm")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
+                const category = document.getElementById("category").value.trim();
+                const amount = parseFloat(document.getElementById("amount").value);
+                expenseTracker.addExpense(category, amount);
+                e.target.reset();
+            });
     </script>
 </body>
 
