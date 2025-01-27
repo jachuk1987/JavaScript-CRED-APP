@@ -176,18 +176,12 @@
 
             // Get total expenses for a category
             getTotalExpenses(category) {
-                return this.expenses[category].reduce(
-                    (total, expense) => total + expense.amount,
-                    0
-                );
+                return this.expenses[category].reduce((total, expense) => total + expense.amount, 0);
             },
 
             // Remove an expense by ID
             removeExpense(category, expenseId) {
-                this.expenses[category] = this.expenses[category].filter(
-                    (expense) => expense.id !== expenseId
-                );
-
+                this.expenses[category] = this.expenses[category].filter(expense => expense.id !== expenseId);
                 if (this.expenses[category].length === 0) {
                     delete this.expenses[category];
                 }
@@ -197,15 +191,13 @@
         };
 
         // Handle the Add Expense form submission
-        document
-            .getElementById("addExpenseForm")
-            .addEventListener("submit", function (e) {
-                e.preventDefault();
-                const category = document.getElementById("category").value.trim();
-                const amount = parseFloat(document.getElementById("amount").value);
-                expenseTracker.addExpense(category, amount);
-                e.target.reset();
-            });
+        document.getElementById("addExpenseForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const category = document.getElementById("category").value.trim();
+            const amount = parseFloat(document.getElementById("amount").value);
+            expenseTracker.addExpense(category, amount);
+            e.target.reset();
+        });
     </script>
 </body>
 
