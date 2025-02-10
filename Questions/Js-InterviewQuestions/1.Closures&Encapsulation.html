@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures & Encapsulation</title>
+</head>
+
+<body>
+    <div>
+        <h2>1. What are closures in JavaScript? Can you give an example?</h2>
+        <p>A closure is a function that retains access to its lexical scope even when it is executed outside of that
+            scope.
+            It allows an inner function to remember variables from its outer function,
+            even after the outer function has finished execution</p>
+
+        <script>
+            function outerFunction(outerVariable) {
+                return function innerFunction(innerVariable) {
+                    console.log(`Outer: ${outerVariable}, Inner: ${innerVariable}`);
+                };
+            }
+
+            const closureFunction = outerFunction("Hello");
+            closureFunction("World"); // Output: Outer: Hello, Inner: World
+
+        </script>
+    </div>
+
+    <div>
+        <h2>Q2: How does closure help in data encapsulation?</h2>
+        <p>Closures help in data encapsulation by restricting direct access to variables and exposing only necessary
+            functionality.
+            This is useful for creating private variables in JavaScript.</p>
+
+        <script>
+            function createCounter() {
+                let count = 0; // Private variable
+
+                return {
+                    increment: function () {
+                        count++;
+                        console.log(`Count: ${count}`);
+                    },
+                    decrement: function () {
+                        count--;
+                        console.log(`Count: ${count}`);
+                    },
+                    getCount: function () {
+                        return count;
+                    }
+                };
+            }
+
+            const counter = createCounter();
+            counter.increment(); // Count: 1
+            counter.increment(); // Count: 2
+            console.log(counter.getCount()); // 2
+            console.log(counter.count); // undefined (cannot access directly)
+
+        </script>
+    </div>
+
+    <div>
+        <h2>3: How does your createCart() function use closures?</h2>
+        <p>In your Inventory Management System or Movie Ticket Booking System,
+            a createCart() function might use closures to encapsulate cart data and provide controlled access</p>
+
+        <script>
+            function createCart() {
+                let cart = []; // Private variable (not accessible directly)
+
+                return {
+                    addItem: function (item) {
+                        cart.push(item);
+                        console.log(`${item.name} added to cart.`);
+                    },
+                    removeItem: function (itemName) {
+                        cart = cart.filter(item => item.name !== itemName);
+                        console.log(`${itemName} removed from cart.`);
+                    },
+                    getCart: function () {
+                        return cart;
+                    }
+                };
+            }
+
+            // Usage:
+            const cart = createCart();
+            cart.addItem({ name: "Laptop", price: 1000 });
+            cart.addItem({ name: "Mouse", price: 50 });
+            console.log(cart.getCart()); // [{ name: "Laptop", price: 1000 }, { name: "Mouse", price: 50 }]
+            cart.removeItem("Mouse");
+            console.log(cart.getCart()); // [{ name: "Laptop", price: 1000 }]
+            console.log(cart.cart); // undefined (cart is private)
+
+        </script>
+    </div>
+</body>
+
+</html>
