@@ -54,6 +54,30 @@
         </div>
     </div>
 
+    <script>
+    const headers = document.querySelectorAll('.accordion-header');
+
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+
+        // Close all other sections
+        document.querySelectorAll('.accordion-content').forEach(c => {
+          if (c !== content) {
+            c.style.display = 'none';
+          }
+        });
+
+        // Toggle the selected one
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  </script>
+
 </body>
 
 </html>
