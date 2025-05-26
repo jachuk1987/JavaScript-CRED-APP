@@ -3,7 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>Accordion in JS</title>
-  <link rel="stylesheet" href="styles.css">
+    <style>
+    .accordion-header {
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      padding: 15px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      font-size: 16px;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+
+    .accordion-header:hover {
+      background-color: #0056b3;
+    }
+
+    .accordion-content {
+      display: none;
+      padding: 15px;
+      background-color: #f1f1f1;
+      border-top: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
   <div class="accordion">
