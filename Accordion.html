@@ -62,7 +62,6 @@
         headers.forEach(header => {
             header.addEventListener('click', () => {
                 const content = header.nextElementSibling;
-
                 document.querySelectorAll('.accordion-content').forEach(c => {
                     if (c !== content) {
                         c.style.display = 'none';
