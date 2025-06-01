@@ -41,10 +41,12 @@
             }
         }
 
+        // Entry point function
         function get(n) {
             return new Calculator(n);
         }
 
+        // Example use:
         const final = get(2)
             .sum(3)      // 2 + 3 = 5
             .multi(4)    // 5 * 4 = 20
@@ -54,7 +56,7 @@
             .subtract(2) // 65 - 2 = 63
             .sum(3);     // 63 + 3 = 66
 
-        console.log(final.result());
+        console.log(final.result()); // ➤ 66
 
     </script>
 </body>
