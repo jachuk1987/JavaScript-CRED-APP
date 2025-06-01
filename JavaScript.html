@@ -1,11 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <!-- get(2).sum(3).multi(4).divide(2).sum(3).multi(5).subs tract(2).sum(3) -->
+
+    <script>
+        class Calculator {
+            constructor(value) {
+                this.value = value;
+            }
+
+            sum(n) {
+                this.value += n;
+                return this;
+            }
+
+            multi(n) {
+                this.value *= n;
+                return this;
+            }
+
+            divide(n) {
+                this.value /= n;
+                return this;
+            }
+
+            subtract(n) {
+                this.value -= n;
+                return this;
+            }
+
+            result() {
+                return this.value;
+            }
+        }
+
+        // Entry point function
+        function get(n) {
+            return new Calculator(n);
+        }
+
+        // Example use:
+        const final = get(2)
+            .sum(3)      // 2 + 3 = 5
+            .multi(4)    // 5 * 4 = 20
+            .divide(2)   // 20 / 2 = 10
+            .sum(3)      // 10 + 3 = 13
+            .multi(5)    // 13 * 5 = 65
+            .subtract(2) // 65 - 2 = 63
+            .sum(3);     // 63 + 3 = 66
+
+        console.log(final.result()); // ➤ 66
+
+    </script>
 </body>
+
 </html>
