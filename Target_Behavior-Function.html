@@ -32,6 +32,16 @@
 
             return calculator;
         }
+        const result = get(2)
+            .sum(3)      // 5
+            .multi(4)    // 20
+            .divide(2)   // 10
+            .sum(3)      // 13
+            .multi(5)    // 65
+            .subtract(2) // 63
+            .sum(3);     // 66
+
+        console.log(result.value); // ➤ 66
 
     </script>
 </body>
