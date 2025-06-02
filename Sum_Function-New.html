@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Curried Sum</title>
 </head>
 
 <body>
@@ -20,19 +20,14 @@
                 return inner;
             }
 
+            inner.valueOf = function () {
+                return total;
+            };
+
             return inner;
         }
 
-        // ✅ Tests
-        console.log(sum(2, 3, 4, 5)());          // ➤ 14
-        console.log(sum(2, 3)(4, 5)());          // ➤ 14
-        console.log(sum(2)(3)(4)(5)());          // ➤ 14
-
-        // ✅ Add two separate results
-        const result1 = sum(2, 3)();             // ➤ 5
-        const result2 = sum(2)(3)();             // ➤ 5
-        console.log(result1 + result2);          // ➤ 10
-
+        console.log(sum(2, 3) + sum(2)(3)); // 5 + 5 = 10
     </script>
 </body>
 
