@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function sum(...args) {
+            let total = args.reduce((a, b) => a + b, 0);
+
+            function inner(...moreArgs) {
+                if (moreArgs.length === 0) {
+                    return total;
+                }
+                total += moreArgs.reduce((a, b) => a + b, 0);
+                return inner;
+            }
+
+            return inner;
+        }
+
+        // ✅ Tests
+        console.log(sum(2, 3, 4, 5)());          // ➤ 14
+        console.log(sum(2, 3)(4, 5)());          // ➤ 14
+        console.log(sum(2)(3)(4)(5)());          // ➤ 14
+
+        // ✅ Add two separate results
+        const result1 = sum(2, 3)();             // ➤ 5
+        const result2 = sum(2)(3)();             // ➤ 5
+        console.log(result1 + result2);          // ➤ 10
+
+    </script>
+</body>
+
+</html>
