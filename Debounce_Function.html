@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <title>Debounce Example</title>
+    <title>Debounce Example</title>
 </head>
+
 <body>
-  <input type="text" id="search" placeholder="Type something..." />
+    <input type="text" id="search" placeholder="Type something..." />
 
-  <script>
-    // Debounce function
-    function debounce(func, delay) {
-      let timeoutId;
-      return function (...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-          func.apply(this, args);
-        }, delay);
-      };
-    }
+    <script>
+        // Debounce function
+        function debounce(func, delay) {
+            let timeoutId;
+            return function (...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => {
+                    func.apply(this, args);
+                }, delay);
+            };
+        }
 
-    // Function to handle input
-    function handleInput(event) {
-      console.log('Input value:', event.target.value);
-    }
+        // Function to handle input
+        function handleInput(event) {
+            console.log('Input value:', event.target.value);
+        }
 
-    // Apply debounce to input handler
-    const debouncedInput = debounce(handleInput, 500);
+        // Apply debounce to input handler
+        const debouncedInput = debounce(handleInput, 500);
 
-    // Attach to input event
-    document.getElementById('search').addEventListener('input', debouncedInput);
-  </script>
+        // Attach to input event
+        document.getElementById('search').addEventListener('input', debouncedInput);
+    </script>
 </body>
+
 </html>
