@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
         const input = 'AAAABBBCCDAABBB';
 
-const result = [];
-for (let i = 0; i < input.length; i++) {
-  if (input[i] !== input[i - 1]) {
-    result.push(input[i]);
-  }
-}
+        const result = [];
+        for (let i = 0; i < input.length; i++) {
+            if (input[i] !== input[i - 1]) {
+                result.push(input[i]);
+            }
+        }
 
-console.log(result); // Output: ['A', 'B', 'C', 'D', 'A', 'B']
+        console.log(result); // Output: ['A', 'B', 'C', 'D', 'A', 'B']
 
     </script>
 </body>
+
 </html>
